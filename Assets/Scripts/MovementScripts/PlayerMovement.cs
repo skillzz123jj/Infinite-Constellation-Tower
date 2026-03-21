@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
+    //Move and jump use the new input system and context is taken from the Inputs asset
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
@@ -34,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = velocity;
     }
 
+    //Checks if player is touching ground 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
