@@ -6,9 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed = 8f;
     [SerializeField] float jumpForce = 5f;
+    [SerializeField] bool isGrounded;
+    [SerializeField] float dashForce = 5f;
     private Rigidbody2D rb;
     private Vector2 moveInput;
-    [SerializeField] bool isGrounded;
+    [SerializeField] float dashCooldown = 1f;
+    Vector3 scale;
+    private bool isDashing;
+    private float lastDashTime;
+
 
     void Start()
     {
@@ -19,6 +25,13 @@ public class PlayerMovement : MonoBehaviour
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
+        scale = transform.localScale;
+
+        if (moveInput.x != 0)
+        {
+            scale.x = moveInput.x < 0 ? -1 : 1;
+            transform.localScale = scale;
+        }
     }
 
     public void Jump(InputAction.CallbackContext context)
@@ -29,11 +42,35 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
+   
+    //Starts a coroutine to stop the movement caused by dash so player stops after 
+    public void Dash(InputAction.CallbackContext context)
+    {
+        //Cooldown for the dash so it cant be spammed 
+        if (context.performed && Time.time >= lastDashTime + dashCooldown)
+        {
+            lastDashTime = Time.time;
+            StartCoroutine(DoDash());
+        }
+    }
+    private System.Collections.IEnumerator DoDash()
+    {
+        isDashing = true;
+        
+        rb.linearVelocity = new Vector2(scale.x * dashForce, 0f);
+
+        yield return new WaitForSeconds(0.5f);
+
+        isDashing = false;
+    }
     private void FixedUpdate()
     {
-        Vector2 velocity = rb.linearVelocity;
-        velocity.x = moveInput.x * speed;
-        rb.linearVelocity = velocity;
+        if (!isDashing)
+        {
+            Vector2 velocity = rb.linearVelocity;
+            velocity.x = moveInput.x * speed;
+            rb.linearVelocity = velocity;
+        }
     }
 
     //Checks if player is touching ground 
