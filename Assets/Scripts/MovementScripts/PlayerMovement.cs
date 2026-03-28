@@ -38,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && isGrounded)
         {
-            Debug.Log("jump");
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
@@ -57,9 +56,13 @@ public class PlayerMovement : MonoBehaviour
     {
         isDashing = true;
         
+        rb.gravityScale = 0f;
+
         rb.linearVelocity = new Vector2(scale.x * dashForce, 0f);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
+
+        rb.gravityScale = 1f;
 
         isDashing = false;
     }
