@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed = 8f;
+    [SerializeField] float movementSpeed = 8f;
     [SerializeField] float jumpForce = 5f;
     [SerializeField] bool isGrounded;
     [SerializeField] float dashForce = 5f;
@@ -71,7 +71,8 @@ public class PlayerMovement : MonoBehaviour
         if (!isDashing)
         {
             Vector2 velocity = rb.linearVelocity;
-            velocity.x = moveInput.x * speed;
+            float currentSpeed = isGrounded ? movementSpeed : movementSpeed * 0.5f;
+            velocity.x = moveInput.x * currentSpeed;
             rb.linearVelocity = velocity;
         }
     }
@@ -82,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+          
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -89,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = false;
+ 
         }
     }
 }
