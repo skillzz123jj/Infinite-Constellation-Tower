@@ -7,6 +7,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] BoxCollider2D attackFront;
     [SerializeField] BoxCollider2D attackUp;
     [SerializeField] Animator animator;
+    [SerializeField] int damage;
     public WeaponHit weaponHitEnemy;
 
     public Image fillImage;
@@ -26,13 +27,13 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    private void OnEnemyHit(Collider2D other) 
+    private void OnEnemyHit(Collider2D other)
     {
-        GameObject enemy = other.gameObject;
-        if (enemy != null)
+        EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
+        if (enemyHealth != null)
         {
-            FillBar(5);
-            Destroy(enemy);
+            enemyHealth.TakeDamage(damage);
+            Debug.Log(enemyHealth.GetHealth());
         }
     }
 

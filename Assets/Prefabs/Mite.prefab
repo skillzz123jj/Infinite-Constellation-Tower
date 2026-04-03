@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5111347547020363265}
   - component: {fileID: 1259844060544703889}
   - component: {fileID: 4200699059221491279}
+  - component: {fileID: 733310231768775432}
   m_Layer: 0
   m_Name: Mite
   m_TagString: Untagged
@@ -190,6 +191,19 @@ MonoBehaviour:
   shootInterval: 2.25
   bulletSpeed: 3
   bulletLifetime: 8
+--- !u!114 &733310231768775432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809458063531614819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1310908870f73e541a5407ac32682b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  health: 2
 --- !u!1 &1038435078413163770
 GameObject:
   m_ObjectHideFlags: 0

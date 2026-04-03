@@ -91,6 +91,7 @@ GameObject:
   - component: {fileID: 6277639221711543291}
   - component: {fileID: 193420872508345214}
   - component: {fileID: 2054179526845778893}
+  - component: {fileID: 4500859959856795751}
   m_Layer: 0
   m_Name: Dragonfly
   m_TagString: Untagged
@@ -266,3 +267,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4500859959856795751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537485831700126214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1310908870f73e541a5407ac32682b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  health: 5
