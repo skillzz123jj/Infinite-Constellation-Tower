@@ -484,6 +484,8 @@ MonoBehaviour:
   attackUp: {fileID: 8603826328385784257}
   animator: {fileID: 3765331713152142119}
   weaponHitEnemy: {fileID: 1952589393880823426}
+  fillImage: {fileID: 0}
+  maxValue: 100
 --- !u!95 &5261059521615430154
 Animator:
   serializedVersion: 7
@@ -624,7 +626,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
