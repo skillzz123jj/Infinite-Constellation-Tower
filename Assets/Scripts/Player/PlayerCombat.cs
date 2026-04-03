@@ -1,24 +1,37 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] BoxCollider2D attackFront;
     [SerializeField] BoxCollider2D attackUp;
+    [SerializeField] Animator animator;
+    public WeaponHit weaponHitEnemy;
+
+    private void Start()
+    {
+        weaponHitEnemy.OnHit += OnEnemyHit; 
+    }
 
     public void Attack(InputAction.CallbackContext context)
-    { 
+    {
         if (context.performed)
         {
-            Debug.Log("attack");
-           attackFront.enabled = true;
-            Invoke("ResetAttacks", 0.3f); 
+            animator.SetTrigger("Attack");
         }
     }
 
-    private void ResetAttacks()
+    private void OnEnemyHit(Collider2D other) 
     {
-        attackFront.enabled = false;
-        attackUp.enabled = false;
+        GameObject enemy = other.gameObject;
+        if (enemy != null)
+        {
+            Destroy(enemy);
+        }
+    }
+
+    private void FillBar()
+    {
+
     }
 }
