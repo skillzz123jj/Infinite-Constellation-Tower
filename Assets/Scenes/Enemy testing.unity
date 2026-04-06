@@ -430,6 +430,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 34344a6e-0949-4af6-b282-f4a1cd1c83a3
     m_ActionName: 'Player/Dash[/Keyboard/c]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1ced2a43-36d8-4501-9add-a8fe3d9f5fc2
+    m_ActionName: 'Player/Heal[/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99767787-31da-4e75-9a4f-b040ff5fa47b
+    m_ActionName: 'Player/Attack[/Keyboard/x]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
