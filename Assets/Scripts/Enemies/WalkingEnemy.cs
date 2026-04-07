@@ -13,6 +13,10 @@ public class WalkingEnemy : MonoBehaviour
     {
         // Mathf.Sign returns 1 if scale is positive (right), and -1 if negative (left)
         float facingDirection = Mathf.Sign(transform.localScale.x);
+
+        //using negated localscale because the default model is facing x- instead of x+ as it should
+        facingDirection = -facingDirection;
+
         transform.Translate(Vector2.right * facingDirection * speed * Time.deltaTime);
 
         RaycastHit2D groundInfo = Physics2D.Raycast(rayCastTransform.position, Vector2.down, rayDistance);
