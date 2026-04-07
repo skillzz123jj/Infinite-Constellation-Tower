@@ -21,12 +21,15 @@ public class RangedEnemy : MonoBehaviour
     [SerializeField] float bulletSpeed = 1f;
     [SerializeField] float bulletLifetime = 4f;
 
-    private float shootTimer;
+    float shootTimer;
+    Animator animator;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         shootTimer = shootInterval;
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -45,6 +48,7 @@ public class RangedEnemy : MonoBehaviour
         // Fire only if facing the player, in range, and stop moving.
         if (isFacingPlayer && isInRange)
         {
+            animator.Play("Mite_Shoot");
             // Shooting logic
             shootTimer -= Time.deltaTime;
             if (shootTimer <= 0f)
@@ -56,6 +60,7 @@ public class RangedEnemy : MonoBehaviour
         // Continue moving otherwise.
         else
         {
+            animator.Play("Mite_Walk");
             // Movement logic
             transform.Translate(Vector2.right * facingDirection * speed * Time.deltaTime);
 

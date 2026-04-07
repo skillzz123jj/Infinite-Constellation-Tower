@@ -33,6 +33,7 @@ public class DiveEnemy : MonoBehaviour
     Rigidbody2D rb;
     Collider2D bodyCollider;
     Collider2D[] playerColliders;
+    Animator animator;
 
     // Runtime values
     float stateTimer;
@@ -46,6 +47,7 @@ public class DiveEnemy : MonoBehaviour
 
         rb = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<Collider2D>();
+        animator = GetComponent<Animator>();
         playerColliders = player.GetComponentsInChildren<Collider2D>();
 
         defaultGravity = rb.gravityScale;
@@ -116,6 +118,7 @@ public class DiveEnemy : MonoBehaviour
     void EnterVulnerableState()
     {
         currentState = State.Vulnerable;
+        animator.Play("Dragonfly_Stun");
 
         rb.gravityScale = defaultGravity;
         rb.linearVelocity = Vector2.zero;
@@ -129,6 +132,7 @@ public class DiveEnemy : MonoBehaviour
     void EnterJumpingState()
     {
         currentState = State.Jumping;
+        animator.Play("Dragonfly_Jumping_up");
 
         rb.gravityScale = 0f;
         targetJumpY = transform.position.y + jumpHeight;
@@ -140,6 +144,7 @@ public class DiveEnemy : MonoBehaviour
     void EnterChargingState()
     {
         currentState = State.Charging;
+        animator.Play("Dragonfly_Charging_Attack");
 
         rb.linearVelocity = Vector2.zero;
         stateTimer = chargeTime;
@@ -150,6 +155,7 @@ public class DiveEnemy : MonoBehaviour
     void EnterDashingState()
     {
         currentState = State.Dashing;
+        animator.Play("Dragonfly_attack");
         hasHitPlayerThisDash = false;
 
         Vector2 dashDirection = (player.position - transform.position).normalized;
