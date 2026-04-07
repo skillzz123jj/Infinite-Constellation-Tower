@@ -23,6 +23,7 @@ public class RangedEnemy : MonoBehaviour
 
     float shootTimer;
     Animator animator;
+    Rigidbody2D rb;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class RangedEnemy : MonoBehaviour
         shootTimer = shootInterval;
 
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -48,6 +50,7 @@ public class RangedEnemy : MonoBehaviour
         // Fire only if facing the player, in range, and stop moving.
         if (isFacingPlayer && isInRange)
         {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             animator.Play("Mite_Shoot");
             // Shooting logic
             shootTimer -= Time.deltaTime;
@@ -62,7 +65,7 @@ public class RangedEnemy : MonoBehaviour
         {
             animator.Play("Mite_Walk");
             // Movement logic
-            transform.Translate(Vector2.right * facingDirection * speed * Time.deltaTime);
+            rb.linearVelocity = new Vector2(facingDirection * speed, rb.linearVelocity.y);
 
             RaycastHit2D groundInfo = Physics2D.Raycast(rayCastTransform.position, Vector2.down, rayDistance);
 
