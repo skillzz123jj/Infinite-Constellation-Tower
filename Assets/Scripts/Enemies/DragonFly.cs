@@ -11,55 +11,59 @@ public enum State
 public class DiveEnemy : MonoBehaviour
 {
     // Runtime state
-    private State currentState;
+    State currentState;
 
     [Header("References")]
-    [SerializeField] private Transform player;
-    [SerializeField] private Collider2D attackHitbox;
+    Transform player;
+    [SerializeField] Collider2D attackHitbox;
 
     [Header("Movement")]
-    [SerializeField] private float jumpHeight = 4f;
-    [SerializeField] private float jumpSpeed = 5f;
-    [SerializeField] private float dashSpeed = 15f;
+    [SerializeField] float jumpHeight = 4f;
+    [SerializeField] float jumpSpeed = 5f;
+    [SerializeField] float dashSpeed = 15f;
 
     [Header("Attack Conditions")]
-    [SerializeField] private float AttackDistanceX = 3f;
+    [SerializeField] float AttackDistanceX = 3f;
 
     [Header("State Durations")]
-    [SerializeField] private float vulnerableTime = 2.5f;
-    [SerializeField] private float chargeTime = 1f;
+    [SerializeField] float vulnerableTime = 2.5f;
+    [SerializeField] float chargeTime = 1f;
 
     // Cached components
-    private Rigidbody2D rb;
-    private Collider2D bodyCollider;
-    private Collider2D playerCollider;
+    Rigidbody2D rb;
+    Collider2D bodyCollider;
+    Collider2D[] playerColliders;
 
     // Runtime values
-    private float stateTimer;
-    private float targetJumpY;
-    private float defaultGravity;
-    private bool hasHitPlayerThisDash;
+    float stateTimer;
+    float targetJumpY;
+    float defaultGravity;
+    bool hasHitPlayerThisDash;
 
-    private void Start()
+    void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         rb = GetComponent<Rigidbody2D>();
         bodyCollider = GetComponent<Collider2D>();
-        playerCollider = player.GetComponent<Collider2D>();
+        playerColliders = player.GetComponentsInChildren<Collider2D>();
 
         defaultGravity = rb.gravityScale;
 
-        // Attack hitbox only deals damage as a trigger during dash.
+        // Attack hitbox is configured as a trigger so it detects overlaps for damage 
+        // without causing physical bouncing or blocking during the dash.
         attackHitbox.isTrigger = true;
         SetAttackHitboxActive(false);
 
-        // Body collision with player stays ignored in all states.
-        // This keeps the enemy from being pushed/stuck on the player.
-        SetPlayerBodyCollisionIgnored(true);
+        // We permanently ignore physical collision between the enemy's body collider and the
+        // player for all it's colliders. This doesn't affect player taking damage as it doesnt ignore collsions
+        // with the attackhitbox
+        IgnorePlayerCollision();
 
         EnterVulnerableState();
     }
 
-    private void Update()
+    void Update()
     {
         switch (currentState)
         {
@@ -88,7 +92,7 @@ public class DiveEnemy : MonoBehaviour
         }
     }
 
-    private void HandleVulnerable()
+    void HandleVulnerable()
     {
         rb.linearVelocity = Vector2.zero;
         stateTimer -= Time.deltaTime;
@@ -109,7 +113,7 @@ public class DiveEnemy : MonoBehaviour
         }
     }
 
-    private void EnterVulnerableState()
+    void EnterVulnerableState()
     {
         currentState = State.Vulnerable;
 
@@ -119,13 +123,10 @@ public class DiveEnemy : MonoBehaviour
         hasHitPlayerThisDash = false;
         stateTimer = vulnerableTime;
 
-        // We disable every non-dash state so it is always reset correctly,
-        // even if state entry order changes later.
         SetAttackHitboxActive(false);
-        SetPlayerBodyCollisionIgnored(true);
     }
 
-    private void EnterJumpingState()
+    void EnterJumpingState()
     {
         currentState = State.Jumping;
 
@@ -136,7 +137,7 @@ public class DiveEnemy : MonoBehaviour
         SetAttackHitboxActive(false);
     }
 
-    private void EnterChargingState()
+    void EnterChargingState()
     {
         currentState = State.Charging;
 
@@ -146,7 +147,7 @@ public class DiveEnemy : MonoBehaviour
         SetAttackHitboxActive(false);
     }
 
-    private void EnterDashingState()
+    void EnterDashingState()
     {
         currentState = State.Dashing;
         hasHitPlayerThisDash = false;
@@ -154,23 +155,24 @@ public class DiveEnemy : MonoBehaviour
         Vector2 dashDirection = (player.position - transform.position).normalized;
         rb.linearVelocity = dashDirection * dashSpeed;
 
-        SetPlayerBodyCollisionIgnored(true);
         SetAttackHitboxActive(true);
     }
 
-    private void SetAttackHitboxActive(bool isActive)
+    void SetAttackHitboxActive(bool isActive)
     {
         attackHitbox.enabled = isActive;
     }
 
-    private void SetPlayerBodyCollisionIgnored(bool ignored)
+    void IgnorePlayerCollision()
     {
-        Physics2D.IgnoreCollision(playerCollider, bodyCollider, ignored);
+        foreach (var pCollider in playerColliders)
+        {
+            Physics2D.IgnoreCollision(pCollider, bodyCollider, true);
+        }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        // Damage is trigger-based so enemy can pass through player physically.
         if (currentState == State.Dashing && !hasHitPlayerThisDash && collision.CompareTag("Player"))
         {
             hasHitPlayerThisDash = true;
@@ -179,9 +181,8 @@ public class DiveEnemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        // Ground collision ends dash and returns enemy to vulnerable state.
         if (currentState == State.Dashing && collision.gameObject.CompareTag("Ground"))
         {
             Debug.Log("Hit the ground. Entering Vulnerable.");

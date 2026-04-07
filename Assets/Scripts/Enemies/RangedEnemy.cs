@@ -4,7 +4,7 @@ using System.Collections;
 public class RangedEnemy : MonoBehaviour
 {
     [Header("Target")]
-    [SerializeField] private Transform player;
+    private Transform player;
 
     [Header("Movement Settings")]
     [SerializeField] float speed = 0.5f;
@@ -25,13 +25,17 @@ public class RangedEnemy : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         shootTimer = shootInterval;
     }
 
     void Update()
     {
         float facingDirection = Mathf.Sign(transform.localScale.x);
-        
+
+        //using negated localscale because the default model is facing x- instead of x+ as it should
+        facingDirection = -facingDirection;
+
         float directionToPlayer = Mathf.Sign(player.position.x - transform.position.x);
         float distanceToPlayer = Mathf.Abs(player.position.x - transform.position.x);
 
@@ -45,7 +49,7 @@ public class RangedEnemy : MonoBehaviour
             shootTimer -= Time.deltaTime;
             if (shootTimer <= 0f)
             {
-                Shoot();
+                Shoot(facingDirection);
                 shootTimer = shootInterval;
             }
         }
@@ -71,13 +75,12 @@ public class RangedEnemy : MonoBehaviour
         transform.localScale = currentScale;
     }
 
-    private void Shoot()
+    private void Shoot(float direction)
     {
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        float facingDirection = Mathf.Sign(transform.localScale.x);
-        rb.linearVelocity = new Vector2(facingDirection * bulletSpeed, 0);
+        rb.linearVelocity = new Vector2(direction * bulletSpeed, 0);
         rb.gravityScale = 0;
 
         // Destroy after lifetime (burst)
