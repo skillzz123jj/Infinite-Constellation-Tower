@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiveEnemy
   attackHitbox: {fileID: 3651353006282369343}
-  jumpHeight: 4
+  jumpHeight: 3
   jumpSpeed: 5
   dashSpeed: 15
   AttackDistanceX: 3
