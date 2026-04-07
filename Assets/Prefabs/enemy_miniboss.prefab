@@ -52,6 +52,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1546659601837761240, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.61999136
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546659601837761240, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546659601837761240, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.78460866
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546659601837761240, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -103.369
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -80,16 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 097b551f2844b054290f18a39bf892e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.2D.IK.Runtime::UnityEngine.U2D.IK.IKManager2D
-  m_Solvers:
-  - {fileID: 0}
-  - {fileID: 0}
+  m_Solvers: []
   m_Weight: 1
   m_AlwaysUpdate: 1
-  m_SolverEditorData:
-  - color: {r: 0, g: 1, b: 0, a: 1}
-    showGizmo: 1
-  - color: {r: 0, g: 1, b: 0, a: 1}
-    showGizmo: 1
+  m_SolverEditorData: []
 --- !u!95 &-2705504001790137528
 Animator:
   serializedVersion: 7
@@ -100,7 +110,7 @@ Animator:
   m_GameObject: {fileID: 219580358830462722}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 531cfe805fa6cd647a2b54c434d3f50b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
