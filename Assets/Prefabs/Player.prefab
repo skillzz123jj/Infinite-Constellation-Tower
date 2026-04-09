@@ -170,9 +170,9 @@ GameObject:
   - component: {fileID: 5059010229759483424}
   - component: {fileID: 7724433296614959809}
   - component: {fileID: 2345699256265474980}
-  - component: {fileID: 6435449859272134470}
   - component: {fileID: 2542658522265024154}
   - component: {fileID: 5261059521615430154}
+  - component: {fileID: 5729385394209374634}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -296,10 +296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52893ce36abab3e4ebcea2a89bb63c4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  movementSpeed: 8
-  jumpForce: 600
+  movementSpeed: 6
+  jumpForce: 850
   isGrounded: 0
   dashForce: 10
+  maxFallSpeed: 20
   dashCooldown: 1
 --- !u!114 &7724433296614959809
 MonoBehaviour:
@@ -406,6 +407,38 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 99767787-31da-4e75-9a4f-b040ff5fa47b
     m_ActionName: 'Player/Attack[/Keyboard/x]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: PauseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8512b7df-e84f-4af1-a363-df24f4b8a79d
+    m_ActionName: 'Player/PauseGame[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: PauseInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fe324663-b9d8-41b1-99c4-4fd21a2fcc1d
+    m_ActionName: 'UI/New action[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -431,8 +464,49 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!70 &6435449859272134470
-CapsuleCollider2D:
+--- !u!114 &2542658522265024154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775766401991348003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c4d76b6904fb24ab791324a0d2e9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
+  attackFront: {fileID: 9195725809482558333}
+  attackUp: {fileID: 8603826328385784257}
+  animator: {fileID: 3765331713152142119}
+  damage: 1
+  weaponHitEnemy: {fileID: 1952589393880823426}
+  fillImage: {fileID: 0}
+  maxValue: 100
+--- !u!95 &5261059521615430154
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4775766401991348003}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e99c6cdffff3d4b41b07c235d01dcf44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &5729385394209374634
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -465,49 +539,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.013680279, y: -0.19}
-  m_Size: {x: 0.37393, y: 0.08664752}
-  m_Direction: 1
---- !u!114 &2542658522265024154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4775766401991348003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c4d76b6904fb24ab791324a0d2e9b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
-  attackFront: {fileID: 9195725809482558333}
-  attackUp: {fileID: 8603826328385784257}
-  animator: {fileID: 3765331713152142119}
-  weaponHitEnemy: {fileID: 1952589393880823426}
-  fillImage: {fileID: 0}
-  maxValue: 100
---- !u!95 &5261059521615430154
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4775766401991348003}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: e99c6cdffff3d4b41b07c235d01dcf44, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Offset: {x: -0.0067653656, y: -0.15937555}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.36130905, y: 0.030972242}
+  m_EdgeRadius: 0
 --- !u!1001 &8999068107748224585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -594,10 +637,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: abb5064fd162cda4ebb850f14ac0bad3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3608481533758638295}
+      addedObject: {fileID: 3765331713152142119}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: abb5064fd162cda4ebb850f14ac0bad3, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3765331713152142119}
+      addedObject: {fileID: 5918878565292105092}
     - targetCorrespondingSourceObject: {fileID: 1691094701231254028, guid: abb5064fd162cda4ebb850f14ac0bad3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 499359707669808263}
@@ -678,8 +721,30 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -8653719598885068355, guid: abb5064fd162cda4ebb850f14ac0bad3, type: 3}
   m_PrefabInstance: {fileID: 8999068107748224585}
   m_PrefabAsset: {fileID: 0}
---- !u!70 &3608481533758638295
-CapsuleCollider2D:
+--- !u!95 &3765331713152142119
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8864442083876769780}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ce6b7289dc8da54695c48b5c97d29ed, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &5918878565292105092
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -712,28 +777,15 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.23228455, y: 1.0228115}
-  m_Size: {x: 0.41591454, y: 1.4108117}
-  m_Direction: 0
---- !u!95 &3765331713152142119
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8864442083876769780}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3ce6b7289dc8da54695c48b5c97d29ed, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_Offset: {x: 0.21297312, y: 1.0812514}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.43441105, y: 1.4025037}
+  m_EdgeRadius: 0
