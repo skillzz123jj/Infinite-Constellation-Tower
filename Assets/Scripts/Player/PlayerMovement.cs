@@ -41,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.performed && coyoteTimeCounter > 0)
         {
-           rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rb.linearVelocityY = 0;
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
 
         if (context.canceled)
