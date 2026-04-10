@@ -18,13 +18,16 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
     private float gravity = -9.81f;
+    [SerializeField] Animator animator;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-      if (Gamedata.Instance.dataExists)
+        if (Gamedata.Instance.dataExists)
         {
             gameObject.transform.position = Gamedata.Instance.playerPosition;
+
         }
     }
 
@@ -33,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     {
         moveInput = context.ReadValue<Vector2>();
         scale = transform.localScale;
+        animator.SetFloat("Walk", Mathf.Abs(moveInput.x));
+        Debug.Log(moveInput);
 
         if (moveInput.x != 0)
         {
@@ -47,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump");
         }
 
         if (context.canceled)
