@@ -1,3 +1,5 @@
+using UnityEditor.Tilemaps;
+using System.Collections;
 using UnityEngine;
 
 public enum State
@@ -28,6 +30,7 @@ public class DiveEnemy : MonoBehaviour
     [Header("State Durations")]
     [SerializeField] float vulnerableTime = 2.5f;
     [SerializeField] float chargeTime = 1f;
+    [SerializeField] float jumpDelayAfterHit = 0.1f;
 
     // Cached components
     Rigidbody2D rb;
@@ -136,13 +139,26 @@ public class DiveEnemy : MonoBehaviour
 
         rb.gravityScale = 0f;
         targetJumpY = transform.position.y + jumpHeight;
-        rb.linearVelocityY = jumpSpeed;
+        rb.linearVelocity = new Vector2(0f, jumpSpeed);
+        
 
         SetAttackHitboxActive(false);
     }
 
     void EnterChargingState()
     {
+        float facingDirection = Mathf.Sign(transform.localScale.x);
+
+        //using negated localscale because the default model is facing x- instead of x+ as it should
+        facingDirection = -facingDirection;
+
+        float directionToPlayer = Mathf.Sign(player.position.x - transform.position.x);
+
+        if (facingDirection != directionToPlayer)
+        {
+            Flip();
+        }
+
         currentState = State.Charging;
         animator.Play("Dragonfly_Charging_Attack");
 
@@ -154,8 +170,19 @@ public class DiveEnemy : MonoBehaviour
 
     void EnterDashingState()
     {
+        float facingDirection = Mathf.Sign(transform.localScale.x);
+
+        //using negated localscale because the default model is facing x- instead of x+ as it should
+        facingDirection = -facingDirection;
+
+        float directionToPlayer = Mathf.Sign(player.position.x - transform.position.x);
+
+        if (facingDirection != directionToPlayer)
+        {
+            Flip();
+        }
         currentState = State.Dashing;
-        animator.Play("Dragonfly_attack");
+        animator.Play("Dragonfly_Attack");
         hasHitPlayerThisDash = false;
 
         Vector2 dashDirection = (player.position - transform.position).normalized;
@@ -176,6 +203,13 @@ public class DiveEnemy : MonoBehaviour
             Physics2D.IgnoreCollision(pCollider, bodyCollider, true);
         }
     }
+    private void Flip()
+    {
+        Vector3 currentScale = transform.localScale;
+        currentScale.x *= -1;
+        transform.localScale = currentScale;
+    }
+
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -184,7 +218,14 @@ public class DiveEnemy : MonoBehaviour
             hasHitPlayerThisDash = true;
             // Call player.TakeDamage()
             Debug.Log("Player hit! Insert damage logic.");
+            StartCoroutine(DelayedJumpAfterHit());
         }
+    }
+
+    IEnumerator DelayedJumpAfterHit()
+    {
+        yield return new WaitForSeconds(jumpDelayAfterHit);
+        EnterJumpingState();
     }
 
     void OnCollisionEnter2D(Collision2D collision)
