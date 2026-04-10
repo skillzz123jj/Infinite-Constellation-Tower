@@ -4455,6 +4455,7 @@ MonoBehaviour:
   playerHealth: 6
   playerPowerbar: 0
   playerPosition: {x: -14.029, y: -2.737}
+  continueButton: {fileID: 0}
 --- !u!4 &1238481061
 Transform:
   m_ObjectHideFlags: 0
@@ -5313,6 +5314,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2345699256265474980, guid: 71b0c7eff7e3d924b901ceb543a0cbf4, type: 3}
+      propertyPath: playerCombat
+      value: 
+      objectReference: {fileID: 405983550431635919}
+    - target: {fileID: 2345699256265474980, guid: 71b0c7eff7e3d924b901ceb543a0cbf4, type: 3}
       propertyPath: 'sunrays.Array.data[0]'
       value: 
       objectReference: {fileID: 539656392}
@@ -5397,6 +5402,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71b0c7eff7e3d924b901ceb543a0cbf4, type: 3}
+--- !u!114 &405983550431635919 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2542658522265024154, guid: 71b0c7eff7e3d924b901ceb543a0cbf4, type: 3}
+  m_PrefabInstance: {fileID: 405983550431635918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c4d76b6904fb24ab791324a0d2e9b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

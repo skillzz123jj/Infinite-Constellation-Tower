@@ -7,9 +7,10 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] GameObject[] sunrays = new GameObject[6];
     private Coroutine currentHeal;
-
+    [SerializeField] PlayerCombat playerCombat;
     private void Start()
     {
+        // Initialize sunrays based on current health
         int health = Mathf.Clamp(Gamedata.Instance.playerHealth, 0, sunrays.Length);
 
         for (int i = 0; i < sunrays.Length; i++)
@@ -26,7 +27,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L)) // Temporary way to take damage
         {
-            Debug.Log("Player took damage");
             TakeDamage();
         }
     }
@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
     // Cancels heal if player lets go of the button 
     public void Heal(InputAction.CallbackContext context)
     {
-        if (context.started && Gamedata.Instance.playerHealth < 6)
+        if (context.started && Gamedata.Instance.playerHealth < 6 && Gamedata.Instance.playerPowerbar >= 10)
         {
             currentHeal = StartCoroutine(FillRay(2f, sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>()));
         }
@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
             ray.fillAmount = timer / duration;
             yield return null;
         }
-
+        playerCombat.DrainBar(10);
         ray.fillAmount = 1f;
         Gamedata.Instance.playerHealth++;
     }
@@ -72,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
         {
             Gamedata.Instance.playerHealth--;
             sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0;
-            Debug.Log("Player health: " + Gamedata.Instance.playerHealth);
+
             if (Gamedata.Instance.playerHealth <= 0)
             {
                 Debug.Log("Game over");
