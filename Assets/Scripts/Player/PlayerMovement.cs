@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+      if (Gamedata.Instance.dataExists)
+        {
+            gameObject.transform.position = Gamedata.Instance.playerPosition;
+        }
     }
 
     //Move and jump use the new input system and context is taken from the Inputs asset

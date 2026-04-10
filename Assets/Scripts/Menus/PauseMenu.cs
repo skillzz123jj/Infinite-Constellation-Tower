@@ -49,10 +49,6 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         paused = false;
         SceneManager.LoadScene(scene);
-
-        //Gamedata.Instance.remainingLives = 3;
-        //Gamedata.Instance.currentScore = 0;
-        //Gamedata.Instance.ballSpeed = 5;
     }
 
 }

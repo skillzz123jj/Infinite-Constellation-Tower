@@ -12,11 +12,11 @@ public class PlayerCombat : MonoBehaviour
 
     public Image fillImage;
     public int maxValue = 100;
-    private int currentValue = 0;
 
     private void Start()
     {
-        weaponHitEnemy.OnHit += OnEnemyHit; 
+        weaponHitEnemy.OnHit += OnEnemyHit;
+        UpdateBar();
     }
 
     public void Attack(InputAction.CallbackContext context)
@@ -32,6 +32,7 @@ public class PlayerCombat : MonoBehaviour
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
+            FillBar(5);
             enemyHealth.TakeDamage(damage);
             Debug.Log(enemyHealth.GetHealth());
         }
@@ -39,21 +40,21 @@ public class PlayerCombat : MonoBehaviour
 
     public void FillBar(int amount)
     {
-        currentValue += amount;
-        currentValue = Mathf.Clamp(currentValue, 0, maxValue);
+        Gamedata.Instance.playerPowerbar += amount;
+        Gamedata.Instance.playerPowerbar = Mathf.Clamp(Gamedata.Instance.playerPowerbar, 0, maxValue);
         UpdateBar();
     }
 
     public void DrainBar(int amount)
     {
-        currentValue = 0;
-        currentValue = Mathf.Clamp(currentValue, 0, maxValue);
+        Gamedata.Instance.playerPowerbar -= amount;
+        Gamedata.Instance.playerPowerbar = Mathf.Clamp(Gamedata.Instance.playerPowerbar, 0, maxValue);
         UpdateBar();
     }
 
     void UpdateBar()
     {
-        float fillPercent = (float)currentValue / maxValue;
+        float fillPercent = (float)Gamedata.Instance.playerPowerbar / maxValue;
         fillImage.fillAmount = fillPercent;
     }
 }

@@ -5,14 +5,28 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] int health = 6;
     [SerializeField] GameObject[] sunrays = new GameObject[6];
     private Coroutine currentHeal;
+
+    private void Start()
+    {
+        int health = Mathf.Clamp(Gamedata.Instance.playerHealth, 0, sunrays.Length);
+
+        for (int i = 0; i < sunrays.Length; i++)
+        {
+            var img = sunrays[i].GetComponent<Image>();
+            if (img != null)
+            {
+                img.fillAmount = i < health ? 1f : 0f;
+            }
+        }
+    }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.L)) // Temporary way to take damage
         {
+            Debug.Log("Player took damage");
             TakeDamage();
         }
     }
@@ -21,17 +35,17 @@ public class PlayerHealth : MonoBehaviour
     // Cancels heal if player lets go of the button 
     public void Heal(InputAction.CallbackContext context)
     {
-        if (context.started && health < 6)
+        if (context.started && Gamedata.Instance.playerHealth < 6)
         {
-            currentHeal = StartCoroutine(FillRay(2f, sunrays[health].GetComponent<Image>()));
+            currentHeal = StartCoroutine(FillRay(2f, sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>()));
         }
 
-        if (context.canceled && health < 6)
+        if (context.canceled && Gamedata.Instance.playerHealth < 6)
         {
             if (currentHeal != null)
             {
                 StopCoroutine(currentHeal);
-                sunrays[health].GetComponent<Image>().fillAmount = 0f;
+                sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0f;
             }
         }
     }
@@ -49,17 +63,17 @@ public class PlayerHealth : MonoBehaviour
         }
 
         ray.fillAmount = 1f;
-        health++; 
+        Gamedata.Instance.playerHealth++;
     }
 
-void TakeDamage()
+    void TakeDamage()
     {
-        if (health > 0)
+        if (Gamedata.Instance.playerHealth > 0)
         {
-            health--;
-            sunrays[health].GetComponent<Image>().fillAmount = 0;
-
-            if (health <= 0)
+            Gamedata.Instance.playerHealth--;
+            sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0;
+            Debug.Log("Player health: " + Gamedata.Instance.playerHealth);
+            if (Gamedata.Instance.playerHealth <= 0)
             {
                 Debug.Log("Game over");
             }
