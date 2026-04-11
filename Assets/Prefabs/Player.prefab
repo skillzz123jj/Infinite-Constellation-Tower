@@ -303,6 +303,7 @@ MonoBehaviour:
   maxFallSpeed: 20
   dashCooldown: 1
   animator: {fileID: 8761663297450295871}
+  jumpSound: {fileID: 8300000, guid: 8a628c7569a9349459fb5a3ee46ea90f, type: 3}
 --- !u!114 &7724433296614959809
 MonoBehaviour:
   m_ObjectHideFlags: 0

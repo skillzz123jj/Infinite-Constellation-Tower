@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float gravity = -9.81f;
     [SerializeField] Animator animator;
 
+    [SerializeField] AudioClip jumpSound;
 
     void Start()
     {
@@ -37,7 +38,6 @@ public class PlayerMovement : MonoBehaviour
         moveInput = context.ReadValue<Vector2>();
         scale = transform.localScale;
         animator.SetFloat("Walk", Mathf.Abs(moveInput.x));
-        Debug.Log(moveInput);
 
         if (moveInput.x != 0)
         {
@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             animator.SetTrigger("Jump");
+            AudioManager.Instance.PlaySfxClip(jumpSound);
+
         }
 
         if (context.canceled)
