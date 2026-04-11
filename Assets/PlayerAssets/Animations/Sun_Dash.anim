@@ -28,7 +28,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.33333334
-        value: {x: 0, y: 0, z: 29.343}
+        value: {x: 0, y: 0, z: 33.672}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -189,7 +189,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.33333334
-        value: {x: 0, y: 0, z: -0.16}
+        value: {x: 0, y: 0, z: -3.914}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -662,17 +662,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.33333334
         value: {x: 1.0758029, y: -0.7592871, z: 0}
-        inSlope: {x: -0.046036985, y: 0, z: 0}
-        outSlope: {x: -0.046036985, y: 0, z: 0}
+        inSlope: {x: -0.04775226, y: 0, z: 0}
+        outSlope: {x: -0.04775226, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.53333336
-        value: {x: 1.0576168, y: -0.64120626, z: 0}
-        inSlope: {x: 0, y: 0.1029836, z: 0}
-        outSlope: {x: 0, y: 0.1029836, z: 0}
+        value: {x: 1.046276, y: -0.6769227, z: 0}
+        inSlope: {x: 0, y: 0.2028672, z: 0}
+        outSlope: {x: 0, y: 0.2028672, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -773,17 +773,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.33333334
         value: {x: 1.1130071, y: 0.22725934, z: 0}
-        inSlope: {x: -0.046046596, y: 0, z: 0}
-        outSlope: {x: -0.046046596, y: 0, z: 0}
+        inSlope: {x: -0.04776388, y: 0, z: 0}
+        outSlope: {x: -0.04776388, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.53333336
-        value: {x: 1.0948174, y: 0.3453408, z: 0}
-        inSlope: {x: 0, y: 0.10297376, z: 0}
-        outSlope: {x: 0, y: 0.10297376, z: 0}
+        value: {x: 1.083476, y: 0.30962643, z: 0}
+        inSlope: {x: 0, y: 0.20286563, z: 0}
+        outSlope: {x: 0, y: 0.20286563, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -1477,7 +1477,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
-        value: 29.343
+        value: 33.672
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1724,15 +1724,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.33333334
         value: 1.0758029
-        inSlope: -0.046036985
-        outSlope: -0.046036985
+        inSlope: -0.04775226
+        outSlope: -0.04775226
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.53333336
-        value: 1.0576168
+        value: 1.046276
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1780,9 +1780,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.53333336
-        value: -0.64120626
-        inSlope: 0.1029836
-        outSlope: 0.1029836
+        value: -0.6769227
+        inSlope: 0.2028672
+        outSlope: 0.2028672
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -2503,7 +2503,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.33333334
-        value: -0.16
+        value: -3.914
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2543,15 +2543,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.33333334
         value: 1.1130071
-        inSlope: -0.046046596
-        outSlope: -0.046046596
+        inSlope: -0.04776388
+        outSlope: -0.04776388
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.53333336
-        value: 1.0948174
+        value: 1.083476
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2599,9 +2599,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.53333336
-        value: 0.3453408
-        inSlope: 0.10297376
-        outSlope: 0.10297376
+        value: 0.30962643
+        inSlope: 0.20286563
+        outSlope: 0.20286563
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -5200,7 +5200,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/torso/chest/neck/head
+    path: main_bone/torso
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5212,7 +5212,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/torso/chest/neck/head
+    path: main_bone/torso
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5224,7 +5224,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/torso/chest/neck/head
+    path: main_bone/torso
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5236,7 +5236,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/torso
+    path: main_bone/torso/chest/left_shoulder/left_arm/left_hand/weapon
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5248,7 +5248,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/torso
+    path: main_bone/torso/chest/left_shoulder/left_arm/left_hand/weapon
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5260,7 +5260,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/torso
+    path: main_bone/torso/chest/left_shoulder/left_arm/left_hand/weapon
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5596,7 +5596,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/torso/chest/left_shoulder/left_arm/left_hand/weapon
+    path: main_bone/torso/chest/neck/head
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5608,7 +5608,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/torso/chest/left_shoulder/left_arm/left_hand/weapon
+    path: main_bone/torso/chest/neck/head
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -5620,7 +5620,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/torso/chest/left_shoulder/left_arm/left_hand/weapon
+    path: main_bone/torso/chest/neck/head
     classID: 4
     script: {fileID: 0}
     flags: 0
