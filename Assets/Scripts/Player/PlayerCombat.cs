@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] BoxCollider2D attackFront;
-    [SerializeField] BoxCollider2D attackUp;
     [SerializeField] Animator animator;
     [SerializeField] int damage;
-    public WeaponHit weaponHitEnemy;
+    public WeaponHit frontAttack;
+    public WeaponHit upAttack;
+    public WeaponHit downAttack;
 
     public Image fillImage;
     public int maxValue = 100;
@@ -17,7 +17,9 @@ public class PlayerCombat : MonoBehaviour
 
     private void Start()
     {
-        weaponHitEnemy.OnHit += OnEnemyHit;
+        frontAttack.OnHit += OnEnemyHit;
+        upAttack.OnHit += OnEnemyHit;
+        downAttack.OnHit += OnEnemyHit;
         UpdateBar();
     }
 
@@ -29,14 +31,14 @@ public class PlayerCombat : MonoBehaviour
             if (direction.y > 0.5f)
             {
                 animator.SetTrigger("UpAttack");
-                attackUp.enabled = true;
-                attackFront.enabled = false;
+            }
+            else if (direction.y < -0.5f)
+            {
+                animator.SetTrigger("DownAttack");
             }
             else
             {
                 animator.SetTrigger("FrontAttack");
-                attackFront.enabled = true;
-                attackUp.enabled = false;
             }
         }
     }
@@ -46,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            FillBar(5);
+           // FillBar(5);
             enemyHealth.TakeDamage(damage);
             Debug.Log(enemyHealth.GetHealth());
         }
