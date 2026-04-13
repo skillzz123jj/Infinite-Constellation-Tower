@@ -140,7 +140,8 @@ public class Miniboss : MonoBehaviour
 
         anim.SetBool("IsDashing", true);
         LookAtPlayer();
-        Vector2 dashDir = (player.position - transform.position).normalized;
+        float moveDir = player.position.x > transform.position.x ? 1f : -1f;
+        Vector2 dashDir = new Vector2(moveDir, 0f);
 
         float elapsed = 0f;
         while (elapsed < dashDuration)
