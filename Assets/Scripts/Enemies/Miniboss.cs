@@ -20,8 +20,8 @@ public class Miniboss : MonoBehaviour
     [SerializeField] float rangedCooldown = 20f;
     [SerializeField] float dashCooldown = 5f;
 
-    private float lastRangedTime = -20f;
-    private float lastDashTime = -5f;
+    private float lastRangedTime = 0f;
+    private float lastDashTime = 0f;
 
     [Header("Movement")]
     [SerializeField] float walkSpeed = 3f;
@@ -123,8 +123,6 @@ public class Miniboss : MonoBehaviour
         anim.ResetTrigger("Ranged");
         anim.SetFloat("Speed", 0);
     }
-
-    // --- UTILITIES ---
 
     IEnumerator PerformDashSequence()
     {

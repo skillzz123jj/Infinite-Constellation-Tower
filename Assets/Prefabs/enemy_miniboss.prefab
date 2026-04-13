@@ -92,11 +92,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.845392
+      value: -9.32
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 68
+      value: 68.0495
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -272,7 +272,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   rangedCooldown: 20
-  dashCooldown: 5
+  dashCooldown: 12
   walkSpeed: 1.5
   dashSpeed: 6
   dashDuration: 1
