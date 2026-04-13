@@ -1,40 +1,38 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 public class CrumblingPlatform : MonoBehaviour
 {
-    [SerializeField] private bool breaking = false;
-    [SerializeField] private bool broken = false;
+    [SerializeField] float respawnTime;
+    [SerializeField] float animTime;
     
-    private float cdTime = 5;
-    private float breakingTime = 5;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Animator animator;
+    public Collider2D platCollider;
+    public SpriteRenderer spriteRend;
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-    }
-
-   private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.tag == "Player")
         {
-            breaking = true; //Animation trigger
-            //Wait for breaking time
-            breaking = false; // Animation stop
-            broken = true;
-            //wait for cdTime
-            broken = false; // quick less than 1 sec rebuild animation
-            
-
+            StartCoroutine("Crumble");
         }
     }
-    private void Cooldown(){
 
+    IEnumerator Crumble()
+    {
+        //Animation here
+        yield return new WaitForSeconds(animTime);
+        Components(false);
+
+        yield return new WaitForSeconds(respawnTime);
+        //Animation here
+        Components(true);
+    }
+
+    private void Components(bool state)
+    {
+        spriteRend.enabled = state;
+        platCollider.enabled = state;
     }
 }
