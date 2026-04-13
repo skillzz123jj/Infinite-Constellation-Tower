@@ -304,6 +304,7 @@ MonoBehaviour:
   dashCooldown: 1
   animator: {fileID: 8761663297450295871}
   jumpSound: {fileID: 8300000, guid: 8a628c7569a9349459fb5a3ee46ea90f, type: 3}
+  isFalling: 0
 --- !u!114 &7724433296614959809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,11 +481,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCombat
   attackFront: {fileID: 9195725809482558333}
   attackUp: {fileID: 8603826328385784257}
-  animator: {fileID: 0}
+  animator: {fileID: 8761663297450295871}
   damage: 1
   weaponHitEnemy: {fileID: 0}
   fillImage: {fileID: 0}
   maxValue: 100
+  playerMovement: {fileID: 5059010229759483424}
 --- !u!95 &5261059521615430154
 Animator:
   serializedVersion: 7

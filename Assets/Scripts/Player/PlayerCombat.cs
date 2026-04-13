@@ -13,6 +13,8 @@ public class PlayerCombat : MonoBehaviour
     public Image fillImage;
     public int maxValue = 100;
 
+    [SerializeField] PlayerMovement playerMovement;
+
     private void Start()
     {
         weaponHitEnemy.OnHit += OnEnemyHit;
@@ -23,7 +25,19 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed)
         {
-            animator.SetTrigger("Attack");
+            Vector2 direction = playerMovement.GetMoveInput();
+            if (direction.y > 0.5f)
+            {
+                animator.SetTrigger("UpAttack");
+                attackUp.enabled = true;
+                attackFront.enabled = false;
+            }
+            else
+            {
+                animator.SetTrigger("FrontAttack");
+                attackFront.enabled = true;
+                attackUp.enabled = false;
+            }
         }
     }
 

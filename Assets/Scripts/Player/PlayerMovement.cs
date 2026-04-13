@@ -45,6 +45,10 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = scale;
         }
     }
+    public Vector2 GetMoveInput()
+    {
+        return moveInput;
+    }
 
     public void Jump(InputAction.CallbackContext context)
     {
@@ -69,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
         //Cooldown for the dash so it cant be spammed 
         if (context.performed && Time.time >= lastDashTime + dashCooldown)
         {
+            animator.SetTrigger("Dash");
             lastDashTime = Time.time;
             StartCoroutine(DoDash());
         }
@@ -103,10 +108,9 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = velocity;
     }
-
+    [SerializeField] bool isFalling;
     private void FixedUpdate()
-    {   
-        //Coyote timer allows player to jump after a delay 
+    {
         if (isGrounded)
         {
             coyoteTimeCounter = coyoteTime;
@@ -116,12 +120,22 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
+        if (rb.linearVelocity.y < -0.1f && !isGrounded)
+        {
+            animator.SetBool("IsFalling", true);
+            isFalling = true;
+
+        }
+        else
+        {
+            animator.SetBool("IsFalling", false);
+            isFalling = false;
+        }
+
         if (!isDashing)
         {
             Vector2 velocity = rb.linearVelocity;
-
             velocity.x = moveInput.x * movementSpeed;
-
             rb.linearVelocity = velocity;
 
             ApplyGravity();
