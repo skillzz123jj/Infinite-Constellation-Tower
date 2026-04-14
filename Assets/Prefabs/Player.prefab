@@ -249,7 +249,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.75274754, y: -3.8371909}
+  m_Offset: {x: 0.75274754, y: -4.2298565}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -259,7 +259,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.782114, y: 2.7992568}
+  m_Size: {x: 4.782114, y: 2.013925}
   m_EdgeRadius: 0
 --- !u!114 &4695452962828489997
 MonoBehaviour:
@@ -288,7 +288,6 @@ GameObject:
   - component: {fileID: 7724433296614959809}
   - component: {fileID: 2345699256265474980}
   - component: {fileID: 2542658522265024154}
-  - component: {fileID: 5261059521615430154}
   - component: {fileID: 5729385394209374634}
   m_Layer: 0
   m_Name: Player
@@ -582,6 +581,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerCombat: {fileID: 2542658522265024154}
+  playerMovement: {fileID: 5059010229759483424}
+  animator: {fileID: 8761663297450295871}
 --- !u!114 &2542658522265024154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -602,28 +603,6 @@ MonoBehaviour:
   fillImage: {fileID: 0}
   maxValue: 100
   playerMovement: {fileID: 5059010229759483424}
---- !u!95 &5261059521615430154
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4775766401991348003}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0db8ea8f44e969544bceeff17fafc9f1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &5729385394209374634
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -753,6 +732,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 15fbf19bcb234f74a860b69e26c739a0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8761663297450295871}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 15fbf19bcb234f74a860b69e26c739a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3708934815009590520}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 15fbf19bcb234f74a860b69e26c739a0, type: 3}
 --- !u!4 &5239617152869706756 stripped
 Transform:
@@ -832,6 +814,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &3708934815009590520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567370212409908163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37db97538a20b2b40b58d3c749a611b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameOverScreen
+  gameoverScreen: {fileID: 0}
+  playerInput: {fileID: 7724433296614959809}
+  firstSelectedButton: {fileID: 0}
+  fadeImage: {fileID: 0}
+  fadeDuration: 2
 --- !u!4 &6740582846878172064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 15fbf19bcb234f74a860b69e26c739a0, type: 3}
