@@ -14,7 +14,7 @@ public class GameOverScreen : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(FadeFromBlack());
+       // StartCoroutine(FadeFromBlack());
     }
     public void ShowGameOverScreen()
     {

@@ -89,10 +89,13 @@ public class PlayerHealth : MonoBehaviour
         {
             Gamedata.Instance.playerHealth--;
             sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0;
+            animator.SetTrigger("Hurt");
+
 
             if (Gamedata.Instance.playerHealth <= 0)
             {
                 animator.SetTrigger("Death");
+                Gamedata.Instance.playerHealth = 6;
             }
         }
     }

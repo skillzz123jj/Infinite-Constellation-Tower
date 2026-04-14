@@ -57,8 +57,10 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             animator.SetTrigger("Jump");
-            AudioManager.Instance.PlaySfxClip(jumpSound);
-
+            if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(jumpSound);
+            }
         }
 
         if (context.canceled)
@@ -122,13 +124,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.linearVelocity.y < -0.1f && !isGrounded)
         {
-            animator.SetBool("IsFalling", true);
+           // animator.SetBool("IsFalling", true);
             isFalling = true;
 
         }
         else
         {
-            animator.SetBool("IsFalling", false);
+          //  animator.SetBool("IsFalling", false);
             isFalling = false;
         }
 
