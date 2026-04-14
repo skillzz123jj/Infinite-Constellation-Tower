@@ -20,7 +20,9 @@ public class PlayerCombat : MonoBehaviour
         frontAttack.OnHit += OnEnemyHit;
         upAttack.OnHit += OnEnemyHit;
         downAttack.OnHit += OnEnemyHit;
+        Gamedata.Instance.playerPowerbar = 100;
         UpdateBar();
+
     }
 
     public void Attack(InputAction.CallbackContext context)
@@ -48,7 +50,7 @@ public class PlayerCombat : MonoBehaviour
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-           // FillBar(5);
+            FillBar(5);
             enemyHealth.TakeDamage(damage);
             Debug.Log(enemyHealth.GetHealth());
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -8,6 +9,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject[] sunrays = new GameObject[6];
     private Coroutine currentHeal;
     [SerializeField] PlayerCombat playerCombat;
+    [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] Animator animator;
+
     private void Start()
     {
         // Initialize sunrays based on current health
@@ -35,9 +39,10 @@ public class PlayerHealth : MonoBehaviour
     // Cancels heal if player lets go of the button 
     public void Heal(InputAction.CallbackContext context)
     {
-        if (context.started && Gamedata.Instance.playerHealth < 6 && Gamedata.Instance.playerPowerbar >= 10)
+        if (context.started && Gamedata.Instance.playerHealth < 6 && Gamedata.Instance.playerPowerbar >= 10 && playerMovement.GetMoveInput().x == 0)
         {
             currentHeal = StartCoroutine(FillRay(2f, sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>()));
+            animator.SetBool("Healing", true);
         }
 
         if (context.canceled && Gamedata.Instance.playerHealth < 6)
@@ -57,16 +62,28 @@ public class PlayerHealth : MonoBehaviour
 
         while (timer < duration)
         {
+            if (playerMovement.GetMoveInput().x != 0)
+            {
+                ray.fillAmount = 0f;
+                animator.SetBool("Healing", false);
+                currentHeal = null;
+                yield break; 
+            }
+
             timer += Time.deltaTime;
             ray.fillAmount = timer / duration;
+
             yield return null;
         }
+
         playerCombat.DrainBar(10);
         ray.fillAmount = 1f;
         Gamedata.Instance.playerHealth++;
+        currentHeal = null;
+        animator.SetBool("Healing", false);
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
         if (Gamedata.Instance.playerHealth > 0)
         {
@@ -75,16 +92,15 @@ public class PlayerHealth : MonoBehaviour
 
             if (Gamedata.Instance.playerHealth <= 0)
             {
-                Debug.Log("Game over");
+                animator.SetTrigger("Death");
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Add implementation 
-        //if (collision.gameObject.CompareTag("Enemy"))
-        //{
-        //    health--;
-        //}
+        if (collision.CompareTag("Projectile") || collision.CompareTag("Enemy"))
+        {
+            TakeDamage();
+        }
     }
 }
