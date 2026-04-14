@@ -1,0 +1,624 @@
+fileFormatVersion: 2
+guid: 32a9e2c083d38004f8c1f35f31613608
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 1
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 07fe71c839ac5d94c8b5af210c52ce64
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+    spritePosition: {x: 0, y: 0}
+  multiSpriteImportData: []
+  layeredSpriteImportData:
+  - name: Sun_face
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 531
+      width: 393
+      height: 393
+    spriteID: 3d870d92e95ccc7449cd3da4808c9b0c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 531}
+    spritePosition: {x: 189, y: 130}
+  - name: Rayhealth_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 405
+      y: 799
+      width: 188
+      height: 219
+    spriteID: e38fe5186dde15947b47b32ba8efb78f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 405, y: 799}
+    spritePosition: {x: 245, y: 471}
+  - name: Rayhealth_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 874
+      y: 531
+      width: 239
+      height: 160
+    spriteID: 5c53914532d06ec47a7a93d8db8b53d9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 874, y: 531}
+    spritePosition: {x: 488, y: 369}
+  - name: Rayhealth_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 1550
+      y: 531
+      width: 138
+      height: 242
+    spriteID: fd8a2f3f3ffe4b84693a6171567f8ec9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1550, y: 531}
+    spritePosition: {x: 489, y: 31}
+  - name: Rayhealth_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 1306
+      y: 531
+      width: 236
+      height: 146
+    spriteID: b0d374c5b1b592d4f92056dbe3fcf1f5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1306, y: 531}
+    spritePosition: {x: 156, y: 35}
+  - name: Rayhealth_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 1121
+      y: 531
+      width: 177
+      height: 216
+    spriteID: 32aed0b0d47f2b84292a5ad014042c64
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1121, y: 531}
+    spritePosition: {x: 43, y: 255}
+  - name: Base_ray_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 405
+      y: 531
+      width: 228
+      height: 260
+    spriteID: dd3c55e68e7314b499adebbf6ffb6961
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 404, y: 531}
+    spritePosition: {x: 217, y: 451}
+  - name: Base_ray_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 1138
+      y: 4
+      width: 285
+      height: 228
+    spriteID: be8ba5e06623493428b157315f74a3b9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1137, y: 4}
+    spritePosition: {x: 460, y: 329}
+  - name: Base_ray_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 1431
+      y: 4
+      width: 213
+      height: 291
+    spriteID: 81aedc7834b133747b7fe1f14ba7b2af
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1431, y: 4}
+    spritePosition: {x: 439, y: 16}
+  - name: Base_ray_4
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 1652
+      y: 4
+      width: 281
+      height: 212
+    spriteID: bfd7f05bfa15ab64fa5a82694cb6adbc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 1652, y: 4}
+    spritePosition: {x: 145, y: 11}
+  - name: Base_ray_5
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 641
+      y: 531
+      width: 225
+      height: 255
+    spriteID: 905b48abddf6af94a856c4397c6b8bc7
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 641, y: 531}
+    spritePosition: {x: 19, y: 228}
+  - name: powerbar_full
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 320
+      width: 981
+      height: 203
+    spriteID: 94af2fc1737ea6f4e9a57b54dca5535e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: -7, y: 319}
+    spritePosition: {x: 541, y: 206}
+  - name: powerbar_redline
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 993
+      y: 320
+      width: 981
+      height: 203
+    spriteID: 05c1fa6979ec51f40a396935329972d4
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 982, y: 319}
+    spritePosition: {x: 541, y: 206}
+  - name: base_powerbar
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 1126
+      height: 308
+    spriteID: f45f86a75019b604a9ddd426ec14682a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+    spritePosition: {x: 487, y: 154}
+  spriteImportData: []
+  rigSpriteImportData: []
+  sharedRigSpriteImportData: []
+  mosaicSpriteImportData: []
+  sharedRigCharacterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  characterData:
+    bones: []
+    parts: []
+    dimension: {x: 0, y: 0}
+    characterGroups: []
+    pivot: {x: 0, y: 0}
+    boneReadOnly: 0
+  platformSettings: []
+  mosaicLayers: 1
+  characterMode: 1
+  documentPivot: {x: 0, y: 0}
+  documentAlignment: 7
+  importHiddenLayers: 0
+  layerMappingOption: 2
+  generatePhysicsShape: 0
+  paperDollMode: 0
+  keepDupilcateSpriteName: 1
+  generateTileAssets: 0
+  tilePaletteCellLayout: 0
+  tilePaletteHexagonLayout: 0
+  tilePaletteCellSize: {x: 1, y: 1, z: 0}
+  tilePaletteCellSizing: 0
+  transparencySortMode: 0
+  transparencySortAxis: {x: 0, y: 0, z: 1}
+  tileTemplate: {instanceID: 0}
+  padding: 4
+  spriteSizeExpand: 0
+  skeletonAssetReferenceID: 
+  pipeline: {instanceID: 0}
+  pipelineVersion: 
+  spriteCategoryList:
+    categories: []
+  spritePackingTag: 
+  resliceFromLayer: 0
+  pSDLayerImportSetting: []
+  psdLayers:
+  - name: Layer4
+    spriteName: 
+    isGroup: 0
+    parentIndex: -1
+    spriteID: e10d5742f908c5548bffd6c3960d66ad
+    layerID: 9
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 0
+  - name: Sun_face
+    spriteName: Sun_face
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 3d870d92e95ccc7449cd3da4808c9b0c
+    layerID: 22
+    mosaicPosition: {x: 4, y: 531}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Folder1
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 36969d4563b765245932534881a00cee
+    layerID: 33
+    mosaicPosition: {x: 0, y: 0}
+    flatten: 0
+    isImported: 0
+    isVisible: 1
+  - name: Rayhealth_1
+    spriteName: Rayhealth_1
+    isGroup: 0
+    parentIndex: 2
+    spriteID: e38fe5186dde15947b47b32ba8efb78f
+    layerID: 30
+    mosaicPosition: {x: 405, y: 799}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Rayhealth_2
+    spriteName: Rayhealth_2
+    isGroup: 0
+    parentIndex: 2
+    spriteID: 5c53914532d06ec47a7a93d8db8b53d9
+    layerID: 32
+    mosaicPosition: {x: 874, y: 531}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Rayhealth_3
+    spriteName: Rayhealth_3
+    isGroup: 0
+    parentIndex: 2
+    spriteID: fd8a2f3f3ffe4b84693a6171567f8ec9
+    layerID: 39
+    mosaicPosition: {x: 1550, y: 531}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Rayhealth_4
+    spriteName: Rayhealth_4
+    isGroup: 0
+    parentIndex: 2
+    spriteID: b0d374c5b1b592d4f92056dbe3fcf1f5
+    layerID: 37
+    mosaicPosition: {x: 1306, y: 531}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Rayhealth_5
+    spriteName: Rayhealth_5
+    isGroup: 0
+    parentIndex: 2
+    spriteID: 32aed0b0d47f2b84292a5ad014042c64
+    layerID: 35
+    mosaicPosition: {x: 1121, y: 531}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Base_ray_1
+    spriteName: Base_ray_1
+    isGroup: 0
+    parentIndex: -1
+    spriteID: dd3c55e68e7314b499adebbf6ffb6961
+    layerID: 23
+    mosaicPosition: {x: 405, y: 531}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Base_ray_2
+    spriteName: Base_ray_2
+    isGroup: 0
+    parentIndex: -1
+    spriteID: be8ba5e06623493428b157315f74a3b9
+    layerID: 31
+    mosaicPosition: {x: 1138, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Base_ray_3
+    spriteName: Base_ray_3
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 81aedc7834b133747b7fe1f14ba7b2af
+    layerID: 38
+    mosaicPosition: {x: 1431, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Base_ray_4
+    spriteName: Base_ray_4
+    isGroup: 0
+    parentIndex: -1
+    spriteID: bfd7f05bfa15ab64fa5a82694cb6adbc
+    layerID: 36
+    mosaicPosition: {x: 1652, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: Base_ray_5
+    spriteName: Base_ray_5
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 905b48abddf6af94a856c4397c6b8bc7
+    layerID: 34
+    mosaicPosition: {x: 641, y: 531}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: powerbar_full
+    spriteName: powerbar_full
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 94af2fc1737ea6f4e9a57b54dca5535e
+    layerID: 40
+    mosaicPosition: {x: 4, y: 320}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: powerbar_redline
+    spriteName: powerbar_redline
+    isGroup: 0
+    parentIndex: -1
+    spriteID: 05c1fa6979ec51f40a396935329972d4
+    layerID: 21
+    mosaicPosition: {x: 993, y: 320}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  - name: base_powerbar
+    spriteName: base_powerbar
+    isGroup: 0
+    parentIndex: -1
+    spriteID: f45f86a75019b604a9ddd426ec14682a
+    layerID: 19
+    mosaicPosition: {x: 4, y: 4}
+    flatten: 0
+    isImported: 1
+    isVisible: 1
+  mosaicPSDLayers: []
+  rigPSDLayers: []
+  sharedRigPSDLayers: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
+  generateGOHierarchy: 0
+  textureAssetName: 
+  prefabAssetName: 
+  spriteLibAssetName: 
+  skeletonAssetName: 
+  secondarySpriteTextures: []
