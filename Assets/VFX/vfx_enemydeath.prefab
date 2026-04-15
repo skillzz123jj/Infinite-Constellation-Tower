@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6255556696952382588}
   - component: {fileID: 867631519792289133}
   - component: {fileID: 7078758346220736329}
+  - component: {fileID: 6723283290591130656}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -4894,6 +4895,19 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!210 &6723283290591130656
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483017841554584458}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &2725377787855947677
 GameObject:
   m_ObjectHideFlags: 0
@@ -4905,6 +4919,7 @@ GameObject:
   - component: {fileID: 1869510401954125484}
   - component: {fileID: 170745031926967370}
   - component: {fileID: 4099264967713331330}
+  - component: {fileID: 4431177741535328802}
   m_Layer: 0
   m_Name: Flash
   m_TagString: Untagged
@@ -9788,6 +9803,19 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!210 &4431177741535328802
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2725377787855947677}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &4352789111588126324
 GameObject:
   m_ObjectHideFlags: 0
@@ -9834,6 +9862,7 @@ GameObject:
   - component: {fileID: 5588296344008428066}
   - component: {fileID: 6031526190490154808}
   - component: {fileID: 316057554429885343}
+  - component: {fileID: 7647228761586035980}
   m_Layer: 0
   m_Name: Sparkles
   m_TagString: Untagged
@@ -14717,6 +14746,19 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!210 &7647228761586035980
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4520253389063284628}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0
 --- !u!1 &7856684036838349066
 GameObject:
   m_ObjectHideFlags: 0
@@ -14728,6 +14770,7 @@ GameObject:
   - component: {fileID: 3803881003393084018}
   - component: {fileID: 5682432860208622924}
   - component: {fileID: 4098004822689398463}
+  - component: {fileID: 309083398302373211}
   m_Layer: 0
   m_Name: Stars
   m_TagString: Untagged
@@ -19611,3 +19654,16 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
+--- !u!210 &309083398302373211
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7856684036838349066}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0
+  m_Sort3DAs2D: 0

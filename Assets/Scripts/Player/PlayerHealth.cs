@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -10,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerCombat playerCombat;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] Animator animator;
+
+    [SerializeField] PlayerInput playerInput;
+    [SerializeField] GameObject firstSelectedButton;
 
     private void Start()
     {
@@ -95,6 +99,8 @@ public class PlayerHealth : MonoBehaviour
 
             if (Gamedata.Instance.playerHealth <= 0)
             {
+                playerInput.SwitchCurrentActionMap("UI");
+                EventSystem.current.SetSelectedGameObject(firstSelectedButton);
                 animator.SetTrigger("Death");
                 Gamedata.Instance.playerHealth = 5;
             }
