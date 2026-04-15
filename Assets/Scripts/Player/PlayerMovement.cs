@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
     private float gravity = -9.81f;
+    public bool isFacingRight = true;
     [SerializeField] Animator animator;
 
     [SerializeField] AudioClip jumpSound;
@@ -42,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x != 0)
         {
             scale.x = moveInput.x < 0 ? -1 : 1;
+            isFacingRight = moveInput.x < 0 ? false : true;
             transform.localScale = scale;
         }
     }
