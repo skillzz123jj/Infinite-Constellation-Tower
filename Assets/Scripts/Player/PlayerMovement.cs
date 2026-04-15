@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool isFalling;
     private void FixedUpdate()
     {
-        if (isGrounded)
+        if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -143,20 +143,20 @@ public class PlayerMovement : MonoBehaviour
             ApplyGravity();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
 
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    public LayerMask groundLayer;
+    bool IsGrounded()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 1.0f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (hit.collider != null)
         {
-            isGrounded = false;
+            return true;
         }
+
+        return false;
     }
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
     public Image fillImage;
     public int maxValue = 100;
 
+    private Coroutine barRoutine;
     [SerializeField] PlayerMovement playerMovement;
 
     private void Start()
@@ -70,10 +72,34 @@ public class PlayerCombat : MonoBehaviour
         UpdateBar();
     }
 
+    public void SetBarInstant(float fill)
+    {
+        fillImage.fillAmount = fill;
+    }
+
     void UpdateBar()
     {
         float fillPercent = (float)Gamedata.Instance.playerPowerbar / maxValue;
-        fillImage.fillAmount = fillPercent;
+
+        if (barRoutine != null)
+            StopCoroutine(barRoutine);
+
+        barRoutine = StartCoroutine(AnimateBar(fillPercent, 0.3f)); 
+    }
+
+    IEnumerator AnimateBar(float targetFill, float duration)
+    {
+        float startFill = fillImage.fillAmount;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            fillImage.fillAmount = Mathf.Lerp(startFill, targetFill, time / duration);
+            yield return null;
+        }
+
+        fillImage.fillAmount = targetFill;
     }
 }
 

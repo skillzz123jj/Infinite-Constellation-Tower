@@ -92,11 +92,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.32
+      value: -10.424253
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 68.0495
+      value: -2.6715975
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   health: 12
+  deathParticlePrefab: {fileID: 4352789111588126324, guid: f49dcd4fc71c65748a499833b692d3c0, type: 3}
 --- !u!4 &1424266648800808801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 9cb43fc1aceda07499a900499ceccaf7, type: 3}

@@ -43,6 +43,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_termite
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalScale.x
       value: -0.2
@@ -57,11 +61,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.436
+      value: -7.4974003
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.316
+      value: -2.9005527
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -239,3 +243,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   health: 1
+  deathParticlePrefab: {fileID: 4352789111588126324, guid: f49dcd4fc71c65748a499833b692d3c0, type: 3}

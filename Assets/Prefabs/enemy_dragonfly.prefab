@@ -90,6 +90,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemy_dragonfly
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.28
@@ -104,11 +108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.024
+      value: -12.077398
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.24
+      value: -2.35837
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -307,6 +311,7 @@ MonoBehaviour:
   AttackDistanceX: 6
   vulnerableTime: 2.5
   chargeTime: 1
+  jumpDelayAfterHit: 0.1
 --- !u!114 &7045076901628489211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   health: 5
+  deathParticlePrefab: {fileID: 4352789111588126324, guid: f49dcd4fc71c65748a499833b692d3c0, type: 3}
 --- !u!4 &8898793281418707915 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}

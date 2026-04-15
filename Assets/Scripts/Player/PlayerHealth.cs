@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] GameObject[] sunrays = new GameObject[6];
+    [SerializeField] GameObject[] sunrays = new GameObject[5];
     private Coroutine currentHeal;
     [SerializeField] PlayerCombat playerCombat;
     [SerializeField] PlayerMovement playerMovement;
@@ -39,18 +38,20 @@ public class PlayerHealth : MonoBehaviour
     // Cancels heal if player lets go of the button 
     public void Heal(InputAction.CallbackContext context)
     {
-        if (context.started && Gamedata.Instance.playerHealth < 6 && Gamedata.Instance.playerPowerbar >= 10 && playerMovement.GetMoveInput().x == 0)
+        if (context.started && Gamedata.Instance.playerHealth < 5 && Gamedata.Instance.playerPowerbar >= 10 && playerMovement.GetMoveInput().x == 0)
         {
             currentHeal = StartCoroutine(FillRay(2f, sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>()));
             animator.SetBool("Healing", true);
         }
 
-        if (context.canceled && Gamedata.Instance.playerHealth < 6)
+        if (context.canceled && Gamedata.Instance.playerHealth < 5)
         {
             if (currentHeal != null)
             {
                 StopCoroutine(currentHeal);
                 sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0f;
+                animator.SetBool("Healing", false);
+
             }
         }
     }
@@ -95,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
             if (Gamedata.Instance.playerHealth <= 0)
             {
                 animator.SetTrigger("Death");
-                Gamedata.Instance.playerHealth = 6;
+                Gamedata.Instance.playerHealth = 5;
             }
         }
     }
