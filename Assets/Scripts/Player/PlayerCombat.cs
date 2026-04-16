@@ -28,7 +28,6 @@ public class PlayerCombat : MonoBehaviour
         UpdateBar();
 
     }
-
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -48,7 +47,6 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
-
     public void SpecialAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -56,7 +54,7 @@ public class PlayerCombat : MonoBehaviour
            if (Gamedata.Instance.playerPowerbar == 100)
            {
                animator.SetTrigger("SpecialAttack");
-               DrainBar(100);
+               DrainBar(50);
            }
            else
            {

@@ -36,9 +36,10 @@ public class WalkingEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player hit! Insert damage logic.");
+            Debug.Log("Player hit by " + gameObject.name);
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
         }
     }
     private void OnDrawGizmos()

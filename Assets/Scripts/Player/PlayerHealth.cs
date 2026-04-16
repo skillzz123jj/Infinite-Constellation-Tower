@@ -14,6 +14,8 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
+    public bool isKnockedBack;
+    bool invulnerable;
 
     private void Start()
     {
@@ -32,10 +34,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L)) // Temporary way to take damage
-        {
-            TakeDamage();
-        }
+        //if (Input.GetKeyDown(KeyCode.L)) // Temporary way to take damage
+        //{
+        //    TakeDamage();
+        //}
     }
 
     // Starts a coroutine to heal
@@ -88,17 +90,27 @@ public class PlayerHealth : MonoBehaviour
         animator.SetBool("Healing", false);
     }
 
-    public void TakeDamage()
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] float knockbackForce = 5f;
+    public void TakeDamage(Vector2 hitDirection)
     {
-        if (Gamedata.Instance.playerHealth > 0)
+        if (Gamedata.Instance.playerHealth > 0 && !invulnerable)
         {
             Gamedata.Instance.playerHealth--;
             sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0;
             animator.SetTrigger("Hurt");
 
+            rb.linearVelocity = Vector2.zero; // reset current motion
+            rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+
+            isKnockedBack = true;
+            Invoke("Reset", 0.3f);
+            Time.timeScale = 0.5f;
+            invulnerable = true;
 
             if (Gamedata.Instance.playerHealth <= 0)
             {
+                Reset();
                 playerInput.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(firstSelectedButton);
                 animator.SetTrigger("Death");
@@ -106,11 +118,28 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
+
+    private void Reset()
+    {
+        isKnockedBack = false;
+        Time.timeScale = 1f;
+        invulnerable = false;
+
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Projectile") || collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Projectile")) //|| collision.CompareTag("Enemy"))
         {
-            TakeDamage();
+            if (collision.CompareTag("Projectile"))
+            {
+                Destroy(collision.gameObject);
+            }
+
+            Vector2 dir = (transform.position - collision.transform.position).normalized;
+
+            TakeDamage(dir);
+
+            Debug.Log("Player took damage from " + collision.gameObject.name);
         }
     }
 }
