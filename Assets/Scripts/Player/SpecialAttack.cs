@@ -1,12 +1,12 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SpecialAttack : MonoBehaviour
 {
     [SerializeField] private float maxDistance = 100f;
-    [SerializeField] private float damagePerSecond = 10f;
 
     public Transform laserFirePoint;
     public LineRenderer lineRenderer;
+    [SerializeField] float beamHeight = 1.5f;
 
     [SerializeField] PlayerMovement playerMovement;
 
@@ -32,38 +32,58 @@ public class SpecialAttack : MonoBehaviour
 
     void ShootBeam()
     {
+        //Laser direction to match players direction
         Vector2 direction = playerMovement.isFacingRight ? Vector2.right : Vector2.left;
-        RaycastHit2D hit = Physics2D.Raycast(
-            laserFirePoint.position,
-            direction,
-            maxDistance
-        );
-
-        Vector2 endPoint;
-
+       
         isFiring = true;
         lineRenderer.enabled = true;
 
-        if (hit.collider != null)
-        {
-            endPoint = hit.point;
+        // Check for wall collision to limit beam length
+        RaycastHit2D wallHit = Physics2D.Raycast(
+            laserFirePoint.position,
+            direction,
+            maxDistance,
+            LayerMask.GetMask("Ground") 
+        );
 
+        float beamLength = maxDistance;
+
+        // If the beam hits a wall, adjust the length to end at the wall
+        if (wallHit.collider != null)
+        {
+            beamLength = Vector2.Distance(laserFirePoint.position, wallHit.point);
+        }
+
+        //
+        Vector2 boxCenter = (Vector2)laserFirePoint.position + direction * (beamLength / 2f);
+
+        //
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(
+            boxCenter,
+            new Vector2(beamLength, beamHeight),
+            0f,
+            direction,
+            0f
+        );
+
+        //Deal damage to all enemies along the path
+        foreach (var hit in hits)
+        {
             var enemy = hit.collider.GetComponent<EnemyHealth>();
             if (enemy != null)
             {
-                enemy.TakeDamage(1); // Temporarly set to 1 damage
-                // enemy.TakeDamage(damagePerSecond * Time.deltaTime);
+                enemy.TakeDamage(1);
             }
         }
-        else
-        {
-            endPoint = (Vector2)laserFirePoint.position +
-           direction * maxDistance;
-        }
 
+        //Set the end point of the beam based on the calculated length
+        Vector2 endPoint = (Vector2)laserFirePoint.position + direction * beamLength;
         DrawBeam(laserFirePoint.position, endPoint);
-    }
 
+        //Set the beam size
+        lineRenderer.startWidth = beamHeight;
+        lineRenderer.endWidth = beamHeight;
+    }
     void DrawBeam(Vector2 start, Vector2 end)
     {
         lineRenderer.SetPosition(0, start);

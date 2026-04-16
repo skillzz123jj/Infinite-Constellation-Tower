@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4843179202286690205}
   - component: {fileID: 3555728599399220107}
   - component: {fileID: 309596329427839067}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Crumbling platform 7 tiles
   m_TagString: Ground
   m_Icon: {fileID: 0}
