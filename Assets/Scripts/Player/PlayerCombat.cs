@@ -16,6 +16,8 @@ public class PlayerCombat : MonoBehaviour
 
     private Coroutine barRoutine;
     [SerializeField] PlayerMovement playerMovement;
+    [SerializeField] GameObject glowingBar;
+    [SerializeField] Animator BarEffect;
 
     private void Start()
     {
@@ -26,7 +28,6 @@ public class PlayerCombat : MonoBehaviour
         UpdateBar();
 
     }
-
     public void Attack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -46,13 +47,28 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
+    public void SpecialAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+           if (Gamedata.Instance.playerPowerbar == 100)
+           {
+               animator.SetTrigger("SpecialAttack");
+               DrainBar(50);
+           }
+           else
+           {
+               BarEffect.SetTrigger("Shake");
+           }
+        }
+    }
 
     private void OnEnemyHit(Collider2D other)
     {
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            FillBar(5);
+            FillBar(50);
             enemyHealth.TakeDamage(damage);
             Debug.Log(enemyHealth.GetHealth());
         }
@@ -81,6 +97,15 @@ public class PlayerCombat : MonoBehaviour
     {
         float fillPercent = (float)Gamedata.Instance.playerPowerbar / maxValue;
 
+        if (Gamedata.Instance.playerPowerbar == 100)
+        {
+            glowingBar.SetActive(true);
+        }
+        else
+        {
+            glowingBar.SetActive(false);
+        }
+
         if (barRoutine != null)
             StopCoroutine(barRoutine);
 
@@ -100,6 +125,7 @@ public class PlayerCombat : MonoBehaviour
         }
 
         fillImage.fillAmount = targetFill;
+
     }
 }
 

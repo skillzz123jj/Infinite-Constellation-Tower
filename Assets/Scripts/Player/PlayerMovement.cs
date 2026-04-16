@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,9 +19,11 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
     private float gravity = -9.81f;
+    public bool isFacingRight = true;
     [SerializeField] Animator animator;
 
     [SerializeField] AudioClip jumpSound;
+    [SerializeField] PlayerHealth playerHealth;
 
     void Start()
     {
@@ -42,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x != 0)
         {
             scale.x = moveInput.x < 0 ? -1 : 1;
+            isFacingRight = moveInput.x < 0 ? false : true;
             transform.localScale = scale;
         }
     }
@@ -80,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DoDash());
         }
     }
-    private System.Collections.IEnumerator DoDash()
+    IEnumerator DoDash()
     {
         isDashing = true;
         
@@ -110,7 +114,7 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = velocity;
     }
-    [SerializeField] bool isFalling;
+
     private void FixedUpdate()
     {
         if (IsGrounded())
@@ -122,19 +126,19 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (rb.linearVelocity.y < -0.1f && !isGrounded)
-        {
-           // animator.SetBool("IsFalling", true);
-            isFalling = true;
+        //if (rb.linearVelocity.y < -0.1f && !isGrounded)
+        //{
+        //   // animator.SetBool("IsFalling", true);
+        //    isFalling = true;
 
-        }
-        else
-        {
-          //  animator.SetBool("IsFalling", false);
-            isFalling = false;
-        }
+        //}
+        //else
+        //{
+        //  //  animator.SetBool("IsFalling", false);
+        //    isFalling = false;
+        //}
 
-        if (!isDashing)
+        if (!isDashing && !playerHealth.isKnockedBack)
         {
             Vector2 velocity = rb.linearVelocity;
             velocity.x = moveInput.x * movementSpeed;
