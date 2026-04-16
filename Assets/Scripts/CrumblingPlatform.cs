@@ -4,8 +4,8 @@ using System;
 
 public class CrumblingPlatform : MonoBehaviour
 {
-    [SerializeField] float respawnTime;
-    [SerializeField] float animTime;
+    [SerializeField] private float respawnTime;
+    [SerializeField] private float animTime;
     
     public Animator animator;
     public Collider2D platCollider;
