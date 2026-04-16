@@ -217,6 +217,7 @@ public class DiveEnemy : MonoBehaviour
         {
             hasHitPlayerThisDash = true;
             // Call player.TakeDamage()
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
             Debug.Log("Player hit! Insert damage logic.");
             StartCoroutine(DelayedJumpAfterHit());
         }

@@ -104,13 +104,15 @@ public class PlayerHealth : MonoBehaviour
             rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
             isKnockedBack = true;
-            Invoke("Reset", 0.3f);
+            Invoke("ResetTimeScale", 0.3f);
             Time.timeScale = 0.5f;
             invulnerable = true;
+            Invoke("ResetInvulnerability", 2f);
+
 
             if (Gamedata.Instance.playerHealth <= 0)
             {
-                Reset();
+                ResetTimeScale();
                 playerInput.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(firstSelectedButton);
                 animator.SetTrigger("Death");
@@ -119,11 +121,14 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void Reset()
+    private void ResetInvulnerability()
+    {
+        invulnerable = false;
+    }
+    private void ResetTimeScale()
     {
         isKnockedBack = false;
         Time.timeScale = 1f;
-        invulnerable = false;
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
