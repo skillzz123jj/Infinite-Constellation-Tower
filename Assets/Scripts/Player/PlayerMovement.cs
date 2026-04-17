@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -18,18 +19,20 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
     private float gravity = -9.81f;
+    public bool isFacingRight = true;
     [SerializeField] Animator animator;
 
     [SerializeField] AudioClip jumpSound;
+    [SerializeField] PlayerHealth playerHealth;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (Gamedata.Instance.dataExists)
-        {
-            gameObject.transform.position = Gamedata.Instance.playerPosition;
+        //if (Gamedata.Instance.dataExists)
+        //{
+        //    gameObject.transform.position = Gamedata.Instance.playerPosition;
 
-        }
+        //}
     }
 
     //Move and jump use the new input system and context is taken from the Inputs asset
@@ -42,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.x != 0)
         {
             scale.x = moveInput.x < 0 ? -1 : 1;
+            isFacingRight = moveInput.x < 0 ? false : true;
             transform.localScale = scale;
         }
     }
@@ -57,8 +61,10 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             animator.SetTrigger("Jump");
-            AudioManager.Instance.PlaySfxClip(jumpSound);
-
+            if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(jumpSound);
+            }
         }
 
         if (context.canceled)
@@ -78,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(DoDash());
         }
     }
-    private System.Collections.IEnumerator DoDash()
+    IEnumerator DoDash()
     {
         isDashing = true;
         
@@ -108,10 +114,10 @@ public class PlayerMovement : MonoBehaviour
 
         rb.linearVelocity = velocity;
     }
-    [SerializeField] bool isFalling;
+
     private void FixedUpdate()
     {
-        if (isGrounded)
+        if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -120,19 +126,19 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
-        if (rb.linearVelocity.y < -0.1f && !isGrounded)
-        {
-            animator.SetBool("IsFalling", true);
-            isFalling = true;
+        //if (rb.linearVelocity.y < -0.1f && !isGrounded)
+        //{
+        //   // animator.SetBool("IsFalling", true);
+        //    isFalling = true;
 
-        }
-        else
-        {
-            animator.SetBool("IsFalling", false);
-            isFalling = false;
-        }
+        //}
+        //else
+        //{
+        //  //  animator.SetBool("IsFalling", false);
+        //    isFalling = false;
+        //}
 
-        if (!isDashing)
+        if (!isDashing && !playerHealth.isKnockedBack)
         {
             Vector2 velocity = rb.linearVelocity;
             velocity.x = moveInput.x * movementSpeed;
@@ -141,20 +147,20 @@ public class PlayerMovement : MonoBehaviour
             ApplyGravity();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
 
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
+    public LayerMask groundLayer;
+    bool IsGrounded()
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        float distance = 1.0f;
+
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
+        if (hit.collider != null)
         {
-            isGrounded = false;
+            return true;
         }
+
+        return false;
     }
 }

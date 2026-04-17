@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
         {
             if (_instance == null)
             {
-                Debug.Log("AudioManager was not found");
+               // Debug.Log("AudioManager was not found");
             }
             return _instance;
         }

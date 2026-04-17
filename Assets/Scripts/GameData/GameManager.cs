@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager gm;
-    public int playerHealth = 6;
+    public int playerHealth = 5;
     public int playerPowerbar = 0;
     public Vector2 playerPosition = new Vector2(0, 0);
 

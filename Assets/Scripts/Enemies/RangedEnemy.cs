@@ -100,4 +100,12 @@ public class RangedEnemy : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(rayCastTransform.position, rayCastTransform.position + Vector3.down * rayDistance);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
+        }
+    }
 }
