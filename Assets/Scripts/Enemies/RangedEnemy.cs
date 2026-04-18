@@ -101,11 +101,11 @@ public class RangedEnemy : MonoBehaviour
         Gizmos.DrawLine(rayCastTransform.position, rayCastTransform.position + Vector3.down * rayDistance);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("TakeDamage"))
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
+            collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
         }
     }
 }

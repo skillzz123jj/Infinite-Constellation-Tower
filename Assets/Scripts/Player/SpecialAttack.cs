@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.VFX;
 
 public class SpecialAttack : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class SpecialAttack : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
 
     [SerializeField] bool isFiring;
+
+    [SerializeField] private VisualEffect laserVFX;
 
     void Update()
     {
@@ -28,6 +31,7 @@ public class SpecialAttack : MonoBehaviour
     {
         isFiring = false;
         lineRenderer.enabled = false;
+        laserVFX.gameObject.SetActive(false);
     }
 
     void ShootBeam()
@@ -38,7 +42,7 @@ public class SpecialAttack : MonoBehaviour
         isFiring = true;
         lineRenderer.enabled = true;
 
-        // Check for wall collision to limit beam length
+        //Check for wall collision to limit beam length
         RaycastHit2D wallHit = Physics2D.Raycast(
             laserFirePoint.position,
             direction,
@@ -48,16 +52,14 @@ public class SpecialAttack : MonoBehaviour
 
         float beamLength = maxDistance;
 
-        // If the beam hits a wall, adjust the length to end at the wall
+        //If the beam hits a wall, adjust the length to end at the wall
         if (wallHit.collider != null)
         {
             beamLength = Vector2.Distance(laserFirePoint.position, wallHit.point);
         }
 
-        //
         Vector2 boxCenter = (Vector2)laserFirePoint.position + direction * (beamLength / 2f);
 
-        //
         RaycastHit2D[] hits = Physics2D.BoxCastAll(
             boxCenter,
             new Vector2(beamLength, beamHeight),
@@ -83,6 +85,10 @@ public class SpecialAttack : MonoBehaviour
         //Set the beam size
         lineRenderer.startWidth = beamHeight;
         lineRenderer.endWidth = beamHeight;
+
+        laserVFX.gameObject.SetActive(true);
+        laserVFX.SetVector2("StartPos", laserFirePoint.position);
+        laserVFX.SetVector2("EndPos", endPoint);
     }
     void DrawBeam(Vector2 start, Vector2 end)
     {

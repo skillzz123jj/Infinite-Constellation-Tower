@@ -34,16 +34,16 @@ public class WalkingEnemy : MonoBehaviour
         transform.localScale = currentScale;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
-        }
-    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(rayCastTransform.position, rayCastTransform.position + Vector3.down * rayDistance);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("TakeDamage"))
+        {
+            collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
+        }
     }
 }

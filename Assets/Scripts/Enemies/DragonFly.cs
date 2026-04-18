@@ -213,11 +213,11 @@ public class DiveEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (currentState == State.Dashing && !hasHitPlayerThisDash && collision.CompareTag("Player"))
+        if (currentState == State.Dashing && !hasHitPlayerThisDash && collision.CompareTag("TakeDamage"))
         {
             hasHitPlayerThisDash = true;
             // Call player.TakeDamage()
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
+            collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
             Debug.Log("Player hit! Insert damage logic.");
             StartCoroutine(DelayedJumpAfterHit());
         }

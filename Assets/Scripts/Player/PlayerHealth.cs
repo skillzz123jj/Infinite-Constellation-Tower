@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Start()
     {
+        Gamedata.Instance.playerHealth = 5;
         // Initialize sunrays based on current health
         int health = Mathf.Clamp(Gamedata.Instance.playerHealth, 0, sunrays.Length);
 
@@ -30,14 +31,6 @@ public class PlayerHealth : MonoBehaviour
                 img.fillAmount = i < health ? 1f : 0f;
             }
         }
-    }
-
-    void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.L)) // Temporary way to take damage
-        //{
-        //    TakeDamage();
-        //}
     }
 
     // Starts a coroutine to heal
@@ -92,7 +85,7 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float knockbackForce = 5f;
-    public void TakeDamage(Vector2 hitDirection)
+    public void TakeDamage(Vector2 hitDirection = default)
     {
         if (Gamedata.Instance.playerHealth > 0 && !invulnerable)
         {
@@ -100,10 +93,14 @@ public class PlayerHealth : MonoBehaviour
             sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0;
             animator.SetTrigger("Hurt");
 
-            rb.linearVelocity = Vector2.zero; // reset current motion
-            rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
+            if (hitDirection != Vector2.zero)
+            {
+                rb.linearVelocity = Vector2.zero;
+                rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
-            isKnockedBack = true;
+                isKnockedBack = true;
+            }
+
             Invoke("ResetTimeScale", 0.3f);
             Time.timeScale = 0.5f;
             invulnerable = true;
@@ -140,11 +137,9 @@ public class PlayerHealth : MonoBehaviour
                 Destroy(collision.gameObject);
             }
 
-            Vector2 dir = (transform.position - collision.transform.position).normalized;
+            Vector2 direction = (transform.position - collision.transform.position).normalized;
 
-            TakeDamage(dir);
-
-            Debug.Log("Player took damage from " + collision.gameObject.name);
+            TakeDamage(direction);
         }
     }
 }
