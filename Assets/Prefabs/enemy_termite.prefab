@@ -75,6 +75,10 @@ PrefabInstance:
       value: enemy_termite
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -92,11 +96,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.524267
+      value: 32.04
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.619
+      value: -0.28
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -302,7 +306,7 @@ MonoBehaviour:
     m_Bits: 8
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
 --- !u!114 &2604963052574913680
 MonoBehaviour:
   m_ObjectHideFlags: 0

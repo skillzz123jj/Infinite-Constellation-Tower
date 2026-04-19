@@ -29,8 +29,8 @@ public class WalkingEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        CheckForFlip(); 
-        Move();         
+        CheckForFlip();
+        Move();
     }
 
     void Move()
@@ -40,6 +40,9 @@ public class WalkingEnemy : MonoBehaviour
 
     void CheckForFlip()
     {
+        // Don't flip if falling/mid-air (prevents flip on spawn)
+        if (!rb.IsTouchingLayers(groundLayer)) return;
+
         // Is there ground ahead
         bool hasGround = Physics2D.OverlapCircle(
             groundCheck.position,
@@ -91,6 +94,13 @@ public class WalkingEnemy : MonoBehaviour
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("TakeDamage"))
+        {
+            collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
         }
     }
 }
