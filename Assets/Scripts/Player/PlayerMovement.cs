@@ -20,10 +20,13 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeCounter;
     private float gravity = -9.81f;
     public bool isFacingRight = true;
+    public bool limitMovement = false;
     [SerializeField] Animator animator;
 
     [SerializeField] AudioClip jumpSound;
     [SerializeField] PlayerHealth playerHealth;
+
+    public LayerMask groundLayer;
 
     void Start()
     {
@@ -72,7 +75,20 @@ public class PlayerMovement : MonoBehaviour
             coyoteTimeCounter = 0;
         }
     }
-   
+
+    //Apply upward force to player once enemy was hit with down attack
+    public IEnumerator ApplyForceOnHit()
+    {
+        limitMovement = true;
+        rb.linearVelocityY = 0;
+
+        rb.AddForce(Vector2.up* 500f, ForceMode2D.Impulse);
+
+        yield return new WaitForSeconds(0.3f);
+        limitMovement = false;
+    }
+
+
     //Starts a coroutine to stop the movement caused by dash so player stops after 
     public void Dash(InputAction.CallbackContext context)
     {
@@ -138,7 +154,7 @@ public class PlayerMovement : MonoBehaviour
         //    isFalling = false;
         //}
 
-        if (!isDashing && !playerHealth.isKnockedBack)
+        if (!isDashing && !limitMovement)
         {
             Vector2 velocity = rb.linearVelocity;
             velocity.x = moveInput.x * movementSpeed;
@@ -148,8 +164,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public LayerMask groundLayer;
-    bool IsGrounded()
+    public bool IsGrounded()
     {
         Vector2 position = transform.position;
         Vector2 direction = Vector2.down;

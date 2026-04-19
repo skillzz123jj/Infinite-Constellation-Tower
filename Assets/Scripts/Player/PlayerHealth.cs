@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
-    public bool isKnockedBack;
+
     bool invulnerable;
 
     private void Start()
@@ -98,7 +98,7 @@ public class PlayerHealth : MonoBehaviour
                 rb.linearVelocity = Vector2.zero;
                 rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
-                isKnockedBack = true;
+                playerMovement.limitMovement = true;
             }
 
             Invoke("ResetTimeScale", 0.3f);
@@ -124,7 +124,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void ResetTimeScale()
     {
-        isKnockedBack = false;
+        playerMovement.limitMovement = false;
         Time.timeScale = 1f;
 
     }

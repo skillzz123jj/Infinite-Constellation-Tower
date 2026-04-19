@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] Animator animator;
@@ -37,7 +36,7 @@ public class PlayerCombat : MonoBehaviour
             {
                 animator.SetTrigger("UpAttack");
             }
-            else if (direction.y < -0.5f)
+            else if (direction.y < -0.5f && !playerMovement.IsGrounded())
             {
                 animator.SetTrigger("DownAttack");
             }
