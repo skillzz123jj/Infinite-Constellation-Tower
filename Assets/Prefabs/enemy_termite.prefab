@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &518230104522857573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 405102596832768882}
+  m_Layer: 0
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &405102596832768882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518230104522857573}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.57, y: 1.28, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4642983201677972157}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3123976306666035667
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3181520500282172201}
   m_Layer: 0
-  m_Name: RaycastTransform
+  m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 3123976306666035667}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.828, y: 0.189, z: 0}
+  m_LocalPosition: {x: -2.12, y: -0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61,11 +92,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.4974003
+      value: 30.524267
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9005527
+      value: 1.619
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -77,15 +108,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -105,6 +136,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3181520500282172201}
+    - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 405102596832768882}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       insertIndex: -1
@@ -112,6 +146,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3054826894867362245}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8180776824610890999}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ec4afcff3de1c1b4c8ae63bde684e89c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5294473575223905673}
@@ -170,6 +207,33 @@ MonoBehaviour:
   m_Weight: 1
   m_AlwaysUpdate: 1
   m_SolverEditorData: []
+--- !u!50 &8180776824610890999
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811659248502065886}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &5294473575223905673
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200,7 +264,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -229,7 +293,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WalkingEnemy
   speed: 2
-  rayCastTransform: {fileID: 3181520500282172201}
+  groundCheck: {fileID: 3181520500282172201}
+  wallCheck: {fileID: 405102596832768882}
+  groundCheckRadius: 0.15
+  wallCheckRadius: 0.15
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &2604963052574913680
 MonoBehaviour:
   m_ObjectHideFlags: 0

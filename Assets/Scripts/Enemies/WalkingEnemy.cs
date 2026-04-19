@@ -1,49 +1,96 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class WalkingEnemy : MonoBehaviour
 {
-    [Header("Movement Settings")]
+    [Header("Movement")]
     [SerializeField] float speed = 2f;
 
-    [Header("Ground Detection")]
-    [SerializeField] Transform rayCastTransform;
-    float rayDistance = 0.2f;
+    [Header("Detection")]
+    [SerializeField] Transform groundCheck;
+    [SerializeField] Transform wallCheck;
 
-    void Update()
+    [SerializeField] float groundCheckRadius = 0.15f;
+    [SerializeField] float wallCheckRadius = 0.15f;
+
+    [SerializeField] LayerMask groundLayer;
+    [SerializeField] LayerMask enemyLayer;
+
+    Rigidbody2D rb;
+
+    int direction = 1;        // 1 = right, -1 = left
+    float originalScaleX;     // Stores starting scale to avoid drift
+
+    void Awake()
     {
-        // Mathf.Sign returns 1 if scale is positive (right), and -1 if negative (left)
-        float facingDirection = Mathf.Sign(transform.localScale.x);
+        rb = GetComponent<Rigidbody2D>();
+        originalScaleX = transform.localScale.x;
+    }
 
-        //using negated localscale because the default model is facing x- instead of x+ as it should
-        facingDirection = -facingDirection;
+    void FixedUpdate()
+    {
+        CheckForFlip(); 
+        Move();         
+    }
 
-        transform.Translate(Vector2.right * facingDirection * speed * Time.deltaTime);
+    void Move()
+    {
+        rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+    }
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(rayCastTransform.position, Vector2.down, rayDistance);
+    void CheckForFlip()
+    {
+        // Is there ground ahead
+        bool hasGround = Physics2D.OverlapCircle(
+            groundCheck.position,
+            groundCheckRadius,
+            groundLayer
+        );
 
-        if (groundInfo.collider == null)
+        // Is there a wall in front
+        bool hitWall = Physics2D.OverlapCircle(
+            wallCheck.position,
+            wallCheckRadius,
+            groundLayer
+        );
+
+        // Is there an enemy in front
+        bool hitEnemy = Physics2D.OverlapCircle(
+            wallCheck.position,
+            wallCheckRadius,
+            enemyLayer
+);
+
+        // Flip if about to fall OR hit a wall
+        if (!hasGround || hitWall || hitEnemy)
         {
             Flip();
         }
     }
 
-    private void Flip()
+    void Flip()
     {
-        Vector3 currentScale = transform.localScale;
-        currentScale.x *= -1;
-        transform.localScale = currentScale;
+        direction *= -1;
+
+        transform.localScale = new Vector3(
+            originalScaleX * direction,
+            transform.localScale.y,
+            transform.localScale.z
+        );
     }
 
-    private void OnDrawGizmos()
+    void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(rayCastTransform.position, rayCastTransform.position + Vector3.down * rayDistance);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("TakeDamage"))
+        if (groundCheck != null)
         {
-            collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        }
+
+        if (wallCheck != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
         }
     }
 }
