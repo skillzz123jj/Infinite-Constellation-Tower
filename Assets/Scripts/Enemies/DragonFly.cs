@@ -60,8 +60,8 @@ public class DiveEnemy : MonoBehaviour
         attackHitbox.isTrigger = true;
         SetAttackHitboxActive(false);
 
-        // We permanently ignore physical collision between the enemy's body collider and the
-        // player for all it's colliders. This doesn't affect player taking damage as it doesnt ignore collsions
+        // We permanently ignore physical collision between the enemy's body collider and the players body collider.
+        // This doesn't affect player taking damage as it doesnt ignore collsions
         // with the attackhitbox
         IgnorePlayerCollision();
 
@@ -198,9 +198,11 @@ public class DiveEnemy : MonoBehaviour
 
     void IgnorePlayerCollision()
     {
-        foreach (var pCollider in playerColliders)
+        // Get the player's main body collider only (not weapon colliders)
+        Collider2D playerBodyCollider = player.GetComponent<Collider2D>();
+        if (playerBodyCollider != null)
         {
-            Physics2D.IgnoreCollision(pCollider, bodyCollider, true);
+            Physics2D.IgnoreCollision(playerBodyCollider, bodyCollider, true);
         }
     }
     private void Flip()
