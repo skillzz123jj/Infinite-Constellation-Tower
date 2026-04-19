@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3651353006282369343}
   m_Layer: 0
   m_Name: AttackHitbox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,11 +108,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.077398
+      value: 4.040142
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.35837
+      value: 1.4843628
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -124,15 +124,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1310908870f73e541a5407ac32682b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  health: 5
+  health: 1
   deathParticlePrefab: {fileID: 4352789111588126324, guid: f49dcd4fc71c65748a499833b692d3c0, type: 3}
 --- !u!4 &8898793281418707915 stripped
 Transform:
