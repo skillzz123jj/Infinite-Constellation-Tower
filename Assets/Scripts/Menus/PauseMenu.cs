@@ -10,6 +10,11 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     public void PauseInput(InputAction.CallbackContext context)
     {
         if (context.performed && pauseMenu)
@@ -30,6 +35,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         paused = false;
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         playerInput.SwitchCurrentActionMap("Player");
     }
 
@@ -38,6 +46,9 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         paused = true;
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
 
         playerInput.SwitchCurrentActionMap("UI");
         EventSystem.current.SetSelectedGameObject(firstSelectedButton);
