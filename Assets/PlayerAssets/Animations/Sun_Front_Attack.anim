@@ -71,9 +71,9 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.05
-        value: {x: 0, y: 0, z: 2.844}
-        inSlope: {x: 0, y: 0, z: -133.8}
-        outSlope: {x: 0, y: 0, z: -133.8}
+        value: {x: 0, y: 0, z: -2.257}
+        inSlope: {x: 0, y: 0, z: -165.06999}
+        outSlope: {x: 0, y: 0, z: -165.06999}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -115,15 +115,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.05
         value: {x: 0, y: 0, z: -203.921}
-        inSlope: {x: 0, y: 0, z: -660.78}
-        outSlope: {x: 0, y: 0, z: -660.78}
+        inSlope: {x: 0, y: 0, z: -428.3197}
+        outSlope: {x: 0, y: 0, z: -428.3197}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.1
-        value: {x: 0, y: 0, z: -221.742}
+        value: {x: 0, y: 0, z: -214.629}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -427,15 +427,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.05
         value: {x: 0, y: 0, z: 128.275}
-        inSlope: {x: 0, y: 0, z: -660.77997}
-        outSlope: {x: 0, y: 0, z: -660.77997}
+        inSlope: {x: 0, y: 0, z: -428.3197}
+        outSlope: {x: 0, y: 0, z: -428.3197}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.1
-        value: {x: 0, y: 0, z: 110.454}
+        value: {x: 0, y: 0, z: 117.567}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1887,9 +1887,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.05
-        value: 2.844
-        inSlope: -133.8
-        outSlope: -133.8
+        value: -2.257
+        inSlope: -165.06999
+        outSlope: -165.06999
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -2176,15 +2176,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.05
         value: -203.921
-        inSlope: -660.78
-        outSlope: -660.78
+        inSlope: -428.3197
+        outSlope: -428.3197
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.1
-        value: -221.742
+        value: -214.629
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3490,15 +3490,15 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.05
         value: 128.275
-        inSlope: -660.77997
-        outSlope: -660.77997
+        inSlope: -428.3197
+        outSlope: -428.3197
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.1
-        value: 110.454
+        value: 117.567
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -6081,7 +6081,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/torso/chest/left_shoulder
+    path: main_bone/torso/chest
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6093,7 +6093,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/torso/chest/left_shoulder
+    path: main_bone/torso/chest
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6105,7 +6105,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/torso/chest/left_shoulder
+    path: main_bone/torso/chest
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6225,7 +6225,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/torso/chest/right_shoulder
+    path: main_bone/torso/chest/left_shoulder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6237,7 +6237,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/torso/chest/right_shoulder
+    path: main_bone/torso/chest/left_shoulder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6249,7 +6249,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/torso/chest/right_shoulder
+    path: main_bone/torso/chest/left_shoulder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6261,7 +6261,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/torso/chest
+    path: main_bone/torso/chest/right_shoulder/right_arm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6273,7 +6273,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/torso/chest
+    path: main_bone/torso/chest/right_shoulder/right_arm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6285,7 +6285,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/torso/chest
+    path: main_bone/torso/chest/right_shoulder/right_arm
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6513,7 +6513,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/torso/chest/right_shoulder/right_arm
+    path: main_bone/torso/chest/right_shoulder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6525,7 +6525,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/torso/chest/right_shoulder/right_arm
+    path: main_bone/torso/chest/right_shoulder
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -6537,7 +6537,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/torso/chest/right_shoulder/right_arm
+    path: main_bone/torso/chest/right_shoulder
     classID: 4
     script: {fileID: 0}
     flags: 0
