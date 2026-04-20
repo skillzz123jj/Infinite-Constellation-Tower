@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.U2D.Animation;
+using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int health;
     [SerializeField] GameObject deathParticlePrefab;
+    private Animator anim;
 
     public void TakeDamage(int amount)
     {
@@ -11,11 +14,29 @@ public class EnemyHealth : MonoBehaviour
 
         if (health <= 0)
         {
-
             Debug.Log($"Enemy {gameObject} died");
-            Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+
+            StartCoroutine(DestroyRoutine());
         }
+    }
+
+    private IEnumerator DestroyRoutine()
+    {
+        var animator = GetComponent<Animator>();
+        if (animator) animator.enabled = false;
+
+        foreach (var skin in GetComponentsInChildren<SpriteSkin>(true))
+            skin.enabled = false;
+
+        foreach (var r in GetComponentsInChildren<Renderer>(true))
+            r.enabled = false;
+
+        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
+
+        // wait one frame so rendering/deformation systems can settle
+        yield return null;
+
+        Destroy(gameObject);
     }
 
     public int GetHealth()
