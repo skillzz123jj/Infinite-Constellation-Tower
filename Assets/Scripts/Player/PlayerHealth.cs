@@ -12,10 +12,16 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] Animator animator;
 
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] float knockbackForce = 5f;
+
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
 
+    [SerializeField] float invulnerableTime;
+
     bool invulnerable;
+
 
     private void Start()
     {
@@ -82,9 +88,6 @@ public class PlayerHealth : MonoBehaviour
         currentHeal = null;
         animator.SetBool("Healing", false);
     }
-
-    [SerializeField] Rigidbody2D rb;
-    [SerializeField] float knockbackForce = 5f;
     public void TakeDamage(Vector2 hitDirection = default)
     {
         if (Gamedata.Instance.playerHealth > 0 && !invulnerable)
@@ -104,7 +107,7 @@ public class PlayerHealth : MonoBehaviour
             Invoke("ResetTimeScale", 0.3f);
             Time.timeScale = 0.5f;
             invulnerable = true;
-            Invoke("ResetInvulnerability", 2f);
+            Invoke("ResetInvulnerability", invulnerableTime);
 
 
             if (Gamedata.Instance.playerHealth <= 0)

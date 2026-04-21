@@ -579,7 +579,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &5059010229759483424
 MonoBehaviour:
@@ -787,10 +787,11 @@ MonoBehaviour:
   playerCombat: {fileID: 2542658522265024154}
   playerMovement: {fileID: 5059010229759483424}
   animator: {fileID: 8761663297450295871}
-  playerInput: {fileID: 7724433296614959809}
-  firstSelectedButton: {fileID: 4775766401991348003}
   rb: {fileID: 2452288522914262386}
   knockbackForce: 250
+  playerInput: {fileID: 7724433296614959809}
+  firstSelectedButton: {fileID: 4775766401991348003}
+  invulnerableTime: 0.6
 --- !u!114 &2542658522265024154
 MonoBehaviour:
   m_ObjectHideFlags: 0
