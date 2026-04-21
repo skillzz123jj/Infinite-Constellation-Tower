@@ -96,11 +96,25 @@ public class WalkingEnemy : MonoBehaviour
             Gizmos.DrawWireSphere(wallCheck.position, wallCheckRadius);
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        TryDealContactDamage(collision);
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        TryDealContactDamage(collision);
+    }
+
+    private void TryDealContactDamage(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("TakeDamage"))
         {
-            collision.gameObject.GetComponentInParent<PlayerHealth>().TakeDamage((collision.transform.position - transform.position).normalized);
+            PlayerHealth playerHealth = collision.gameObject.GetComponentInParent<PlayerHealth>();
+            if (playerHealth == null) return;
+
+            playerHealth.TakeDamage((collision.transform.position - transform.position).normalized);
         }
     }
 }
