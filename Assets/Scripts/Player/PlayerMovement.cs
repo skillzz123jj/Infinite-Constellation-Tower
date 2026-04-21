@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool isGrounded;
     [SerializeField] float dashForce = 5f;
     [SerializeField] float maxFallSpeed = 20f;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private Vector2 moveInput;
     [SerializeField] float dashCooldown = 1f;
     Vector3 scale;
@@ -133,6 +133,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+       
         if (IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;

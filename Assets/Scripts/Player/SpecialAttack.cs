@@ -20,10 +20,13 @@ public class SpecialAttack : MonoBehaviour
         if (isFiring)
         {
             ShootBeam();
+            playerMovement.limitMovement = true;
+
         }
         else
         {
             StopBeam();
+            playerMovement.limitMovement = false;
         }
     }
 
@@ -39,7 +42,6 @@ public class SpecialAttack : MonoBehaviour
         //Laser direction to match players direction
         Vector2 direction = playerMovement.isFacingRight ? Vector2.right : Vector2.left;
        
-        isFiring = true;
         lineRenderer.enabled = true;
 
         //Check for wall collision to limit beam length
