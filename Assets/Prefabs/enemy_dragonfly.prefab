@@ -76,7 +76,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.85}
   m_EdgeRadius: 0
 --- !u!1001 &7805032120762350101
 PrefabInstance:
@@ -96,23 +96,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.28
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.28
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.28
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.040142
+      value: 191.01492
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4843628
+      value: 19.695969
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: e8bced1eb0503a84897c64337fab623c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -309,7 +309,7 @@ MonoBehaviour:
   jumpSpeed: 5
   dashSpeed: 15
   AttackDistanceX: 6
-  vulnerableTime: 2.5
+  vulnerableTime: 2
   chargeTime: 1
   jumpDelayAfterHit: 0.1
 --- !u!114 &7045076901628489211
