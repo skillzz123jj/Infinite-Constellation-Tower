@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 4457895798560431589}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.77, y: 1.17, z: 0}
+  m_LocalPosition: {x: -3.42, y: 1.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 6303294342812086896}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.44, y: -0.69, z: 0}
+  m_LocalPosition: {x: -2.44, y: -0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -177,23 +177,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9e9450be2e217e74fa04ef291f88868c, type: 3}
       propertyPath: m_LocalScale.x
-      value: -0.2
+      value: -0.32
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9e9450be2e217e74fa04ef291f88868c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9e9450be2e217e74fa04ef291f88868c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9e9450be2e217e74fa04ef291f88868c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 91.75734
+      value: -1.0583649
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9e9450be2e217e74fa04ef291f88868c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 34.559574
+      value: 80.35695
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 9e9450be2e217e74fa04ef291f88868c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -383,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0611bb2933e015b41b9b62b3d8bbd115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  speed: 2
+  speed: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -396,7 +396,7 @@ MonoBehaviour:
   wallCheckRadius: 0.15
   bulletPrefab: {fileID: 8948924011007515981, guid: 08060f9ac82d8cd4b907bb943d545127, type: 3}
   firePoint: {fileID: 5068438856110145329}
-  shootInterval: 1.35
+  shootInterval: 1.45
   bulletSpeed: 3
   bulletLifetime: 8
   playerLayer:
@@ -416,5 +416,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1310908870f73e541a5407ac32682b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  health: 2
+  health: 1
   deathParticlePrefab: {fileID: 4352789111588126324, guid: f49dcd4fc71c65748a499833b692d3c0, type: 3}
