@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
             PlayerData data = (PlayerData)bf.Deserialize(file);
             file.Close();
             
+            Gamedata.Instance.dataExists = true;
             playerHealth = data.playerHealth;
             playerPosition = ConvertBackToVector(data.playerPosition);
             playerPowerbar = data.playerPowerbar;
