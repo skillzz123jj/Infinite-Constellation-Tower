@@ -402,7 +402,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""13ffe371-59aa-4190-bbc7-35f1fc6f9006"",
-                    ""path"": ""<Keyboard>/c"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -423,8 +423,19 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4a1b32fd-120a-4c39-9ce3-4a6d2c32ca09"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ddc45311-c886-4e2f-905c-cab24035a623"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -446,7 +457,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8005f214-41b2-40ce-a405-f43698d8a157"",
-                    ""path"": ""<Keyboard>/x"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -490,7 +501,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""eecccbeb-ca38-484f-9cb1-2d39e0224e79"",
-                    ""path"": ""<Keyboard>/v"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
