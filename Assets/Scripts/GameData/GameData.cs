@@ -6,7 +6,9 @@ public class Gamedata //Game data used across the game
     public int playerHealth { get; set; } = 5;
     public int playerPowerbar { get; set; } = 0;
     public Vector2 playerPosition { get; set; } = new Vector2(0, 0);
-    public bool dataExists { get; set; }
+    public int checkPointNum { get; set; } = 0;
+
+    public bool dataExists { get; set; } = false;
 
     private Gamedata() { }
 

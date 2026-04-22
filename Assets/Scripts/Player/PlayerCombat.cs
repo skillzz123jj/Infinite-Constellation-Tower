@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
 
     public Image fillImage;
     public int maxValue = 100;
+    public int powerBarValue = 0;
 
     private Coroutine barRoutine;
     [SerializeField] PlayerMovement playerMovement;
@@ -23,9 +24,8 @@ public class PlayerCombat : MonoBehaviour
         frontAttack.OnHit += OnEnemyHit;
         upAttack.OnHit += OnEnemyHit;
         downAttack.OnHit += OnEnemyHit;
-        Gamedata.Instance.playerPowerbar = 100;
+        powerBarValue = Gamedata.Instance.playerPowerbar;
         UpdateBar();
-
     }
     public void Attack(InputAction.CallbackContext context)
     {
@@ -50,7 +50,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed)
         {
-           if (Gamedata.Instance.playerPowerbar == 100)
+           if (powerBarValue == 100)
            {
                animator.SetTrigger("SpecialAttack");
                DrainBar(50);
@@ -67,23 +67,23 @@ public class PlayerCombat : MonoBehaviour
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
-            FillBar(50);
+            FillBar(15);
             enemyHealth.TakeDamage(damage);
             Debug.Log(enemyHealth.GetHealth());
         }
     }
-
+  
     public void FillBar(int amount)
     {
-        Gamedata.Instance.playerPowerbar += amount;
-        Gamedata.Instance.playerPowerbar = Mathf.Clamp(Gamedata.Instance.playerPowerbar, 0, maxValue);
+        powerBarValue += amount;
+        powerBarValue = Mathf.Clamp(powerBarValue, 0, maxValue);
         UpdateBar();
     }
 
     public void DrainBar(int amount)
     {
-        Gamedata.Instance.playerPowerbar -= amount;
-        Gamedata.Instance.playerPowerbar = Mathf.Clamp(Gamedata.Instance.playerPowerbar, 0, maxValue);
+        powerBarValue -= amount;
+        powerBarValue = Mathf.Clamp(powerBarValue, 0, maxValue);
         UpdateBar();
     }
 
@@ -94,9 +94,9 @@ public class PlayerCombat : MonoBehaviour
 
     void UpdateBar()
     {
-        float fillPercent = (float)Gamedata.Instance.playerPowerbar / maxValue;
+        float fillPercent = (float)powerBarValue / maxValue;
 
-        if (Gamedata.Instance.playerPowerbar == 100)
+        if (powerBarValue == 100)
         {
             glowingBar.SetActive(true);
         }

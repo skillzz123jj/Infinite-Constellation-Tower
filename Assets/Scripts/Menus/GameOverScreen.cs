@@ -39,6 +39,8 @@ public class GameOverScreen : MonoBehaviour
             yield return null;
         }
         ShowGameOverScreen();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         color.a = 1f;
         fadeImage.color = color;
     }

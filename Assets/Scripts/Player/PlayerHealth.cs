@@ -19,15 +19,14 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject firstSelectedButton;
 
     [SerializeField] float invulnerableTime;
-
+    public int health;
     bool invulnerable;
 
 
     private void Start()
     {
-        Gamedata.Instance.playerHealth = 5;
         // Initialize sunrays based on current health
-        int health = Mathf.Clamp(Gamedata.Instance.playerHealth, 0, sunrays.Length);
+        health = Mathf.Clamp(Gamedata.Instance.playerHealth, 0, sunrays.Length);
 
         for (int i = 0; i < sunrays.Length; i++)
         {
@@ -43,18 +42,18 @@ public class PlayerHealth : MonoBehaviour
     // Cancels heal if player lets go of the button 
     public void Heal(InputAction.CallbackContext context)
     {
-        if (context.started && Gamedata.Instance.playerHealth < 5 && Gamedata.Instance.playerPowerbar >= 10 && playerMovement.GetMoveInput().x == 0)
+        if (context.started && health < 5 && playerCombat.powerBarValue >= 10 && playerMovement.GetMoveInput().x == 0)
         {
-            currentHeal = StartCoroutine(FillRay(2f, sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>()));
+            currentHeal = StartCoroutine(FillRay(2f, sunrays[health].GetComponent<Image>()));
             animator.SetBool("Healing", true);
         }
 
-        if (context.canceled && Gamedata.Instance.playerHealth < 5)
+        if (context.canceled && health < 5)
         {
             if (currentHeal != null)
             {
                 StopCoroutine(currentHeal);
-                sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0f;
+                sunrays[health].GetComponent<Image>().fillAmount = 0f;
                 animator.SetBool("Healing", false);
 
             }
@@ -84,16 +83,16 @@ public class PlayerHealth : MonoBehaviour
 
         playerCombat.DrainBar(10);
         ray.fillAmount = 1f;
-        Gamedata.Instance.playerHealth++;
+        health++;
         currentHeal = null;
         animator.SetBool("Healing", false);
     }
     public void TakeDamage(Vector2 hitDirection = default)
     {
-        if (Gamedata.Instance.playerHealth > 0 && !invulnerable)
+        if (health > 0 && !invulnerable)
         {
-            Gamedata.Instance.playerHealth--;
-            sunrays[Gamedata.Instance.playerHealth].GetComponent<Image>().fillAmount = 0;
+            health--;
+            sunrays[health].GetComponent<Image>().fillAmount = 0;
             animator.SetTrigger("Hurt");
 
             if (hitDirection != Vector2.zero)
@@ -110,13 +109,12 @@ public class PlayerHealth : MonoBehaviour
             Invoke("ResetInvulnerability", invulnerableTime);
 
 
-            if (Gamedata.Instance.playerHealth <= 0)
+            if (health <= 0)
             {
                 ResetTimeScale();
                 playerInput.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(firstSelectedButton);
                 animator.SetTrigger("Death");
-                Gamedata.Instance.playerHealth = 5;
             }
         }
     }
