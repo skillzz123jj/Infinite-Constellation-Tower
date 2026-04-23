@@ -518,10 +518,10 @@ SpriteRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 64
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: a9d0ca8520f6dd64a8a805a4fb6481d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -792,6 +792,7 @@ MonoBehaviour:
   playerInput: {fileID: 7724433296614959809}
   firstSelectedButton: {fileID: 4775766401991348003}
   invulnerableTime: 0.6
+  health: 0
 --- !u!114 &2542658522265024154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,6 +812,7 @@ MonoBehaviour:
   downAttack: {fileID: 4695452962828489997}
   fillImage: {fileID: 0}
   maxValue: 100
+  powerBarValue: 0
   playerMovement: {fileID: 5059010229759483424}
   glowingBar: {fileID: 0}
   BarEffect: {fileID: 0}

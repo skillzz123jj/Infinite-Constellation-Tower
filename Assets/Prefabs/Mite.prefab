@@ -61,10 +61,10 @@ SpriteRenderer:
   m_SmallMeshCulling: 1
   m_ForceMeshLod: -1
   m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 16
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: a9d0ca8520f6dd64a8a805a4fb6481d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,15 +182,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0611bb2933e015b41b9b62b3d8bbd115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 0}
   speed: 2
-  rayCastTransform: {fileID: 6214374546746584231}
-  maxAttackDistance: 6
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheck: {fileID: 0}
+  wallCheck: {fileID: 0}
+  groundCheckRadius: 0
+  wallCheckRadius: 0
   bulletPrefab: {fileID: 5979844382475268017, guid: 4e39ed72cf5e8ab40a9d8f6be4f1a5a4, type: 3}
   firePoint: {fileID: 1633006331736291069}
   shootInterval: 2.25
   bulletSpeed: 3
   bulletLifetime: 8
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
 --- !u!114 &733310231768775432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   health: 2
+  deathParticlePrefab: {fileID: 0}
 --- !u!1 &1038435078413163770
 GameObject:
   m_ObjectHideFlags: 0
