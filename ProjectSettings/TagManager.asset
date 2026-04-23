@@ -47,6 +47,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Wall
+    uniqueID: 4258696227
+    locked: 0
+  - name: Background
+    uniqueID: 2750214757
+    locked: 0
+  - name: Floor
+    uniqueID: 3478840903
+    locked: 0
+  - name: Enteties
+    uniqueID: 2328576045
+    locked: 0
+  - name: Foreground
+    uniqueID: 1194357655
+    locked: 0
   m_RenderingLayers:
   - Default
   - Sky
@@ -54,5 +69,5 @@ TagManager:
   - Background assets
   - Entities
   - Foreground assets
-  - Light Layer 6
+  - Player
   - Light Layer 7
