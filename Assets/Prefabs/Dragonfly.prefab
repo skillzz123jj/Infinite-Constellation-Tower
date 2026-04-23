@@ -141,7 +141,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: a9d0ca8520f6dd64a8a805a4fb6481d3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -213,7 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63c88c80b9bfdf24d9bc4904f562c402, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DiveEnemy
-  player: {fileID: 0}
   attackHitbox: {fileID: 4440602256234459494}
   jumpHeight: 4
   jumpSpeed: 5
@@ -221,6 +220,7 @@ MonoBehaviour:
   AttackDistanceX: 3
   vulnerableTime: 2.5
   chargeTime: 1
+  jumpDelayAfterHit: 0.1
 --- !u!61 &2054179526845778893
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -280,3 +280,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   health: 5
+  deathParticlePrefab: {fileID: 0}
