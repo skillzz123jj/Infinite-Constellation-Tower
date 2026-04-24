@@ -39,6 +39,7 @@ public class SpecialAttack : MonoBehaviour
 
     void ShootBeam()
     {
+
         //Laser direction to match players direction
         Vector2 direction = playerMovement.isFacingRight ? Vector2.right : Vector2.left;
        

@@ -13,11 +13,13 @@ public class PlayerCombat : MonoBehaviour
     public Image fillImage;
     public int maxValue = 100;
     public int powerBarValue = 0;
+    public bool isAttacking;
 
     private Coroutine barRoutine;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GameObject glowingBar;
     [SerializeField] Animator BarEffect;
+
 
     private void Start()
     {
@@ -29,8 +31,9 @@ public class PlayerCombat : MonoBehaviour
     }
     public void Attack(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !isAttacking)
         {
+            isAttacking = true;
             Vector2 direction = playerMovement.GetMoveInput();
             if (direction.y > 0.5f)
             {
@@ -46,6 +49,12 @@ public class PlayerCombat : MonoBehaviour
             }
         }
     }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
+    }
+
     public void SpecialAttack(InputAction.CallbackContext context)
     {
         if (context.performed)

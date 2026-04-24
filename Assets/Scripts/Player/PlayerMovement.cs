@@ -22,15 +22,20 @@ public class PlayerMovement : MonoBehaviour
     public bool isFacingRight = true;
     public bool limitMovement = false;
     [SerializeField] Animator animator;
-
+    private bool hasJumped;
+    private bool wasGrounded;
     [SerializeField] AudioClip jumpSound;
     [SerializeField] PlayerHealth playerHealth;
+
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundCheckDistance = 0.3f;
 
     public LayerMask groundLayer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         if (Gamedata.Instance.dataExists)
         {
             gameObject.transform.position = Gamedata.Instance.playerPosition;
@@ -38,41 +43,42 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Move and jump use the new input system and context is taken from the Inputs asset
     public void Move(InputAction.CallbackContext context)
     {
         moveInput = context.ReadValue<Vector2>();
         scale = transform.localScale;
         animator.SetFloat("Walk", Mathf.Abs(moveInput.x));
 
-        if (moveInput.x != 0)
+        if (moveInput.x != 0 && !isDashing && !limitMovement)
         {
             scale.x = moveInput.x < 0 ? -1 : 1;
             isFacingRight = moveInput.x < 0 ? false : true;
             transform.localScale = scale;
         }
     }
+
     public Vector2 GetMoveInput()
     {
         return moveInput;
     }
-
+   
     public void Jump(InputAction.CallbackContext context)
     {
-        if (context.performed && coyoteTimeCounter > 0)
+        //Prevent double jump by checking hasJumped as well as coyote time
+        if (context.performed && coyoteTimeCounter > 0 && !isDashing && !hasJumped)
         {
             rb.linearVelocityY = 0;
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            animator.ResetTrigger("Jump");
             animator.SetTrigger("Jump");
+            hasJumped = true;
+
+            coyoteTimeCounter = 0; 
+
             if (AudioManager.Instance)
             {
                 AudioManager.Instance.PlaySfxClip(jumpSound);
             }
-        }
-
-        if (context.canceled)
-        {
-            coyoteTimeCounter = 0;
         }
     }
 
@@ -88,18 +94,19 @@ public class PlayerMovement : MonoBehaviour
         limitMovement = false;
     }
 
-
     //Starts a coroutine to stop the movement caused by dash so player stops after 
     public void Dash(InputAction.CallbackContext context)
     {
         //Cooldown for the dash so it cant be spammed 
         if (context.performed && Time.time >= lastDashTime + dashCooldown)
         {
+            animator.ResetTrigger("Jump");
             animator.SetTrigger("Dash");
             lastDashTime = Time.time;
             StartCoroutine(DoDash());
         }
     }
+
     IEnumerator DoDash()
     {
         isDashing = true;
@@ -133,27 +140,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-       
-        if (IsGrounded())
+        bool grounded = IsGrounded();
+
+        if (grounded && !wasGrounded)
         {
+            hasJumped = false;
             coyoteTimeCounter = coyoteTime;
         }
-        else
+        else if (!grounded)
         {
-            coyoteTimeCounter -= Time.deltaTime;
+            coyoteTimeCounter -= Time.fixedDeltaTime;
         }
 
-        //if (rb.linearVelocity.y < -0.1f && !isGrounded)
-        //{
-        //   // animator.SetBool("IsFalling", true);
-        //    isFalling = true;
-
-        //}
-        //else
-        //{
-        //  //  animator.SetBool("IsFalling", false);
-        //    isFalling = false;
-        //}
+        wasGrounded = grounded;
 
         if (!isDashing && !limitMovement)
         {
@@ -167,16 +166,17 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        Vector2 position = transform.position;
-        Vector2 direction = Vector2.down;
-        float distance = 1.0f;
+        Vector2 size = new Vector2(0.5f, 0.1f);
 
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
-        if (hit.collider != null)
-        {
-            return true;
-        }
+        RaycastHit2D hit = Physics2D.BoxCast(
+            groundCheck.position,
+            size,
+            0f,
+            Vector2.down,
+            0.05f,
+            groundLayer
+        );
 
-        return false;
+        return hit.collider != null;
     }
 }
