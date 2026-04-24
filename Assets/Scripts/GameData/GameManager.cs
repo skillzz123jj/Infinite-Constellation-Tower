@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     //Creates a new game and deletes the old save file
     public void NewGame(int scene)
     {
+        Debug.Log("New Game Started");
         string path = Application.persistentDataPath + "/playerInfo.dat";
 
         if (File.Exists(path))
