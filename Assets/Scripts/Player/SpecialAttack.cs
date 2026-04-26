@@ -74,6 +74,14 @@ public class SpecialAttack : MonoBehaviour
         //Deal damage to all enemies along the path
         foreach (var hit in hits)
         {
+            // Special attack counts as double hit on stars via TakeDamage(true(isSpecialAttack)).
+            BossStar bossStar = hit.collider.GetComponentInParent<BossStar>();
+            if (bossStar != null)
+            {
+                bossStar.TakeDamage(true);
+                continue;
+            }
+
             var enemy = hit.collider.GetComponent<EnemyHealth>();
             if (enemy != null)
             {

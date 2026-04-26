@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] Animator animator;
@@ -73,7 +74,26 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnEnemyHit(Collider2D other)
     {
-        EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>();
+        // If a boss star is hit, use star damage flow (also damages boss through BossStar).
+        BossStar bossStar = other.GetComponentInParent<BossStar>();
+        if (bossStar != null)
+        {
+            FillBar(15);
+            bossStar.TakeDamage(false);
+            return;
+        }
+
+        // Boss body damage is handled by BossController (boss does not use EnemyHealth).
+        BossController bossController = other.GetComponent<BossController>() ?? other.GetComponentInParent<BossController>();
+        if (bossController != null)
+        {
+            FillBar(15);
+            bossController.TakeWeaponHitDamage();
+            return;
+        }
+
+        // Keep regular enemy damage behavior
+        EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
         if (enemyHealth != null)
         {
             FillBar(15);
