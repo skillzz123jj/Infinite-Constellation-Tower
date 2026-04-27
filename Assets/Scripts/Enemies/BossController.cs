@@ -42,14 +42,23 @@ public class BossController : MonoBehaviour
     [SerializeField] float slamSpeed = 20f;
     [SerializeField] float sweepSpeed = 15f;
 
+    [Header("Projectile Attack Settings")]
+    [SerializeField] GameObject projectilePrefab;
+    [SerializeField] Transform[] projectileSpawnPoints; 
+    [SerializeField] GameObject starFormingVFX;
+
     [Header("Effects")]
     [SerializeField] GameObject slamVFX;
 
     private Vector3 rightPincerStartPoint;
     private Vector3 leftPincerStartPoint;
 
+    private Transform player;
+
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         rightPincerStartPoint = rightPincer.position;
         leftPincerStartPoint = leftPincer.position;
 
@@ -141,22 +150,7 @@ public class BossController : MonoBehaviour
 
     ///////////////////////ATTACK ROUTINES///////////////////////////
     // Used for debugging
-    public void StartPincerAttack()
-    {
-        StartCoroutine(PincerSwipeAttackRoutine());
-    }
 
-    // Used for debugging
-    public void StartPincerSlamAttack()
-    {
-        StartCoroutine(PincerSlamAttackRoutine());
-    }
-
-    // Used for debugging
-    public void StartPincerSwipeAttack()
-    {
-        StartCoroutine(PincerSwipeAttackRoutine());
-    }
     private IEnumerator PerformAttackRoutine()
     {
         string nextAttack = GetRandomAttack(); // Get a random attack from the weighted pool
@@ -174,9 +168,8 @@ public class BossController : MonoBehaviour
         }
         else if (nextAttack == "Projectile")
         {
-            // yield return ProjectileAttackRoutine();
             Debug.Log("Starting Projectile Attack");
-            yield return new WaitForSeconds(1f); // placeholder
+            yield return ProjectileAttackRoutine();
         }
 
         attacksPerformed++;
@@ -260,6 +253,32 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         yield return MovePincer(leftPincer, leftPincerStartPoint, sweepSpeed);
+    }
+
+    private IEnumerator ProjectileAttackRoutine()
+    {
+        GameObject[] spawnedProjectiles = new GameObject[projectileSpawnPoints.Length];
+
+        for (int i = 0; i < projectileSpawnPoints.Length; i++)
+        {
+            spawnedProjectiles[i] = Instantiate(projectilePrefab, projectileSpawnPoints[i].position, Quaternion.identity);
+            Instantiate(starFormingVFX, projectileSpawnPoints[i].position, Quaternion.identity);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        foreach (GameObject proj in spawnedProjectiles)
+        {
+            if (proj != null && player != null)
+            {
+                // Calculate direction to player at the exact moment of firing
+                Vector3 directionToPlayer = player.position - proj.transform.position;
+
+                proj.GetComponent<StarProjectile>().FireAtPlayer(directionToPlayer);
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
     }
 
     private IEnumerator MovePincer(Transform pincer, Vector3 targetPosition, float speed)
