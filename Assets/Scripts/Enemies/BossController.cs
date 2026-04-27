@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
@@ -8,6 +9,21 @@ public class BossController : MonoBehaviour
     [SerializeField] int normalHitDamage;
     private bool wasStarHitThisFrame;
     private int starsDestroyed = 0;
+
+    [Header("Attack Settings")]
+    [SerializeField] List<BossAttack> attackPool;
+
+    [Header("Battle Flow")]
+    [SerializeField] float globalCooldown = 2f;
+    [SerializeField] int attacksBeforePlatforms = 3;
+
+    private int attacksPerformed = 0;
+    private bool isPlatformPhase = false;
+
+    [Header("Platform Phase Settings")]
+    [SerializeField] GameObject platformGroup;
+    [SerializeField] float platformPhaseDuration = 8f;
+    private bool starDestroyed = false;
 
     [Header("Pincer References")]
     [SerializeField] Transform rightPincer;
@@ -37,7 +53,28 @@ public class BossController : MonoBehaviour
         rightPincerStartPoint = rightPincer.position;
         leftPincerStartPoint = leftPincer.position;
 
-        StartPincerAttack();
+        // Kick off the infinite battle loop!
+        StartCoroutine(BossBattleLoop());
+    }
+
+    // This is your "State Machine"
+    private IEnumerator BossBattleLoop()
+    {
+        yield return new WaitForSeconds(1.5f); // Brief dramatic pause when the fight starts
+
+        while (currentBossHP > 0)
+        {
+            if (isPlatformPhase)
+            {
+                Debug.Log("Entering platform phase");
+                yield return PlatformPhaseRoutine();
+            }
+            else
+            {
+                Debug.Log("Entering attack phgase");
+                yield return PerformAttackRoutine();
+            }
+        }
     }
 
     public void TakeWeaponHitDamage()
@@ -61,22 +98,107 @@ public class BossController : MonoBehaviour
     public void OnStarDestroyed()
     {
         starsDestroyed++;
+        starDestroyed = true; //Signal to stop the platform phase
 
-        if(starsDestroyed == 2)
-        {
-            // currentPhase = 1
-        }
-        else if(starsDestroyed == 4)
+        if (starsDestroyed == 2)
         {
             // currentPhase = 2
         }
+        else if(starsDestroyed == 4)
+        {
+            // currentPhase = 3
+        }
+    }
+
+    // This is called in the state machine when a new attack is needed. 
+    // It sums up the total weights of all attakcs and selects a number 
+    private string GetRandomAttack()
+    {
+        // 1. Add up all the weights in the pool
+        int totalWeight = 0;
+        foreach (BossAttack attack in attackPool)
+        {
+            totalWeight += attack.weight;
+        }
+
+        // Pick a random number between 0 and the total weight
+        int randomValue = Random.Range(0, totalWeight);
+        int currentWeightSum = 0;
+
+        // 3. Find which attack that random number landed on
+        foreach (BossAttack attack in attackPool)
+        {
+            currentWeightSum += attack.weight;
+            if (randomValue < currentWeightSum)
+            {
+                Debug.Log($"Selected attack {attack.attackName}");
+                return attack.attackName;
+            }
+        }
+
+        return "Idle"; // Fallback just in case
     }
 
     ///////////////////////ATTACK ROUTINES///////////////////////////
+    // Used for debugging
     public void StartPincerAttack()
     {
         StartCoroutine(PincerAttackRoutine());
     }
+    private IEnumerator PerformAttackRoutine()
+    {
+        string nextAttack = GetRandomAttack(); // Get a random attack from the weighted pool
+
+        // Play the chosen attack and WAIT for it to finish
+        if (nextAttack == "PincerSwipe")
+        {
+            Debug.Log("Starting Pincer Swipe");
+            yield return PincerAttackRoutine();
+        }
+        else if (nextAttack == "Projectile")
+        {
+            // yield return ProjectileAttackRoutine();
+            Debug.Log("Starting Projectile Attack");
+            yield return new WaitForSeconds(1f); // placeholder
+        }
+
+        attacksPerformed++;
+
+        if (attacksPerformed >= attacksBeforePlatforms)
+        {
+            isPlatformPhase = true;
+            attacksPerformed = 0;
+        }
+
+        yield return new WaitForSeconds(globalCooldown);
+    }
+
+    private IEnumerator PlatformPhaseRoutine()
+    {
+        // spawn platforms
+        if (platformGroup != null) platformGroup.SetActive(true);
+
+        // Boss stays idle for time being, replace with playing idle animation or whatever
+        starDestroyed = false;
+        float timer = 0f;
+
+        // Loop runs until the timer hits 8 seconds OR a star is destroyed
+        while (timer < platformPhaseDuration && !starDestroyed)
+        {
+            timer += Time.deltaTime; // Tick the timer up
+            yield return null;       // Wait one frame before checking again
+        }
+
+        // Despawn Platforms
+        if (platformGroup != null) platformGroup.SetActive(false);
+
+        // 4. Return to normal attacks
+        isPlatformPhase = false;
+
+        // Brief pause before the boss immediately swings at them again!
+        yield return new WaitForSeconds(1f);
+    }
+
 
     private IEnumerator PincerAttackRoutine()
     {
@@ -120,4 +242,11 @@ public class BossController : MonoBehaviour
 
         pincer.position = targetPosition;
     }
+}
+
+[System.Serializable]
+public class BossAttack
+{
+    public string attackName; // e.g., "PincerSwipe", "Projectile"
+    public int weight;        // Higher number = higher chance of being picked
 }
