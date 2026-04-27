@@ -62,7 +62,7 @@ public class BossController : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f); // Brief dramatic pause when the fight starts
 
-        while (currentBossHP > 0)
+        while (currentBossHP >= 0)
         {
             if (isPlatformPhase)
             {
@@ -143,7 +143,19 @@ public class BossController : MonoBehaviour
     // Used for debugging
     public void StartPincerAttack()
     {
-        StartCoroutine(PincerAttackRoutine());
+        StartCoroutine(PincerSwipeAttackRoutine());
+    }
+
+    // Used for debugging
+    public void StartPincerSlamAttack()
+    {
+        StartCoroutine(PincerSlamAttackRoutine());
+    }
+
+    // Used for debugging
+    public void StartPincerSwipeAttack()
+    {
+        StartCoroutine(PincerSwipeAttackRoutine());
     }
     private IEnumerator PerformAttackRoutine()
     {
@@ -153,7 +165,12 @@ public class BossController : MonoBehaviour
         if (nextAttack == "PincerSwipe")
         {
             Debug.Log("Starting Pincer Swipe");
-            yield return PincerAttackRoutine();
+            yield return PincerSwipeAttackRoutine();
+        }
+        else if (nextAttack == "PincerSlam")
+        {
+            Debug.Log("Starting Pincer Slam");
+            yield return PincerSlamAttackRoutine();
         }
         else if (nextAttack == "Projectile")
         {
@@ -200,9 +217,29 @@ public class BossController : MonoBehaviour
     }
 
 
-    private IEnumerator PincerAttackRoutine()
+    private IEnumerator PincerSwipeAttackRoutine()
     {
-        // --- PHASE 1: RIGHT PINCER ATTACK ---
+        // --- PHASE 1: RIGHT PINCER SWIPE ---
+        yield return MovePincer(rightPincer, rightGroundPoint.position, floatSpeed);
+
+        Vector3 rightSweepTarget = new Vector3(leftSweepPoint.position.x, rightGroundPoint.position.y, 0f);
+        yield return MovePincer(rightPincer, rightSweepTarget, sweepSpeed);
+
+        yield return MovePincer(rightPincer, rightPincerStartPoint, sweepSpeed);
+
+        // --- PHASE 2: LEFT PINCER SWIPE ---
+        yield return MovePincer(leftPincer, leftGroundPoint.position, floatSpeed);
+
+        Vector3 leftSweepTarget = new Vector3(rightSweepPoint.position.x, leftGroundPoint.position.y, 0f);
+        yield return MovePincer(leftPincer, leftSweepTarget, sweepSpeed);
+
+        // RESET
+        yield return MovePincer(leftPincer, leftPincerStartPoint, sweepSpeed);
+    }
+
+    private IEnumerator PincerSlamAttackRoutine()
+    {
+        // --- PHASE 1: RIGHT PINCER SLAM ---
         yield return MovePincer(rightPincer, rightAirPoint.position, floatSpeed);
 
         yield return new WaitForSeconds(0.5f);
@@ -211,10 +248,9 @@ public class BossController : MonoBehaviour
         Instantiate(slamVFX, rightGroundPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
 
-        Vector3 rightSweepTarget = new Vector3(leftSweepPoint.position.x, rightGroundPoint.position.y, 0f);
-        yield return MovePincer(rightPincer, rightSweepTarget, sweepSpeed);
+        yield return MovePincer(rightPincer, rightPincerStartPoint, sweepSpeed);
 
-        // --- PHASE 2: LEFT PINCER ATTACK ---
+        // --- PHASE 2: LEFT PINCER SLAM ---
         yield return MovePincer(leftPincer, leftAirPoint.position, floatSpeed);
 
         yield return new WaitForSeconds(0.5f);
@@ -223,12 +259,6 @@ public class BossController : MonoBehaviour
         Instantiate(slamVFX, leftGroundPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
 
-        Vector3 leftSweepTarget = new Vector3(rightSweepPoint.position.x, rightGroundPoint.position.y, 0f);
-        yield return MovePincer(leftPincer, leftSweepTarget, sweepSpeed);
-
-        // --- PHASE 3: RESET ---
-        // Return pincers to their original resting positions on the boss body
-        yield return MovePincer(rightPincer, rightPincerStartPoint, sweepSpeed);
         yield return MovePincer(leftPincer, leftPincerStartPoint, sweepSpeed);
     }
 
