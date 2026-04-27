@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System;
+using System.Collections.Generic;
 
 public class CrumblingPlatform : MonoBehaviour
 {
@@ -9,7 +10,15 @@ public class CrumblingPlatform : MonoBehaviour
     
     public Animator animator;
     public Collider2D platCollider;
+    public BoxCollider2D collider;
     public SpriteRenderer spriteRend;
+    public string anim;
+    public string idle;
+
+    void Start()
+    {
+        collider = GetComponentInChildren<BoxCollider2D> ();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -21,12 +30,12 @@ public class CrumblingPlatform : MonoBehaviour
 
     IEnumerator Crumble()
     {
-        //Animation here
+        animator.Play(anim);
         yield return new WaitForSeconds(animTime);
         Components(false);
 
         yield return new WaitForSeconds(respawnTime);
-        //Animation here
+        animator.Play(idle);
         Components(true);
     }
 
@@ -34,5 +43,6 @@ public class CrumblingPlatform : MonoBehaviour
     {
         spriteRend.enabled = state;
         platCollider.enabled = state;
+        collider.enabled = state;
     }
 }

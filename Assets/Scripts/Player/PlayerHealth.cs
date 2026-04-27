@@ -12,6 +12,10 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] Animator animator;
 
+    [SerializeField] Image sunface;
+    [SerializeField] Sprite sunfaceNormal;
+    [SerializeField] Sprite sunfaceHurt;
+
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float knockbackForce = 5f;
 
@@ -103,18 +107,20 @@ public class PlayerHealth : MonoBehaviour
                 playerMovement.limitMovement = true;
             }
 
-            Invoke("ResetTimeScale", 0.3f);
-            Time.timeScale = 0.5f;
-            invulnerable = true;
-            Invoke("ResetInvulnerability", invulnerableTime);
-
-
             if (health <= 0)
             {
                 ResetTimeScale();
                 playerInput.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(firstSelectedButton);
                 animator.SetTrigger("Death");
+            }
+            else
+            {
+                Invoke("ResetTimeScale", 0.3f);
+                Time.timeScale = 0.5f;
+                sunface.sprite = sunfaceHurt;
+                invulnerable = true;
+                Invoke("ResetInvulnerability", invulnerableTime);
             }
         }
     }
@@ -127,6 +133,7 @@ public class PlayerHealth : MonoBehaviour
     {
         playerMovement.limitMovement = false;
         Time.timeScale = 1f;
+        sunface.sprite = sunfaceNormal;
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
