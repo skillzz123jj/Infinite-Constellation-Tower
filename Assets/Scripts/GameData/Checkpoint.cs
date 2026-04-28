@@ -1,5 +1,5 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Checkpoint : MonoBehaviour
 {
@@ -8,6 +8,7 @@ public class Checkpoint : MonoBehaviour
     PlayerCombat playerCombat;
     PlayerHealth playerHealth;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject checkpointVFX;
 
     void Start()
     {
@@ -29,6 +30,7 @@ public class Checkpoint : MonoBehaviour
             gm.Save();
             Gamedata.Instance.dataExists = true;
             anim.SetTrigger("Activate");
+            checkpointVFX.GetComponent<VisualEffect>().Play();
 
             gameObject.GetComponent<Collider2D>().enabled = false;
         }
