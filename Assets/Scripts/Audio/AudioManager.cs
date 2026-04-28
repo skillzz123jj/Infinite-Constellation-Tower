@@ -66,4 +66,16 @@ public class AudioManager : MonoBehaviour
         _musicSource.clip = _musicClip[value];
         _musicSource.Play();
     }
+
+    public void PlayMusic(AudioClip value)
+    {
+        if (value < 0 || value >= _musicClip.Length)
+        {
+            _musicSource.Pause();
+            return;
+        }
+
+        _musicSource.clip = _musicClip[value];
+        _musicSource.Play();
+    }
 }
