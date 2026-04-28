@@ -157,7 +157,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isDashing && !limitMovement)
         {
             Vector2 velocity = rb.linearVelocity;
-            velocity.x = moveInput.x * movementSpeed;
+            velocity.x = moveInput.x == 0 ? 0 : Mathf.Sign(moveInput.x) * movementSpeed;
             rb.linearVelocity = velocity;
 
             ApplyGravity();
