@@ -10,6 +10,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
     [SerializeField] GameObject playerUI;
+    [SerializeField] AudioClip hover;
+    [SerializeField] AudioClip click;
 
     private void Start()
     {
@@ -65,4 +67,12 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void Hover()
+    {
+        AudioManager.Instance.PlaySfxClip(hover);
+    }
+    public void Click()
+    {
+        AudioManager.Instance.PlaySfxClip(click);
+    }
 }
