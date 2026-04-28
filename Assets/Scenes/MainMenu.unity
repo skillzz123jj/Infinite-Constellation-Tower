@@ -4650,7 +4650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   _sfxClip: []
   _musicClip:
-  - {fileID: 8300000, guid: f39cae1c22118e84b87aa9e0c8f52844, type: 3}
+  - {fileID: 8300000, guid: 3ac60d209116b844ca48442630a4725c, type: 3}
   _sfxAudioSource: {fileID: 348557668}
   _musicSource: {fileID: 340493821}
 --- !u!4 &1724503293
