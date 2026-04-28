@@ -22,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
 
+     [SerializeField] AudioClip heal;
+
     [SerializeField] float invulnerableTime;
     public int health;
     bool invulnerable;
@@ -62,6 +64,10 @@ public class PlayerHealth : MonoBehaviour
 
             }
         }
+        if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(heal);
+            }
     }
     // Fills in the sunray image when healing
     IEnumerator FillRay(float duration, Image ray)

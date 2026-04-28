@@ -20,6 +20,8 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GameObject glowingBar;
     [SerializeField] Animator BarEffect;
+    [SerializeField] AudioClip attack;
+    [SerializeField] AudioClip hit;
 
 
     private void Start()
@@ -34,6 +36,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if (context.performed && !isAttacking)
         {
+            
             isAttacking = true;
             Vector2 direction = playerMovement.GetMoveInput();
             if (direction.y > 0.5f)
@@ -47,6 +50,11 @@ public class PlayerCombat : MonoBehaviour
             else
             {
                 animator.SetTrigger("FrontAttack");
+            }
+
+            if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(attack);
             }
         }
     }
@@ -100,6 +108,11 @@ public class PlayerCombat : MonoBehaviour
             enemyHealth.TakeDamage(damage);
             Debug.Log(enemyHealth.GetHealth());
         }
+
+            if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(hit);
+            }
     }
   
     public void FillBar(int amount)
