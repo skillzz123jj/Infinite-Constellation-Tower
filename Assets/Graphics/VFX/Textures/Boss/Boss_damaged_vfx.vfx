@@ -247,7 +247,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 30
+      m_SerializableObject: 20
     m_Space: -1
   m_Property:
     name: Count
@@ -383,7 +383,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614756}
   - {fileID: 8926484042661614775}
   dataType: 0
-  capacity: 128
+  capacity: 32
   stripCapacity: 1
   particlePerStripCount: 32
   needsComputeBounds: 0
@@ -698,7 +698,7 @@ MonoBehaviour:
   attribute: color
   Composition: 2
   AlphaComposition: 0
-  SampleMode: 2
+  SampleMode: 0
   Mode: 1
   ColorMode: 3
   channels: 6
@@ -727,7 +727,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Gradient, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.7215686440467835,"g":2.2228164672851564,"b":2.9960784912109377,"a":1.0},"time":0.0},{"color":{"r":0.0,"g":0.5647019743919373,"b":11.984313011169434,"a":1.0},"time":0.4882429242134094},{"color":{"r":0.5524556636810303,"g":0.0,"b":5.992156982421875,"a":1.0},"time":1.0}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
+      m_SerializableObject: '{"colorKeys":[{"color":{"r":0.7215686440467835,"g":2.2228164672851564,"b":2.9960784912109377,"a":1.0},"time":0.0},{"color":{"r":0.0,"g":0.5974472165107727,"b":12.679244995117188,"a":1.0},"time":0.6294193863868713},{"color":{"r":0.5524556636810303,"g":0.0,"b":5.992156982421875,"a":1.0},"time":0.7088273167610169}],"alphaKeys":[{"alpha":1.0,"time":0.0},{"alpha":1.0,"time":1.0}],"gradientMode":0}'
     m_Space: -1
   m_Property:
     name: Color
@@ -2428,7 +2428,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.4
+      m_SerializableObject: 0.3
     m_Space: -1
   m_Property:
     name: _Size
@@ -3226,7 +3226,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615159}
   - {fileID: 8926484042661615161}
   dataType: 0
-  capacity: 128
+  capacity: 32
   stripCapacity: 1
   particlePerStripCount: 32
   needsComputeBounds: 0
@@ -4534,7 +4534,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1.5
+      m_SerializableObject: 1.3
     m_Space: -1
   m_Property:
     name: _Size
@@ -5512,7 +5512,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615231}
   - {fileID: 8926484042661615233}
   dataType: 0
-  capacity: 128
+  capacity: 32
   stripCapacity: 1
   particlePerStripCount: 32
   needsComputeBounds: 0
@@ -6820,7 +6820,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.3
+      m_SerializableObject: 0.2
     m_Space: -1
   m_Property:
     name: _Size
