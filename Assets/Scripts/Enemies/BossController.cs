@@ -60,11 +60,16 @@ public class BossController : MonoBehaviour
     [SerializeField] Transform[] projectileSpawnPoints;
     [SerializeField] GameObject starFormingVFX;
 
+    [Header("Animations")]
+    [SerializeField] Animator animator;
+
     [Header("Effects")]
     [SerializeField] GameObject slamVFX;
 
     [Header("Debug")]
     [SerializeField] TextMeshProUGUI bossHPText;
+
+
 
     private Vector3 rightPincerStartPoint;
     private Vector3 leftPincerStartPoint;
@@ -73,6 +78,8 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
+        //Destroy(animator);
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
         rightPincerStartPoint = rightPincer.position;
@@ -145,6 +152,7 @@ public class BossController : MonoBehaviour
     {
         starsDestroyed++;
         starDestroyed = true; //Signal to stop the platform phase
+        animator.SetTrigger("StarBroken");
 
         /*// PHASE TRANSITION CHECK (Stars) CURRENTLY DISABLED
         if (currentPhase == 1 && starsDestroyed >= 2)
@@ -274,6 +282,8 @@ public class BossController : MonoBehaviour
 
     private IEnumerator TsunamiAttackRoutine()
     {
+        platformGroup.SetActive(true);
+
         GameObject tsunami = Instantiate(tsunamiPrefab, tsunamiStartPoint.position, Quaternion.identity);
 
         while (Vector3.Distance(tsunami.transform.position, tsunamiEndPoint.position) > 0.1f)
@@ -283,10 +293,12 @@ public class BossController : MonoBehaviour
         }
 
         Destroy(tsunami);
+        platformGroup.SetActive(false);
     }
 
     private IEnumerator PincerSwipeAttackRoutine()
     {
+        animator.enabled = false;
         // --- PHASE 1: RIGHT PINCER SWIPE ---
         yield return MovePincer(rightPincer, rightGroundPoint.position, floatSpeed);
 
@@ -307,10 +319,12 @@ public class BossController : MonoBehaviour
 
         // RESET
         yield return MovePincer(leftPincer, leftPincerStartPoint, sweepSpeed);
+        animator.enabled = true;
     }
 
     private IEnumerator PincerSlamAttackRoutine()
     {
+        animator.enabled = false;
         // --- PHASE 1: RIGHT PINCER SLAM ---
         yield return MovePincer(rightPincer, rightAirPoint.position, floatSpeed);
 
@@ -336,6 +350,7 @@ public class BossController : MonoBehaviour
         leftPincerHitbox.DisableHitbox();
 
         yield return MovePincer(leftPincer, leftPincerStartPoint, sweepSpeed);
+        animator.enabled = true;
     }
 
     private IEnumerator ProjectileAttackRoutine()
