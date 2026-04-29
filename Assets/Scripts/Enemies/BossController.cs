@@ -28,6 +28,8 @@ public class BossController : MonoBehaviour
     [Header("Pincer References")]
     [SerializeField] Transform rightPincer;
     [SerializeField] Transform leftPincer;
+    [SerializeField] BossMeleeHitbox rightPincerHitbox;
+    [SerializeField] BossMeleeHitbox leftPincerHitbox;
 
     [Header("Sweep Attack Points")]
     [SerializeField] Transform rightAirPoint;
@@ -216,7 +218,9 @@ public class BossController : MonoBehaviour
         yield return MovePincer(rightPincer, rightGroundPoint.position, floatSpeed);
 
         Vector3 rightSweepTarget = new Vector3(leftSweepPoint.position.x, rightGroundPoint.position.y, 0f);
+        rightPincerHitbox.EnableHitbox();
         yield return MovePincer(rightPincer, rightSweepTarget, sweepSpeed);
+        rightPincerHitbox.DisableHitbox();
 
         yield return MovePincer(rightPincer, rightPincerStartPoint, sweepSpeed);
 
@@ -224,7 +228,9 @@ public class BossController : MonoBehaviour
         yield return MovePincer(leftPincer, leftGroundPoint.position, floatSpeed);
 
         Vector3 leftSweepTarget = new Vector3(rightSweepPoint.position.x, leftGroundPoint.position.y, 0f);
+        leftPincerHitbox.EnableHitbox();
         yield return MovePincer(leftPincer, leftSweepTarget, sweepSpeed);
+        leftPincerHitbox.DisableHitbox();
 
         // RESET
         yield return MovePincer(leftPincer, leftPincerStartPoint, sweepSpeed);
@@ -236,10 +242,12 @@ public class BossController : MonoBehaviour
         yield return MovePincer(rightPincer, rightAirPoint.position, floatSpeed);
 
         yield return new WaitForSeconds(0.5f);
+        rightPincerHitbox.EnableHitbox();
         yield return MovePincer(rightPincer, rightGroundPoint.position, slamSpeed);
 
         Instantiate(slamVFX, rightGroundPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
+        rightPincerHitbox.DisableHitbox();
 
         yield return MovePincer(rightPincer, rightPincerStartPoint, sweepSpeed);
 
@@ -247,10 +255,12 @@ public class BossController : MonoBehaviour
         yield return MovePincer(leftPincer, leftAirPoint.position, floatSpeed);
 
         yield return new WaitForSeconds(0.5f);
+        leftPincerHitbox.EnableHitbox();
         yield return MovePincer(leftPincer, leftGroundPoint.position, slamSpeed);
 
         Instantiate(slamVFX, leftGroundPoint.position, Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
+        leftPincerHitbox.DisableHitbox();
 
         yield return MovePincer(leftPincer, leftPincerStartPoint, sweepSpeed);
     }
