@@ -69,10 +69,12 @@ public class PauseMenu : MonoBehaviour
 
     public void Hover()
     {
-        AudioManager.Instance.PlaySfxClip(hover);
+        if (AudioManager.Instance)
+            AudioManager.Instance.PlaySfxClip(hover);
     }
     public void Click()
     {
-        AudioManager.Instance.PlaySfxClip(click);
+        if (AudioManager.Instance)
+            AudioManager.Instance.PlaySfxClip(click);
     }
 }
