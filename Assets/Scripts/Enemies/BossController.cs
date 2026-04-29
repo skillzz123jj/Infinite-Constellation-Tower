@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -9,6 +10,10 @@ public class BossController : MonoBehaviour
     [SerializeField] int normalHitDamage;
     private bool wasStarHitThisFrame;
     private int starsDestroyed = 0;
+
+    private int maxBossHP;
+    private int currentPhase = 1;
+    private bool pendingPhaseTransition = false;
 
     [Header("Attack Settings")]
     [SerializeField] List<BossAttack> attackPool;
@@ -24,6 +29,12 @@ public class BossController : MonoBehaviour
     [SerializeField] GameObject platformGroup;
     [SerializeField] float platformPhaseDuration = 8f;
     private bool starDestroyed = false;
+
+    [Header("Tsunami Settings")]
+    [SerializeField] GameObject tsunamiPrefab;
+    [SerializeField] Transform tsunamiStartPoint;
+    [SerializeField] Transform tsunamiEndPoint;
+    [SerializeField] float tsunamiSpeed = 12f;
 
     [Header("Pincer References")]
     [SerializeField] Transform rightPincer;
@@ -46,11 +57,14 @@ public class BossController : MonoBehaviour
 
     [Header("Projectile Attack Settings")]
     [SerializeField] GameObject projectilePrefab;
-    [SerializeField] Transform[] projectileSpawnPoints; 
+    [SerializeField] Transform[] projectileSpawnPoints;
     [SerializeField] GameObject starFormingVFX;
 
     [Header("Effects")]
     [SerializeField] GameObject slamVFX;
+
+    [Header("Debug")]
+    [SerializeField] TextMeshProUGUI bossHPText;
 
     private Vector3 rightPincerStartPoint;
     private Vector3 leftPincerStartPoint;
@@ -64,6 +78,10 @@ public class BossController : MonoBehaviour
         rightPincerStartPoint = rightPincer.position;
         leftPincerStartPoint = leftPincer.position;
 
+        maxBossHP = currentBossHP;
+
+        bossHPText.text = $"Boss HP: {currentBossHP} / {maxBossHP}";
+
         // Kick off the infinite battle loop!
         StartCoroutine(BossBattleLoop());
     }
@@ -75,14 +93,19 @@ public class BossController : MonoBehaviour
 
         while (currentBossHP >= 0)
         {
-            if (isPlatformPhase)
+            if (pendingPhaseTransition)
+            {
+                Debug.Log("Entering Phase Transition!");
+                yield return PhaseTransitionRoutine();
+            }
+            else if (isPlatformPhase)
             {
                 Debug.Log("Entering platform phase");
                 yield return PlatformPhaseRoutine();
             }
             else
             {
-                Debug.Log("Entering attack phgase");
+                Debug.Log("Entering attack phase");
                 yield return PerformAttackRoutine();
             }
         }
@@ -98,6 +121,18 @@ public class BossController : MonoBehaviour
     {
         currentBossHP -= damageAmount;
 
+        bossHPText.text = $"Boss HP: {currentBossHP} / {maxBossHP}";
+
+        float hpPercentage = (float)currentBossHP / maxBossHP;
+        if (currentPhase == 1 && hpPercentage <= 0.67f)
+        {
+            pendingPhaseTransition = true;
+        }
+        else if (currentPhase == 2 && hpPercentage <= 0.34f)
+        {
+            pendingPhaseTransition = true;
+        }
+
         // Update health bar UI
 
         if (currentBossHP <= 0)
@@ -111,14 +146,16 @@ public class BossController : MonoBehaviour
         starsDestroyed++;
         starDestroyed = true; //Signal to stop the platform phase
 
-        if (starsDestroyed == 2)
+        /*// PHASE TRANSITION CHECK (Stars) CURRENTLY DISABLED
+        if (currentPhase == 1 && starsDestroyed >= 2)
         {
-            // currentPhase = 2
+            pendingPhaseTransition = true;
         }
-        else if(starsDestroyed == 4)
+        else if (currentPhase == 2 && starsDestroyed >= 4)
         {
-            // currentPhase = 3
+            pendingPhaseTransition = true;
         }
+        */
     }
 
     // This is called in the state machine when a new attack is needed. 
@@ -129,6 +166,9 @@ public class BossController : MonoBehaviour
         int totalWeight = 0;
         foreach (BossAttack attack in attackPool)
         {
+            // Ignore the Tsunami attack if we are still in Phase 1
+            if (attack.attackName == "Tsunami" && currentPhase == 1) continue;
+
             totalWeight += attack.weight;
         }
 
@@ -139,6 +179,9 @@ public class BossController : MonoBehaviour
         // 3. Find which attack that random number landed on
         foreach (BossAttack attack in attackPool)
         {
+            // Ignore the Tsunami attack if we are still in Phase 1
+            if (attack.attackName == "Tsunami" && currentPhase == 1) continue;
+
             currentWeightSum += attack.weight;
             if (randomValue < currentWeightSum)
             {
@@ -151,7 +194,6 @@ public class BossController : MonoBehaviour
     }
 
     ///////////////////////ATTACK ROUTINES///////////////////////////
-    // Used for debugging
 
     private IEnumerator PerformAttackRoutine()
     {
@@ -173,6 +215,11 @@ public class BossController : MonoBehaviour
             Debug.Log("Starting Projectile Attack");
             yield return ProjectileAttackRoutine();
         }
+        else if (nextAttack == "Tsunami")
+        {
+            Debug.Log("Starting Tsunami Attack");
+            yield return TsunamiAttackRoutine();
+        }
 
         attacksPerformed++;
 
@@ -183,6 +230,20 @@ public class BossController : MonoBehaviour
         }
 
         yield return new WaitForSeconds(globalCooldown);
+    }
+
+    private IEnumerator PhaseTransitionRoutine()
+    {
+        pendingPhaseTransition = false;
+        currentPhase++;
+
+        Debug.Log("Transitioning to Phase " + currentPhase);
+
+       // ADD CAMERA SHAKE
+
+        yield return new WaitForSeconds(1.5f);
+
+        attacksPerformed = 0;
     }
 
     private IEnumerator PlatformPhaseRoutine()
@@ -211,6 +272,18 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
+    private IEnumerator TsunamiAttackRoutine()
+    {
+        GameObject tsunami = Instantiate(tsunamiPrefab, tsunamiStartPoint.position, Quaternion.identity);
+
+        while (Vector3.Distance(tsunami.transform.position, tsunamiEndPoint.position) > 0.1f)
+        {
+            tsunami.transform.position = Vector3.MoveTowards(tsunami.transform.position, tsunamiEndPoint.position, tsunamiSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        Destroy(tsunami);
+    }
 
     private IEnumerator PincerSwipeAttackRoutine()
     {
