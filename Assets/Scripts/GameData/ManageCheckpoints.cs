@@ -14,7 +14,7 @@ public class ManageCheckpoints : MonoBehaviour
         {
             if (i < index)
             {
-                checkpoints[i].gameObject.SetActive(false);
+                checkpoints[i].gameObject.GetComponent<Collider2D>().enabled = false;
             }
             else
             {

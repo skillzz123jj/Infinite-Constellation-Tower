@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerCombat playerCombat;
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] Animator animator;
+
+    [SerializeField] GameObject healingVFX;
+    [SerializeField] GameObject deathVFX;
+    [SerializeField] GameObject damagedVFX;
+
 
     [SerializeField] Image sunface;
     [SerializeField] Sprite sunfaceNormal;
@@ -22,10 +28,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
 
+     [SerializeField] AudioClip heal;
+
     [SerializeField] float invulnerableTime;
     public int health;
     bool invulnerable;
-
 
     private void Start()
     {
@@ -50,6 +57,14 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHeal = StartCoroutine(FillRay(2f, sunrays[health].GetComponent<Image>()));
             animator.SetBool("Healing", true);
+            if (healingVFX)
+            {
+                healingVFX.GetComponent<VisualEffect>().Play();
+            }
+            if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(heal);
+            }
         }
 
         if (context.canceled && health < 5)
@@ -59,9 +74,10 @@ public class PlayerHealth : MonoBehaviour
                 StopCoroutine(currentHeal);
                 sunrays[health].GetComponent<Image>().fillAmount = 0f;
                 animator.SetBool("Healing", false);
-
+                healingVFX.GetComponent<VisualEffect>().Reinit();
             }
         }
+       
     }
     // Fills in the sunray image when healing
     IEnumerator FillRay(float duration, Image ray)
@@ -98,6 +114,7 @@ public class PlayerHealth : MonoBehaviour
             health--;
             sunrays[health].GetComponent<Image>().fillAmount = 0;
             animator.SetTrigger("Hurt");
+            damagedVFX.GetComponent<VisualEffect>().Play();
 
             if (hitDirection != Vector2.zero)
             {
@@ -113,6 +130,10 @@ public class PlayerHealth : MonoBehaviour
                 playerInput.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(firstSelectedButton);
                 animator.SetTrigger("Death");
+                if (deathVFX)
+                {
+                    deathVFX.GetComponent<VisualEffect>().Play();
+                }
             }
             else
             {

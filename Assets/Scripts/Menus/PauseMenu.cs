@@ -9,6 +9,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] bool paused;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
+    [SerializeField] GameObject playerUI;
+    [SerializeField] AudioClip hover;
+    [SerializeField] AudioClip click;
 
     private void Start()
     {
@@ -34,6 +37,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         paused = false;
+        playerUI.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -46,6 +50,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         paused = true;
+        playerUI.SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -62,4 +67,14 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void Hover()
+    {
+        if (AudioManager.Instance)
+            AudioManager.Instance.PlaySfxClip(hover);
+    }
+    public void Click()
+    {
+        if (AudioManager.Instance)
+            AudioManager.Instance.PlaySfxClip(click);
+    }
 }
