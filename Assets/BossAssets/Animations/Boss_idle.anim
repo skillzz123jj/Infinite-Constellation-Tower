@@ -26824,7 +26824,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/chest/head/left_fang_base
+    path: main_bone/chest/head/jaw/teeth
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -26836,7 +26836,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/chest/head/left_fang_base
+    path: main_bone/chest/head/jaw/teeth
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -26848,7 +26848,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/chest/head/left_fang_base
+    path: main_bone/chest/head/jaw/teeth
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27184,7 +27184,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/chest/head/left_fang_base/left_fang/left_fang_tip
+    path: main_bone/chest/head/left_fang_base/left_fang
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27196,7 +27196,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/chest/head/left_fang_base/left_fang/left_fang_tip
+    path: main_bone/chest/head/left_fang_base/left_fang
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27208,7 +27208,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/chest/head/left_fang_base/left_fang/left_fang_tip
+    path: main_bone/chest/head/left_fang_base/left_fang
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27436,7 +27436,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/chest/head/left_fang_base/left_fang
+    path: main_bone/chest/head/left_fang_base
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27448,7 +27448,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/chest/head/left_fang_base/left_fang
+    path: main_bone/chest/head/left_fang_base
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27460,7 +27460,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/chest/head/left_fang_base/left_fang
+    path: main_bone/chest/head/left_fang_base
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27580,7 +27580,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/chest/head/right_fang_base/right_fang/right_fang_tip
+    path: main_bone/chest/head/right_fang_base/right_fang
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27592,7 +27592,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/chest/head/right_fang_base/right_fang/right_fang_tip
+    path: main_bone/chest/head/right_fang_base/right_fang
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27604,7 +27604,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/chest/head/right_fang_base/right_fang/right_fang_tip
+    path: main_bone/chest/head/right_fang_base/right_fang
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27652,7 +27652,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/chest/head/jaw/teeth
+    path: main_bone/chest/right_arm_base/right_arm_tip/right_claw
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27664,7 +27664,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/chest/head/jaw/teeth
+    path: main_bone/chest/right_arm_base/right_arm_tip/right_claw
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27676,7 +27676,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/chest/head/jaw/teeth
+    path: main_bone/chest/right_arm_base/right_arm_tip/right_claw
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27868,7 +27868,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/chest/head/right_fang_base
+    path: main_bone/chest/head/left_fang_base/left_fang/left_fang_tip
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27880,7 +27880,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/chest/head/right_fang_base
+    path: main_bone/chest/head/left_fang_base/left_fang/left_fang_tip
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -27892,7 +27892,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/chest/head/right_fang_base
+    path: main_bone/chest/head/left_fang_base/left_fang/left_fang_tip
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -28156,7 +28156,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/chest/head/right_fang_base/right_fang
+    path: main_bone/chest/head/right_fang_base
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -28168,7 +28168,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/chest/head/right_fang_base/right_fang
+    path: main_bone/chest/head/right_fang_base
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -28180,7 +28180,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/chest/head/right_fang_base/right_fang
+    path: main_bone/chest/head/right_fang_base
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -28624,7 +28624,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: main_bone/chest/right_arm_base/right_arm_tip/right_claw
+    path: main_bone/chest/head/right_fang_base/right_fang/right_fang_tip
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -28636,7 +28636,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: main_bone/chest/right_arm_base/right_arm_tip/right_claw
+    path: main_bone/chest/head/right_fang_base/right_fang/right_fang_tip
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -28648,7 +28648,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: main_bone/chest/right_arm_base/right_arm_tip/right_claw
+    path: main_bone/chest/head/right_fang_base/right_fang/right_fang_tip
     classID: 4
     script: {fileID: 0}
     flags: 0
