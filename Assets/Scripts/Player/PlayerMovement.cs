@@ -167,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsGrounded()
     {
-        Vector2 size = new Vector2(0.5f, 0.1f);
+        Vector2 size = new Vector2(0.17f, 0.1f);
 
         RaycastHit2D hit = Physics2D.BoxCast(
             groundCheck.position,
