@@ -11,28 +11,10 @@ public class SpecialAttack : MonoBehaviour
 
     [SerializeField] PlayerMovement playerMovement;
 
-    [SerializeField] bool isFiring;
-
     [SerializeField] private VisualEffect laserVFX;
-
-    void Update()
-    {
-        if (isFiring)
-        {
-            ShootBeam();
-            playerMovement.limitMovement = true;
-
-        }
-        else
-        {
-            StopBeam();
-            playerMovement.limitMovement = false;
-        }
-    }
 
     public void StopBeam()
     {
-        isFiring = false;
         lineRenderer.enabled = false;
         laserVFX.gameObject.SetActive(false);
     }

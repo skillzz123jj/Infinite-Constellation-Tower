@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerMovement : MonoBehaviour
@@ -36,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        if (Gamedata.Instance.dataExists)
+        if (Gamedata.Instance.dataExists && SceneManager.GetActiveScene().buildIndex == 1)
         {
             gameObject.transform.position = Gamedata.Instance.playerPosition;
 
@@ -98,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
     public void Dash(InputAction.CallbackContext context)
     {
         //Cooldown for the dash so it cant be spammed 
-        if (context.performed && Time.time >= lastDashTime + dashCooldown)
+        if (context.performed && Time.time >= lastDashTime + dashCooldown && !limitMovement)
         {
             animator.ResetTrigger("Jump");
             animator.SetTrigger("Dash");
