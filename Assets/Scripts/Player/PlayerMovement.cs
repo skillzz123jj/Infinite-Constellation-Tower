@@ -25,7 +25,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Animator animator;
     private bool hasJumped;
     private bool wasGrounded;
+
     [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip dashSound;
+
     [SerializeField] PlayerHealth playerHealth;
 
     [SerializeField] private Transform groundCheck;
@@ -110,6 +113,10 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DoDash()
     {
+        if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(dashSound);
+            }
         isDashing = true;
         
         rb.gravityScale = 0f;
