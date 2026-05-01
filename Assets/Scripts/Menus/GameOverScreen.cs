@@ -13,6 +13,8 @@ public class GameOverScreen : MonoBehaviour
     public float fadeDuration = 1f;
     [SerializeField] BoxCollider2D playerCollider;
     [SerializeField] Rigidbody2D playerRigidbody;
+    [SerializeField] GameObject playerUI;
+    [SerializeField] GameObject pauseMenu;
 
 
     private void Start()
@@ -22,6 +24,8 @@ public class GameOverScreen : MonoBehaviour
     public void ShowGameOverScreen()
     {
         gameoverScreen.SetActive(true);
+        playerUI.SetActive(false);
+        Destroy(pauseMenu);
         playerCollider.enabled = false;
         playerRigidbody.simulated = false;
 
