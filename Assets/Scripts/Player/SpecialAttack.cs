@@ -13,6 +13,8 @@ public class SpecialAttack : MonoBehaviour
 
     [SerializeField] private VisualEffect laserVFX;
 
+    [SerializeField] AudioClip specialAttack;
+
     public void StopBeam()
     {
         lineRenderer.enabled = false;
@@ -21,7 +23,10 @@ public class SpecialAttack : MonoBehaviour
 
     void ShootBeam()
     {
-
+        if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(specialAttack);
+            }
         //Laser direction to match players direction
         Vector2 direction = playerMovement.isFacingRight ? Vector2.right : Vector2.left;
        
