@@ -8,8 +8,14 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] GameObject deathParticlePrefab;
     private Animator anim;
 
+    [SerializeField] AudioClip damaged;
+
     public void TakeDamage(int amount)
     {
+        if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(damaged);
+            }
         health -= amount;
 
         if (health <= 0)

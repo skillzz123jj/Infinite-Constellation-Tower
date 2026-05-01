@@ -30,7 +30,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
 
-     [SerializeField] AudioClip heal;
+    [SerializeField] AudioClip heal;
+    [SerializeField] AudioClip damaged;
+    [SerializeField] AudioClip death;
 
     [SerializeField] float invulnerableTime;
     public int health;
@@ -117,6 +119,10 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health > 0 && !invulnerable)
         {
+            if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(damaged);
+            }
             health--;
             sunrays[health].GetComponent<Image>().fillAmount = 0;
             animator.SetTrigger("Hurt");
@@ -137,6 +143,10 @@ public class PlayerHealth : MonoBehaviour
 
             if (health <= 0)
             {
+                if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(death);
+            }
                 ResetTimeScale();
                 playerInput.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(firstSelectedButton);

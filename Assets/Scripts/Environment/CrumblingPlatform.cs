@@ -15,6 +15,8 @@ public class CrumblingPlatform : MonoBehaviour
     public string anim;
     public string idle;
 
+    [SerializeField] AudioClip crumble;
+
     void Start()
     {
         collider = GetComponentInChildren<BoxCollider2D> ();
@@ -32,6 +34,10 @@ public class CrumblingPlatform : MonoBehaviour
     {
         animator.Play(anim);
         yield return new WaitForSeconds(animTime);
+        if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(crumble);
+            }
         Components(false);
 
         yield return new WaitForSeconds(respawnTime);

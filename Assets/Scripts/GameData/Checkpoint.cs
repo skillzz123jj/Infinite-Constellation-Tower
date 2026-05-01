@@ -10,6 +10,8 @@ public class Checkpoint : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] GameObject checkpointVFX;
 
+    [SerializeField] AudioClip ding;
+
     void Start()
     {
         gm = FindAnyObjectByType<GameManager>();
@@ -22,6 +24,10 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(ding);
+            }
 
             Gamedata.Instance.playerPosition = transform.position + new Vector3(0f, 1f, 0f);
             Gamedata.Instance.checkPointNum = checkpointNumber;
