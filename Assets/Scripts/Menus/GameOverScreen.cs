@@ -11,6 +11,9 @@ public class GameOverScreen : MonoBehaviour
     [SerializeField] GameObject firstSelectedButton;
     public Image fadeImage;
     public float fadeDuration = 1f;
+    [SerializeField] BoxCollider2D playerCollider;
+    [SerializeField] Rigidbody2D playerRigidbody;
+
 
     private void Start()
     {
@@ -19,7 +22,9 @@ public class GameOverScreen : MonoBehaviour
     public void ShowGameOverScreen()
     {
         gameoverScreen.SetActive(true);
-   
+        playerCollider.enabled = false;
+        playerRigidbody.simulated = false;
+
         //Sets the ui button active for controllers 
         playerInput.SwitchCurrentActionMap("UI");
         EventSystem.current.SetSelectedGameObject(firstSelectedButton);

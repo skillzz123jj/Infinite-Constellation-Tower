@@ -17,10 +17,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject deathVFX;
     [SerializeField] GameObject damagedVFX;
 
-
+    [Header("UI Elements")]
     [SerializeField] Image sunface;
     [SerializeField] Sprite sunfaceNormal;
     [SerializeField] Sprite sunfaceHurt;
+    [SerializeField] GameObject sunfaceLastHealth;
+
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] float knockbackForce = 5f;
@@ -104,6 +106,10 @@ public class PlayerHealth : MonoBehaviour
         playerCombat.DrainBar(10);
         ray.fillAmount = 1f;
         health++;
+        if (health > 1)
+        {
+            sunfaceLastHealth.SetActive(false);
+        }
         currentHeal = null;
         animator.SetBool("Healing", false);
     }
@@ -122,6 +128,11 @@ public class PlayerHealth : MonoBehaviour
                 rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
                 playerMovement.limitMovement = true;
+            }
+
+            if (health == 1)
+            {
+                sunfaceLastHealth.SetActive(true);
             }
 
             if (health <= 0)
