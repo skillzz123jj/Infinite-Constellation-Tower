@@ -47,23 +47,35 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        paused = true;
-        playerUI.SetActive(false);
+        if (pauseMenu)
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+            paused = true;
+            playerUI.SetActive(false);
 
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
 
-        playerInput.SwitchCurrentActionMap("UI");
-        EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+            playerInput.SwitchCurrentActionMap("UI");
+            EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+        }
     }
 
     public void Exit(int scene)
     {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        paused = false;
+        if (pauseMenu)
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+            paused = false;
+            SceneManager.LoadScene(scene);
+        }
+    
+    }
+
+    public void SwitchScene(int scene)
+    {
         SceneManager.LoadScene(scene);
     }
 
