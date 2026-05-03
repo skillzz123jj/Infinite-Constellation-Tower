@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -64,12 +65,14 @@ public class BossController : MonoBehaviour
     [SerializeField] Animator animator;
 
     [Header("Effects")]
+    [SerializeField] CinemachineVirtualCamera camera;
+    [SerializeField] AnimationCurve shakeCurve;
     [SerializeField] GameObject slamVFX;
+    [SerializeField] float shakeDuration;
+    [SerializeField] AudioClip bossRoar;
 
     [Header("Debug")]
     [SerializeField] TextMeshProUGUI bossHPText;
-
-
 
     private Vector3 rightPincerStartPoint;
     private Vector3 leftPincerStartPoint;
@@ -78,7 +81,6 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
-        //Destroy(animator);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -89,11 +91,9 @@ public class BossController : MonoBehaviour
 
         bossHPText.text = $"Boss HP: {currentBossHP} / {maxBossHP}";
 
-        // Kick off the infinite battle loop!
         StartCoroutine(BossBattleLoop());
     }
 
-    // This is your "State Machine"
     private IEnumerator BossBattleLoop()
     {
         yield return new WaitForSeconds(1.5f); // Brief dramatic pause when the fight starts
@@ -247,11 +247,16 @@ public class BossController : MonoBehaviour
 
         Debug.Log("Transitioning to Phase " + currentPhase);
 
-       // ADD CAMERA SHAKE
-
-        yield return new WaitForSeconds(1.5f);
-
         attacksPerformed = 0;
+
+        if (AudioManager.Instance)
+        {
+            AudioManager.Instance.PlaySfxClip(bossRoar);
+        }
+
+        yield return CameraShake();
+
+        yield return new WaitForSeconds(2f);
     }
 
     private IEnumerator PlatformPhaseRoutine()
@@ -379,6 +384,8 @@ public class BossController : MonoBehaviour
         }
     }
 
+    ///////////////////////HELPER FUNCTIONS///////////////////////////
+
     private IEnumerator MovePincer(Transform pincer, Vector3 targetPosition, float speed)
     {
         while (Vector3.Distance(pincer.position, targetPosition) > 0.01f)
@@ -388,6 +395,25 @@ public class BossController : MonoBehaviour
         }
 
         pincer.position = targetPosition;
+    }
+
+    IEnumerator CameraShake()
+    {
+        Transform followTarget = camera.Follow;
+        camera.Follow = null;
+
+        Vector3 startPos = camera.transform.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < shakeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float strength = shakeCurve.Evaluate(elapsedTime /  shakeDuration);
+            camera.transform.position = new Vector3(startPos.x + Random.insideUnitCircle.x * strength, startPos.y + Random.insideUnitCircle.y * strength, startPos.z);
+            yield return null;
+        }
+
+        camera.Follow = followTarget;
     }
 }
 

@@ -155,11 +155,11 @@ MonoBehaviour:
   - attackName: PincerSwipe
     weight: 30
   - attackName: Projectile
-    weight: 50
+    weight: 30
   - attackName: PincerSlam
     weight: 30
   - attackName: Tsunami
-    weight: 150
+    weight: 30
   globalCooldown: 3
   attacksBeforePlatforms: 3
   platformGroup: {fileID: 620635086}
@@ -189,7 +189,52 @@ MonoBehaviour:
   - {fileID: 1456452692}
   starFormingVFX: {fileID: 4352789111588126324, guid: f49dcd4fc71c65748a499833b692d3c0, type: 3}
   animator: {fileID: 1706635389}
+  camera: {fileID: 49770136}
+  shakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.75567746
+      outSlope: 0.75567746
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.23852828
+      value: 0.18025045
+      inSlope: 2.056506
+      outSlope: 2.056506
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.29829252
+      value: 0.38089898
+      inSlope: 5.878719
+      outSlope: 5.878719
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22616874
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.54281735
+      outSlope: -0.54281735
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   slamVFX: {fileID: 8589763494702314983, guid: 320dd90a80c385a4e8037102b4534703, type: 3}
+  shakeDuration: 2
+  bossRoar: {fileID: 8300000, guid: e0b1b1fdc8cb3a54f9485ef5080edbb2, type: 3}
   bossHPText: {fileID: 912177116}
 --- !u!4 &28532274
 Transform:
