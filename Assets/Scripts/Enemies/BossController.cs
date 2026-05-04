@@ -289,11 +289,16 @@ public class BossController : MonoBehaviour
     {
         platformGroup.SetActive(true);
 
-        GameObject tsunami = Instantiate(tsunamiPrefab, tsunamiStartPoint.position, Quaternion.identity);
+        bool flipped = Random.value > 0.5f;
+        Transform start = flipped ? tsunamiEndPoint : tsunamiStartPoint;
+        Transform end = flipped ? tsunamiStartPoint : tsunamiEndPoint;
 
-        while (Vector3.Distance(tsunami.transform.position, tsunamiEndPoint.position) > 0.1f)
+        GameObject tsunami = Instantiate(tsunamiPrefab, start.position, Quaternion.identity);
+        if (flipped) tsunami.transform.localScale = Vector3.Scale(tsunami.transform.localScale, new Vector3(-1, 1, 1));
+
+        while (Vector3.Distance(tsunami.transform.position, end.position) > 0.1f)
         {
-            tsunami.transform.position = Vector3.MoveTowards(tsunami.transform.position, tsunamiEndPoint.position, tsunamiSpeed * Time.deltaTime);
+            tsunami.transform.position = Vector3.MoveTowards(tsunami.transform.position, end.position, tsunamiSpeed * Time.deltaTime);
             yield return null;
         }
 
