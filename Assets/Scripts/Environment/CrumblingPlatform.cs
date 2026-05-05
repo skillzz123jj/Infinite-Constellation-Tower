@@ -37,8 +37,14 @@ public class CrumblingPlatform : MonoBehaviour
 
     private void OnEnable()
     {
-        animator.Play(idle);
-        Components(true);
+        if (animator != null && !string.IsNullOrEmpty(idle))
+        {
+            animator.Play(idle);
+        }
+        if (spriteRend != null && platCollider != null && collider != null)
+        {
+            Components(true);
+        }
     }
 
     IEnumerator Crumble()
