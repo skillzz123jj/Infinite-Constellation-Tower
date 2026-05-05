@@ -68,9 +68,12 @@ public class BossController : MonoBehaviour
     [Header("Effects")]
     [SerializeField] CinemachineVirtualCamera camera;
     [SerializeField] AnimationCurve shakeCurve;
-    [SerializeField] GameObject slamVFX;
     [SerializeField] float shakeDuration;
     [SerializeField] AudioClip bossRoar;
+
+    [Header("Audio")]
+    [SerializeField] GameObject slamVFX;
+    [SerializeField] AudioClip starProjectileSound;
 
     [Header("UI")]
     [SerializeField] Image bossHealthBar;
@@ -82,6 +85,11 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
+
+        if (AudioManager.Instance)
+        {
+            AudioManager.Instance.PlayMusic(1);
+        }
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
