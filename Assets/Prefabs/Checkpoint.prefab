@@ -171,7 +171,7 @@ MonoBehaviour:
   checkpointNumber: 0
   anim: {fileID: 9042964901772611167}
   checkpointVFX: {fileID: 7753634278425795920}
-  ding: {fileID: 8300000, guid: a000366ddebf7a545ba98dc54feec4b0, type: 3}
+  ding: {fileID: 8300000, guid: 820bb8a1f3e18864d97dda8d8bf61ec9, type: 3}
 --- !u!61 &4392121743183858435
 BoxCollider2D:
   m_ObjectHideFlags: 0

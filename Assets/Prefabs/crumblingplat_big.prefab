@@ -215,7 +215,7 @@ MonoBehaviour:
   spriteRend: {fileID: 5138164032012419206}
   anim: platform_big
   idle: Idle_big
-  crumble: {fileID: 8300000, guid: a000366ddebf7a545ba98dc54feec4b0, type: 3}
+  crumble: {fileID: 8300000, guid: a9314b78ee4fcaf4cb9b7a529eac4a07, type: 3}
 --- !u!68 &2398432574822935284
 EdgeCollider2D:
   m_ObjectHideFlags: 0

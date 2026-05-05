@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
     private Animator anim;
 
     [SerializeField] AudioClip damaged;
+    [SerializeField] AudioClip death;
 
     public void TakeDamage(int amount)
     {
@@ -20,6 +21,10 @@ public class EnemyHealth : MonoBehaviour
 
         if (health <= 0)
         {
+            if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(damaged);
+            }
             Debug.Log($"Enemy {gameObject} died");
 
             StartCoroutine(DestroyRoutine());

@@ -626,4 +626,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   health: 1
   deathParticlePrefab: {fileID: 4352789111588126324, guid: f49dcd4fc71c65748a499833b692d3c0, type: 3}
-  damaged: {fileID: 8300000, guid: a000366ddebf7a545ba98dc54feec4b0, type: 3}
+  damaged: {fileID: 0}
+  death: {fileID: 8300000, guid: a2db0cee8c470a7428501e00d3a4714e, type: 3}
