@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] AudioClip heal;
     [SerializeField] AudioClip damaged;
     [SerializeField] AudioClip death;
-
+    [SerializeField] AudioClip lastHP;
     [SerializeField] float invulnerableTime;
     public int health;
     bool invulnerable;
@@ -139,6 +139,10 @@ public class PlayerHealth : MonoBehaviour
             if (health == 1)
             {
                 sunfaceLastHealth.SetActive(true);
+                if (AudioManager.Instance)
+            {
+                AudioManager.Instance.PlaySfxClip(lastHP);
+            }
             }
 
             if (health <= 0)

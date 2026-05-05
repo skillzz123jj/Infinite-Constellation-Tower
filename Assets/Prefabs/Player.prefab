@@ -639,6 +639,7 @@ MonoBehaviour:
   limitMovement: 0
   animator: {fileID: 8761663297450295871}
   jumpSound: {fileID: 8300000, guid: b3fc1446d68b3ad48a51ed317ac038ef, type: 3}
+  dashSound: {fileID: 8300000, guid: 67908795e52d6a14abee7701a70cfc33, type: 3}
   playerHealth: {fileID: 2345699256265474980}
   groundCheck: {fileID: 3878596283952931450}
   groundCheckDistance: 0.2
@@ -836,6 +837,9 @@ MonoBehaviour:
   playerInput: {fileID: 7724433296614959809}
   firstSelectedButton: {fileID: 4775766401991348003}
   heal: {fileID: 8300000, guid: a000366ddebf7a545ba98dc54feec4b0, type: 3}
+  damaged: {fileID: 8300000, guid: 458fe42a1f00c2b40810996d76a15a71, type: 3}
+  death: {fileID: 8300000, guid: 19b6d2c3576c3b24b9d77eeae5503bd7, type: 3}
+  lastHP: {fileID: 8300000, guid: 9d8066c60571b2a469f57d095cf32509, type: 3}
   invulnerableTime: 0.6
   health: 0
 --- !u!114 &2542658522265024154
@@ -861,7 +865,6 @@ MonoBehaviour:
   isAttacking: 0
   playerMovement: {fileID: 5059010229759483424}
   glowingBar: {fileID: 0}
-  glowingBarTransition: {fileID: 0}
   BarEffect: {fileID: 0}
   attack: {fileID: 8300000, guid: 4afb323bed9a66b44b87f4bf723de228, type: 3}
   hit: {fileID: 8300000, guid: 3e6cfdae97d7e9f469f87de74cefd9fd, type: 3}
@@ -1125,6 +1128,7 @@ MonoBehaviour:
   beamHeight: 1.5
   playerMovement: {fileID: 5059010229759483424}
   laserVFX: {fileID: 6120499171882049970}
+  specialAttack: {fileID: 0}
 --- !u!1001 &1324477671708364716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1644,10 +1648,10 @@ MonoBehaviour:
   gameoverScreen: {fileID: 0}
   playerInput: {fileID: 7724433296614959809}
   firstSelectedButton: {fileID: 0}
-  fadeImage: {fileID: 0}
-  fadeDuration: 2
   playerCollider: {fileID: 5729385394209374634}
   playerRigidbody: {fileID: 2452288522914262386}
+  playerUI: {fileID: 0}
+  pauseMenu: {fileID: 0}
 --- !u!61 &2740271658455464353
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1725,6 +1729,7 @@ MonoBehaviour:
   beamHeight: 1.5
   playerMovement: {fileID: 5059010229759483424}
   laserVFX: {fileID: 6120499171882049970}
+  specialAttack: {fileID: 8300000, guid: 27de15e473c8a5c4bb3e128a7221b952, type: 3}
 --- !u!4 &6740582846878172064 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 15fbf19bcb234f74a860b69e26c739a0, type: 3}
