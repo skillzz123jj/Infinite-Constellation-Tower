@@ -81,6 +81,7 @@ public class PauseMenu : MonoBehaviour
     public void SwitchScene(int scene)
     {
         SceneManager.LoadScene(scene);
+        if (scene == 1 && AudioManager.Instance) AudioManager.Instance.PlayMusic(0);  // When dying in boss scene and returning to levelblocking, start playing default music again
     }
 
     public void SelectActiveButton(GameObject firstSelectedButton)
