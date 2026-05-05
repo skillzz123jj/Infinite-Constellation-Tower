@@ -19,6 +19,11 @@ public class CrumblingPlatform : MonoBehaviour
 
     void Start()
     {
+        // Moved to Awake
+    }
+
+    private void Awake()
+    {
         collider = GetComponentInChildren<BoxCollider2D> ();
     }
 
@@ -28,6 +33,12 @@ public class CrumblingPlatform : MonoBehaviour
         {
             StartCoroutine("Crumble");
         }
+    }
+
+    private void OnEnable()
+    {
+        animator.Play(idle);
+        Components(true);
     }
 
     IEnumerator Crumble()

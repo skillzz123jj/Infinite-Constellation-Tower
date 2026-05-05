@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
 {
@@ -71,8 +72,8 @@ public class BossController : MonoBehaviour
     [SerializeField] float shakeDuration;
     [SerializeField] AudioClip bossRoar;
 
-    [Header("Debug")]
-    [SerializeField] TextMeshProUGUI bossHPText;
+    [Header("UI")]
+    [SerializeField] Image bossHealthBar;
 
     private Vector3 rightPincerStartPoint;
     private Vector3 leftPincerStartPoint;
@@ -88,9 +89,8 @@ public class BossController : MonoBehaviour
         leftPincerStartPoint = leftPincer.position;
 
         maxBossHP = currentBossHP;
-
-        bossHPText.text = $"Boss HP: {currentBossHP} / {maxBossHP}";
-
+       
+        bossHealthBar.fillAmount = (float)currentBossHP / maxBossHP;
         StartCoroutine(BossBattleLoop());
     }
 
@@ -128,9 +128,9 @@ public class BossController : MonoBehaviour
     {
         currentBossHP -= damageAmount;
 
-        bossHPText.text = $"Boss HP: {currentBossHP} / {maxBossHP}";
-
         float hpPercentage = (float)currentBossHP / maxBossHP;
+        bossHealthBar.fillAmount = hpPercentage;
+
         if (currentPhase == 1 && hpPercentage <= 0.67f)
         {
             pendingPhaseTransition = true;
@@ -254,9 +254,10 @@ public class BossController : MonoBehaviour
             AudioManager.Instance.PlaySfxClip(bossRoar);
         }
 
+        animator.SetTrigger("BossRoar");
+
         yield return CameraShake();
 
-        yield return new WaitForSeconds(2f);
     }
 
     private IEnumerator PlatformPhaseRoutine()
