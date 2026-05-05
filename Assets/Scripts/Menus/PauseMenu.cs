@@ -12,6 +12,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject playerUI;
     [SerializeField] AudioClip hover;
     [SerializeField] AudioClip click;
+    [SerializeField] InputHandler inputHandler;
+    [SerializeField] GameObject controllerUI;
+    [SerializeField] GameObject keyboardUI;
 
     private void Start()
     {
@@ -20,6 +23,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void PauseInput(InputAction.CallbackContext context)
     {
+        Debug.Log("Pause input received: " + context.phase);
         if (context.performed && pauseMenu)
         {
             if (!paused)
@@ -79,6 +83,12 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(scene);
     }
 
+    public void SelectActiveButton(GameObject firstSelectedButton)
+    {
+        EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+
+    }
+
     public void Hover()
     {
         if (AudioManager.Instance)
@@ -88,5 +98,29 @@ public class PauseMenu : MonoBehaviour
     {
         if (AudioManager.Instance)
             AudioManager.Instance.PlaySfxClip(click);
+    }
+
+    private void OnEnable()
+    {
+        inputHandler.OnInputMethodChanged += HandleInputChange;
+    }
+
+    private void OnDisable()
+    {
+        inputHandler.OnInputMethodChanged -= HandleInputChange;
+    }
+
+    private void HandleInputChange(bool usingController)
+    {
+        if (usingController)
+        {
+            controllerUI.SetActive(true);
+            keyboardUI.SetActive(false);
+        }
+        else
+        {
+            controllerUI.SetActive(false);
+            keyboardUI.SetActive(true);
+        }
     }
 }
