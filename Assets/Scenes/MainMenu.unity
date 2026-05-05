@@ -5680,6 +5680,7 @@ MonoBehaviour:
   _sfxClip: []
   _musicClip:
   - {fileID: 8300000, guid: 3ac60d209116b844ca48442630a4725c, type: 3}
+  - {fileID: 8300000, guid: 71d7093f984473846893bd5839477650, type: 3}
   _sfxAudioSource: {fileID: 348557668}
   _musicSource: {fileID: 340493821}
 --- !u!4 &1724503293
