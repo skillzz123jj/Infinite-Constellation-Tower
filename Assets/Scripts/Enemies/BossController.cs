@@ -78,10 +78,14 @@ public class BossController : MonoBehaviour
     [Header("UI")]
     [SerializeField] Image bossHealthBar;
 
-    private Vector3 rightPincerStartPoint;
-    private Vector3 leftPincerStartPoint;
+    [Header("Events / Ending")]
+    [SerializeField] GameObject winCanvas;
+    [SerializeField] AudioClip deathSound;
+    [SerializeField] GameObject deathVFX;
 
     private Transform player;
+    private Vector3 rightPincerStartPoint;
+    private Vector3 leftPincerStartPoint;
 
     private void Start()
     {
@@ -139,7 +143,11 @@ public class BossController : MonoBehaviour
         float hpPercentage = (float)currentBossHP / maxBossHP;
         bossHealthBar.fillAmount = hpPercentage;
 
-        if (currentPhase == 1 && hpPercentage <= 0.67f)
+        if (currentBossHP <= 0)
+        {
+            StartCoroutine(BossDefeatSequence());
+        }
+        else if (currentPhase == 1 && hpPercentage <= 0.67f)
         {
             pendingPhaseTransition = true;
         }
@@ -147,13 +155,29 @@ public class BossController : MonoBehaviour
         {
             pendingPhaseTransition = true;
         }
+    }
 
-        // Update health bar UI
+    private IEnumerator BossDefeatSequence()
+    {
+        // Cancel all attacks
+        isPlatformPhase = false;
 
-        if (currentBossHP <= 0)
-        {
-            // Trigger the defeat sequence
-        }
+        PlayerMovement pMove = player.GetComponent<PlayerMovement>();
+
+        pMove.limitMovement = true;
+        pMove.rb.linearVelocity = Vector2.zero;
+
+        if (AudioManager.Instance) AudioManager.Instance.PlaySfxClip(deathSound);
+
+        GameObject BossDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
+
+        animator.enabled = false;
+
+        yield return new WaitForSeconds(2f); // Optional delay
+        winCanvas.SetActive(true);
+
+        gameObject.SetActive(false);
+        Destroy(BossDeathVFX);
     }
 
     public void OnStarDestroyed()
