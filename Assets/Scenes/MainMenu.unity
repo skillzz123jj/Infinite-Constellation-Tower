@@ -874,7 +874,7 @@ GameObject:
   - component: {fileID: 241694612}
   - component: {fileID: 241694611}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Music
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,8 +896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189.49, y: -64.957}
-  m_SizeDelta: {x: 235.43, y: 95.9587}
+  m_AnchoredPosition: {x: 185, y: 85.227}
+  m_SizeDelta: {x: 320.6092, y: 184.9068}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &241694611
 MonoBehaviour:
@@ -919,12 +919,21 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'BACKGROUND MUSIC
+  m_text: 'MUSIC
 
 
-    ERKKI UUSITALO
+    BACKGROUND MUSIC
 
-    MILO UUSITALO'
+    MILO UUSITALO AND ERKKI UUSITALO
+
+
+    BOSS
+    MUSIC
+
+    Castle Music Loop #1 by Sirkoto51 -- https://freesound.org/s/416632/
+    -- License: Attribution 4.0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e236a36ccd791fb42931986374637bc3, type: 2}
   m_sharedMaterial: {fileID: 545266572097392473, guid: e236a36ccd791fb42931986374637bc3, type: 2}
@@ -951,8 +960,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3506,7 +3515,7 @@ GameObject:
   - component: {fileID: 997920253}
   - component: {fileID: 997920252}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Art
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3528,8 +3537,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189.49, y: 41.471}
-  m_SizeDelta: {x: 235.43, y: 116.897}
+  m_AnchoredPosition: {x: -208.08, y: 34.5}
+  m_SizeDelta: {x: 231.661, y: 117.6508}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &997920252
 MonoBehaviour:
@@ -3554,9 +3563,9 @@ MonoBehaviour:
   m_text: 'ART
 
 
-    TIA - ART LEAD
+    TIA CAROLINA IHALAINEN- ART LEAD
 
-    NOORA
+    NOORA LIBBA
 
     ALESIA'
   m_isRightToLeft: 0
@@ -3585,8 +3594,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5862,7 +5871,7 @@ GameObject:
   - component: {fileID: 1782313905}
   - component: {fileID: 1782313904}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Programming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5884,7 +5893,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189.49, y: 161}
+  m_AnchoredPosition: {x: -208.08, y: 121.6}
   m_SizeDelta: {x: 309.12, y: 112.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1782313904
@@ -5912,7 +5921,7 @@ MonoBehaviour:
 
     MILA TURPEINEN - PROGRAMMING LEAD
 
-    ANTON
+    ANTON ILJINA
 
     MILO
     UUSITALO'
@@ -5942,8 +5951,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7126,7 +7135,7 @@ GameObject:
   - component: {fileID: 1925068254}
   - component: {fileID: 1925068253}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: SFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7148,8 +7157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 189.49, y: -160.04}
-  m_SizeDelta: {x: 235.4218, y: 94.2019}
+  m_AnchoredPosition: {x: 185, y: -52.409}
+  m_SizeDelta: {x: 331.93, y: 204.8184}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1925068253
 MonoBehaviour:
@@ -7174,9 +7183,33 @@ MonoBehaviour:
   m_text: 'SOUND EFFECTS
 
 
-    obsydianx
+    OBSYDIANX via Itch.io
 
-    leohpaz
+    LEOHPAZ via Itch.io
+
+    TANWERAMAN
+    via Pixabay
+
+    DAVIDDUMAISAUDIO via Pixabay
+
+    JOFAE via Pixabay
+
+    FREESOUND_COMMUNITY
+    via Pixabay
+
+    LOSWIN23 via Pixabay
+
+    DRAGON-STUDIO via Pixabay
+
+    Jet
+    Pack.wav by thatjeffcarter -- https://freesound.org/s/128075/ -- License: Attribution
+    4.0
+
+    stove.wav by Cambra -- https://freesound.org/s/102709/ -- License:
+    Creative Commons 0
+
+    gas_fire_catch.wav by themfish -- https://freesound.org/s/45809/
+    -- License: Attribution 4.0
 
 '
   m_isRightToLeft: 0
@@ -7205,8 +7238,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7633,8 +7666,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0021972656, y: 0.00012207031}
-  m_SizeDelta: {x: 800, y: 450}
+  m_AnchoredPosition: {x: -208.08446, y: -117.04615}
+  m_SizeDelta: {x: 1216.1644, y: 684.0926}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2047005504
 MonoBehaviour:

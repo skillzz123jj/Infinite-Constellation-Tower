@@ -50,11 +50,11 @@ public class CrumblingPlatform : MonoBehaviour
     IEnumerator Crumble()
     {
         animator.Play(anim);
-        yield return new WaitForSeconds(animTime);
         if (AudioManager.Instance)
             {
                 AudioManager.Instance.PlaySfxClip(crumble);
             }
+        yield return new WaitForSeconds(animTime);
         Components(false);
 
         yield return new WaitForSeconds(respawnTime);
