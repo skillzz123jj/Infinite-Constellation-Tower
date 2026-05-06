@@ -20,6 +20,8 @@ public class RangedEnemy : MonoBehaviour
     [SerializeField] LayerMask playerLayer;
     [SerializeField] Transform pointA, pointB;
 
+    [SerializeField] bool immobile = false;
+
 
 
     int direction = 1;  // 1 = right, -1 = left
@@ -63,14 +65,19 @@ public class RangedEnemy : MonoBehaviour
         // Continue moving otherwise.
         else
         {
-            // Check if we hit wall or ground not in front
-            CheckForFlip();
-            animator.Play("Mite_Walk");
-            rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
-
+            if(immobile == false)
+            {
+                // Check if we hit wall or ground not in front
+                CheckForFlip();
+                animator.Play("Mite_Walk");
+                rb.linearVelocity = new Vector2(direction * speed, rb.linearVelocity.y);
+            }
+            else
+            {
+                animator.Play("Mite_Idle");
+            }
             // Reset shoot timer
             shootTimer = shootInterval;
-
         }
     }
 

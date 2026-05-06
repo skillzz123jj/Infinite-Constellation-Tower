@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.VFX;
 
 public class SpecialAttack : MonoBehaviour
@@ -11,14 +12,19 @@ public class SpecialAttack : MonoBehaviour
 
     [SerializeField] PlayerMovement playerMovement;
 
+    [SerializeField] PlayerInput playerInput;
+
     [SerializeField] private VisualEffect laserVFX;
 
     [SerializeField] AudioClip specialAttack;
 
     public void StopBeam()
     {
+        playerMovement.limitMovement = false;
         lineRenderer.enabled = false;
         laserVFX.gameObject.SetActive(false);
+        playerInput.SwitchCurrentActionMap("Player");
+
     }
 
     void ShootBeam()
@@ -27,6 +33,9 @@ public class SpecialAttack : MonoBehaviour
             {
                 AudioManager.Instance.PlaySfxClip(specialAttack);
             }
+        playerMovement.limitMovement = true;
+        playerInput.SwitchCurrentActionMap("UI");
+
         //Laser direction to match players direction
         Vector2 direction = playerMovement.isFacingRight ? Vector2.right : Vector2.left;
        

@@ -23,7 +23,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void PauseInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause input received: " + context.phase);
         if (context.performed && pauseMenu)
         {
             if (!paused)
