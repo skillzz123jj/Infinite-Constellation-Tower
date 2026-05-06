@@ -6,7 +6,12 @@ public class BossStar : MonoBehaviour
     [SerializeField] int hitsToDestroy;
     [SerializeField] int damagePerHitToBoss;
 
-    [SerializeField] BossController boss;
+    BossController boss;
+
+    private void Awake()
+    {
+        boss = GetComponentInParent<BossController>();
+    }
         
     public void TakeDamage(bool isSpecialAttack)
     {
