@@ -29,7 +29,10 @@ public class Interactables : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            interactableInstruction.SetActive(false);
+            if (interactableInstruction)
+            {
+                interactableInstruction.SetActive(false);
+            }
             isPlayerInRange = false;
         }
     }
@@ -44,7 +47,10 @@ public class Interactables : MonoBehaviour
 
     IEnumerator SwitchToUI()
     {
-        interactableImage.SetActive(true);
+        if (interactableInstruction)
+        { 
+            interactableImage.SetActive(true);
+        }
 
         playerInput.SwitchCurrentActionMap("UI");
 
@@ -70,7 +76,6 @@ public class Interactables : MonoBehaviour
     IEnumerator SwitchBackToPlayer()
     {
         EventSystem.current.SetSelectedGameObject(null);
-
 
         yield return null; 
 
