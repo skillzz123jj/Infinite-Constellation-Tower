@@ -20,6 +20,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] PlayerMovement playerMovement;
     [SerializeField] GameObject glowingBar;
     [SerializeField] Animator BarEffect;
+    [SerializeField] GameObject bossHitVFX;
     
     [SerializeField] AudioClip attack;
     [SerializeField] AudioClip hit;

@@ -11,12 +11,14 @@ public class GameOverScreen : MonoBehaviour
     [SerializeField] BoxCollider2D playerCollider;
     [SerializeField] Rigidbody2D playerRigidbody;
     [SerializeField] GameObject playerUI;
+    [SerializeField] GameObject bossUI;
     [SerializeField] GameObject pauseMenu;
 
     public void ShowGameOverScreen()
     {
         gameoverScreen.SetActive(true);
         playerUI.SetActive(false);
+        bossUI.SetActive(false);
         Destroy(pauseMenu);
         playerCollider.enabled = false;
         playerRigidbody.simulated = false;

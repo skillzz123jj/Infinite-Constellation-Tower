@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -34,6 +35,24 @@ public class AudioManager : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(gameObject);
         PlayMusic(0);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+    }
+
+    private void OnActiveSceneChanged(Scene previousScene, Scene nextScene)
+    {
+        if ((nextScene.buildIndex == 0 || nextScene.buildIndex == 1) && previousScene.buildIndex != 0)
+        {
+            PlayMusic(0);
+        }
     }
 
     public void PlaySfxClip(AudioClip _clip)

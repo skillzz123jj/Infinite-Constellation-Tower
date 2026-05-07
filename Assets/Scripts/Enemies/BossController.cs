@@ -1,7 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,10 +70,14 @@ public class BossController : MonoBehaviour
     [SerializeField] AnimationCurve shakeCurve;
     [SerializeField] float shakeDuration;
     [SerializeField] AudioClip bossRoar;
+    public GameObject bossHitVFX;
 
     [Header("Audio")]
     [SerializeField] GameObject slamVFX;
     [SerializeField] AudioClip starProjectileSound;
+    [SerializeField] AudioClip tsunamiApproachingSound;
+    [SerializeField] AudioClip weakpointHit;
+    [SerializeField] AudioClip weakpointDestroyed;
 
     [Header("UI")]
     [SerializeField] Image bossHealthBar;
@@ -159,7 +163,6 @@ public class BossController : MonoBehaviour
 
     private IEnumerator BossDefeatSequence()
     {
-        // Cancel all attacks
         isPlatformPhase = false;
 
         PlayerMovement pMove = player.GetComponent<PlayerMovement>();
@@ -172,6 +175,13 @@ public class BossController : MonoBehaviour
         GameObject BossDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
 
         animator.enabled = false;
+
+        string path = Application.persistentDataPath + "/playerInfo.dat";
+
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
 
         yield return new WaitForSeconds(2f); // Optional delay
         winCanvas.SetActive(true);
@@ -416,6 +426,11 @@ public class BossController : MonoBehaviour
                 Vector3 directionToPlayer = player.position - proj.transform.position;
 
                 proj.GetComponent<StarProjectile>().FireAtPlayer(directionToPlayer);
+
+                if (AudioManager.Instance)
+                {
+                    AudioManager.Instance.PlaySfxClip(starProjectileSound);
+                }
             }
 
             yield return new WaitForSeconds(1f);

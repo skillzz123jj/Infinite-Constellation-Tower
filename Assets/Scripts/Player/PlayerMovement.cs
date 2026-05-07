@@ -148,19 +148,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool grounded = IsGrounded();
+        isGrounded = IsGrounded();
 
-        if (grounded && !wasGrounded)
+        if (isGrounded && !wasGrounded)
         {
             hasJumped = false;
             coyoteTimeCounter = coyoteTime;
         }
-        else if (!grounded)
+        else if (!isGrounded)
         {
             coyoteTimeCounter -= Time.fixedDeltaTime;
         }
 
-        wasGrounded = grounded;
+        wasGrounded = isGrounded;
 
         if (!isDashing && !limitMovement)
         {

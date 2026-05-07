@@ -20,10 +20,19 @@ public class WeaponHit : MonoBehaviour
         if (IsValidDamageTarget(collision))
         {
             OnHit?.Invoke(collision);
+            if (collision.GetComponentInParent<BossController>() != null)
+            {
+                // Instantiate hit VFX for boss
+                BossController boss = collision.GetComponentInParent<BossController>();
+                if (boss != null && boss.bossHitVFX != null)
+                {
+                    var hitPoint = collision.ClosestPoint(transform.position);
+                    Instantiate(boss.bossHitVFX, hitPoint, Quaternion.identity);
+                }
+            }
             if (applyForce)
             {
                 StartCoroutine(gameObject.GetComponentInParent<PlayerMovement>().ApplyForceOnHit());
-
             }
         }
     }

@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] GameObject firstSelectedButton;
     [SerializeField] GameObject playerUI;
+    [SerializeField] GameObject bossUI;
     [SerializeField] AudioClip hover;
     [SerializeField] AudioClip click;
     [SerializeField] InputHandler inputHandler;
@@ -41,6 +42,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         paused = false;
         playerUI.SetActive(true);
+        bossUI.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -56,6 +58,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             paused = true;
             playerUI.SetActive(false);
+            bossUI.SetActive(false);
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
