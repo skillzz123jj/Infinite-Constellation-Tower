@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class BossController : MonoBehaviour
@@ -84,6 +86,7 @@ public class BossController : MonoBehaviour
 
     [Header("Events / Ending")]
     [SerializeField] GameObject winCanvas;
+    [SerializeField] GameObject winCanvasButton;
     [SerializeField] AudioClip deathSound;
     [SerializeField] GameObject deathVFX;
 
@@ -185,6 +188,15 @@ public class BossController : MonoBehaviour
 
         yield return new WaitForSeconds(2f); // Optional delay
         winCanvas.SetActive(true);
+
+        PlayerInput playerInput = player.GetComponent<PlayerInput>();
+
+        playerInput.SwitchCurrentActionMap("UI");
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        EventSystem.current.SetSelectedGameObject(winCanvasButton);
 
         gameObject.SetActive(false);
         Destroy(BossDeathVFX);
