@@ -251,7 +251,7 @@ MonoBehaviour:
   weakpointDestroyed: {fileID: 8300000, guid: 1c8d256321fd7404caffd67840fc933a, type: 3}
   bossHealthBar: {fileID: 1106494801}
   winCanvas: {fileID: 44881025}
-  winCanvasButton: {fileID: 0}
+  winCanvasButton: {fileID: 304004752}
   deathSound: {fileID: 8300000, guid: fbef5ecaf511a2e42be2577f444d177e, type: 3}
   deathVFX: {fileID: 8444753417676919866, guid: 9795657a9bb45d84fbd5f9418503612c, type: 3}
 --- !u!4 &28532274
