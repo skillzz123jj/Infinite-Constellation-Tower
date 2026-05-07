@@ -42,7 +42,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         paused = false;
         playerUI.SetActive(true);
-        bossUI.SetActive(true);
+        if (bossUI != null) bossUI.SetActive(true);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -58,7 +58,7 @@ public class PauseMenu : MonoBehaviour
             Time.timeScale = 0f;
             paused = true;
             playerUI.SetActive(false);
-            bossUI.SetActive(false);
+            if (bossUI != null) bossUI.SetActive(false);
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
