@@ -57,7 +57,7 @@ public class PlayerHealth : MonoBehaviour
     // Cancels heal if player lets go of the button 
     public void Heal(InputAction.CallbackContext context)
     {
-        if (context.started && health < 5 && playerCombat.powerBarValue >= 10 && playerMovement.GetMoveInput().x == 0)
+        if (context.started && health < 5 && playerCombat.powerBarValue >= 10 && playerMovement.GetMoveInput().x == 0 && !playerMovement.isDashing)
         {
             currentHeal = StartCoroutine(FillRay(2f, sunrays[health].GetComponent<Image>()));
             animator.SetBool("Healing", true);
@@ -115,16 +115,20 @@ public class PlayerHealth : MonoBehaviour
         currentHeal = null;
         animator.SetBool("Healing", false);
     }
+
+
     public void TakeDamage(Vector2 hitDirection = default)
-    {
+    {   
         if (health > 0 && !invulnerable)
         {
+
             if (AudioManager.Instance)
             {
                 AudioManager.Instance.PlaySfxClip(damaged);
             }
             health--;
             sunrays[health].GetComponent<Image>().fillAmount = 0;
+         
             animator.SetTrigger("Hurt");
             damagedVFX.GetComponent<VisualEffect>().Play();
 
@@ -134,6 +138,25 @@ public class PlayerHealth : MonoBehaviour
                 rb.AddForce(hitDirection.normalized * knockbackForce, ForceMode2D.Impulse);
 
                 playerMovement.limitMovement = true;
+            }
+
+            if (currentHeal != null)
+            {
+                StopCoroutine(currentHeal);
+                currentHeal = null;
+
+                animator.ResetTrigger("Healing");
+                healingVFX.GetComponent<VisualEffect>().Stop();
+
+
+                foreach (var ray in sunrays)
+                {
+                    var img = ray.GetComponent<Image>();
+                    if (img != null && img.fillAmount < 1f)
+                    {
+                        img.fillAmount = 0f;
+                    }
+                }
             }
 
             if (health == 1)
@@ -154,6 +177,7 @@ public class PlayerHealth : MonoBehaviour
                 ResetTimeScale();
                 playerInput.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+                animator.ResetTrigger("Healing");
                 animator.SetTrigger("Death");
                 if (deathVFX)
                 {
@@ -184,7 +208,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Projectile")) //|| collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Projectile")) 
         {
             if (collision.CompareTag("Projectile"))
             {

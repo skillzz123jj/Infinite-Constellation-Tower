@@ -18,7 +18,8 @@ public class GameOverScreen : MonoBehaviour
     {
         gameoverScreen.SetActive(true);
         playerUI.SetActive(false);
-        bossUI.SetActive(false);
+        if (bossUI)
+            bossUI.SetActive(false);
         Destroy(pauseMenu);
         playerCollider.enabled = false;
         playerRigidbody.simulated = false;

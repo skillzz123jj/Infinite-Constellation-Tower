@@ -833,7 +833,7 @@ MonoBehaviour:
   sunfaceHurt: {fileID: -8991728983951363986, guid: fde4e2840e0c42041a0424341dc94fe9, type: 3}
   sunfaceLastHealth: {fileID: 0}
   rb: {fileID: 2452288522914262386}
-  knockbackForce: 250
+  knockbackForce: 300
   playerInput: {fileID: 7724433296614959809}
   firstSelectedButton: {fileID: 4775766401991348003}
   heal: {fileID: 8300000, guid: a000366ddebf7a545ba98dc54feec4b0, type: 3}
@@ -866,6 +866,7 @@ MonoBehaviour:
   playerMovement: {fileID: 5059010229759483424}
   glowingBar: {fileID: 0}
   BarEffect: {fileID: 0}
+  bossHitVFX: {fileID: 0}
   attack: {fileID: 8300000, guid: 4afb323bed9a66b44b87f4bf723de228, type: 3}
   hit: {fileID: 8300000, guid: 3e6cfdae97d7e9f469f87de74cefd9fd, type: 3}
 --- !u!61 &5729385394209374634
@@ -1127,6 +1128,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 1955105949338092959}
   beamHeight: 1.5
   playerMovement: {fileID: 5059010229759483424}
+  playerInput: {fileID: 0}
   laserVFX: {fileID: 6120499171882049970}
   specialAttack: {fileID: 0}
 --- !u!1001 &1324477671708364716
@@ -1651,6 +1653,7 @@ MonoBehaviour:
   playerCollider: {fileID: 5729385394209374634}
   playerRigidbody: {fileID: 2452288522914262386}
   playerUI: {fileID: 0}
+  bossUI: {fileID: 0}
   pauseMenu: {fileID: 0}
 --- !u!61 &2740271658455464353
 BoxCollider2D:
@@ -1728,6 +1731,7 @@ MonoBehaviour:
   lineRenderer: {fileID: 1955105949338092959}
   beamHeight: 1.5
   playerMovement: {fileID: 5059010229759483424}
+  playerInput: {fileID: 0}
   laserVFX: {fileID: 6120499171882049970}
   specialAttack: {fileID: 8300000, guid: 27de15e473c8a5c4bb3e128a7221b952, type: 3}
 --- !u!4 &6740582846878172064 stripped

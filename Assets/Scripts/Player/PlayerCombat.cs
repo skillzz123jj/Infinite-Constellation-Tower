@@ -32,7 +32,6 @@ public class PlayerCombat : MonoBehaviour
         upAttack.OnHit += OnEnemyHit;
         downAttack.OnHit += OnEnemyHit;
         //powerBarValue = Gamedata.Instance.playerPowerbar;
-        powerBarValue = 100;
         UpdateBar();
     }
     public void Attack(InputAction.CallbackContext context)
@@ -89,7 +88,7 @@ public class PlayerCombat : MonoBehaviour
         BossStar bossStar = other.GetComponentInParent<BossStar>();
         if (bossStar != null)
         {
-            FillBar(15);
+            FillBar(10);
             bossStar.TakeDamage(false);
             return;
         }

@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 moveInput;
     [SerializeField] float dashCooldown = 1f;
     Vector3 scale;
-    private bool isDashing;
+    public  bool isDashing;
     private float lastDashTime;
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
