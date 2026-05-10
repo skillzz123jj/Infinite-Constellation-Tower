@@ -68,6 +68,15 @@ public class PlayerMovement : MonoBehaviour
    
     public void Jump(InputAction.CallbackContext context)
     {
+        // Try dialogue first
+        // If there's a boss dialogue active, intercept jump to handle dialogue progression
+        BossDialogue dialogue = FindObjectOfType<BossDialogue>();
+        if (dialogue != null && dialogue.IsDialogueActive())
+        {
+             dialogue.OnJumpInput(context);
+             return; // Don't allow jumping while in dialogue
+        }
+
         //Prevent double jump by checking hasJumped as well as coyote time
         if (context.performed && coyoteTimeCounter > 0 && !isDashing && !hasJumped)
         {

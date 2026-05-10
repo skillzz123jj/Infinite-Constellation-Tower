@@ -7,6 +7,8 @@ public class Gamedata //Game data used across the game
     public int playerPowerbar { get; set; } = 0;
     public Vector2 playerPosition { get; set; } = new Vector2(0, 0);
     public int checkPointNum { get; set; } = 0;
+    
+    public bool bossIntroDialogueShown { get; set; } = false;
 
     public bool dataExists { get; set; } = false;
 

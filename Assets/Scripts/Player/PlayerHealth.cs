@@ -171,9 +171,17 @@ public class PlayerHealth : MonoBehaviour
             if (health <= 0)
             {
                 if (AudioManager.Instance)
-            {
-                AudioManager.Instance.PlaySfxClip(death);
-            }
+                {
+                    AudioManager.Instance.PlaySfxClip(death);
+                }
+                
+                // Stop any running boss attacks when player dies
+                BossController boss = FindObjectOfType<BossController>();
+                if (boss != null)
+                {
+                    boss.StopAllCoroutines();
+                }
+
                 ResetTimeScale();
                 playerInput.SwitchCurrentActionMap("UI");
                 EventSystem.current.SetSelectedGameObject(firstSelectedButton);

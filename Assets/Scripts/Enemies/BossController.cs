@@ -90,6 +90,11 @@ public class BossController : MonoBehaviour
     [SerializeField] AudioClip deathSound;
     [SerializeField] GameObject deathVFX;
 
+    [Header("Dialogue System")]
+    [SerializeField] BossDialogue bossDialogue;
+    public bool preFightDialogueTriggered = false;
+    private bool bossDefeated = false;
+
     private Transform player;
     private Vector3 rightPincerStartPoint;
     private Vector3 leftPincerStartPoint;
@@ -110,14 +115,40 @@ public class BossController : MonoBehaviour
         maxBossHP = currentBossHP;
        
         bossHealthBar.fillAmount = (float)currentBossHP / maxBossHP;
-        StartCoroutine(BossBattleLoop());
+        // Start battle loop after dialogue trigger handles dialogue
+    }
+
+    public void StartBossBattle()
+    {
+        // Prevent calling this routine more than once if the player jiggles around the trigger
+        if (!bossDefeated)
+        {
+             StartCoroutine(BossBattleLoop());
+        }
     }
 
     private IEnumerator BossBattleLoop()
     {
         yield return new WaitForSeconds(1.5f); // Brief dramatic pause when the fight starts
 
-        while (currentBossHP >= 0)
+        // Wait until pre-fight dialogue is finished if it exists and is actively running
+        if (preFightDialogueTriggered)
+        {
+             // If they died already, this is skipping the UI, so it will instantly un-pause!
+             while(bossDialogue.IsDialogueActive())
+             {
+                 yield return null;
+             }
+        }
+        
+        // Restore player movement after dialogue finishes
+        PlayerMovement pMove = player.GetComponent<PlayerMovement>();
+        if (pMove != null)
+        {
+            pMove.limitMovement = false;
+        }
+
+        while (currentBossHP > 0 && !bossDefeated)
         {
             if (pendingPhaseTransition)
             {
@@ -150,8 +181,9 @@ public class BossController : MonoBehaviour
         float hpPercentage = (float)currentBossHP / maxBossHP;
         bossHealthBar.fillAmount = hpPercentage;
 
-        if (currentBossHP <= 0)
+        if (currentBossHP <= 0 && !bossDefeated)
         {
+            bossDefeated = true;
             StartCoroutine(BossDefeatSequence());
         }
         else if (currentPhase == 1 && hpPercentage <= 0.67f)
@@ -167,18 +199,24 @@ public class BossController : MonoBehaviour
     private IEnumerator BossDefeatSequence()
     {
         isPlatformPhase = false;
+        
+        // Stop any ongoing attack coroutines to immediately cancel its active animations/movements
+        StopAllCoroutines(); 
+        
+        // Restart THIS coroutine immediately because StopAllCoroutines killed it
+        StartCoroutine(BossDefeatSequenceInternal());
+        yield break;
+    }
 
+    private IEnumerator BossDefeatSequenceInternal()
+    {
         PlayerMovement pMove = player.GetComponent<PlayerMovement>();
 
         pMove.limitMovement = true;
         pMove.rb.linearVelocity = Vector2.zero;
 
-        if (AudioManager.Instance) AudioManager.Instance.PlaySfxClip(deathSound);
-
-        GameObject BossDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
-
         animator.enabled = false;
-
+        
         string path = Application.persistentDataPath + "/playerInfo.dat";
 
         if (File.Exists(path))
@@ -186,7 +224,23 @@ public class BossController : MonoBehaviour
             File.Delete(path);
         }
 
-        yield return new WaitForSeconds(2f); // Optional delay
+        yield return new WaitForSeconds(1f); // Brief delay before text starts
+        
+        // Trigger post-fight dialogue while boss is still visible
+
+        bossDialogue.TriggerPostFightDialogue();
+        while(bossDialogue.IsDialogueActive())
+        {
+            yield return null;
+        }
+        
+        // Now kill the boss
+        if (AudioManager.Instance) AudioManager.Instance.PlaySfxClip(deathSound);
+
+        GameObject BossDeathVFX = Instantiate(deathVFX, transform.position, Quaternion.identity);
+
+        yield return new WaitForSeconds(1.5f); // Let death VFX play for a bit
+
         winCanvas.SetActive(true);
 
         PlayerInput playerInput = player.GetComponent<PlayerInput>();
@@ -199,7 +253,7 @@ public class BossController : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(winCanvasButton);
 
         gameObject.SetActive(false);
-        Destroy(BossDeathVFX);
+        Destroy(BossDeathVFX, 2f); // Make sure VFX is eventually cleaned up later instead of instantly destroyed
     }
 
     public void OnStarDestroyed()
@@ -259,7 +313,11 @@ public class BossController : MonoBehaviour
 
     private IEnumerator PerformAttackRoutine()
     {
+        animator.SetTrigger("BossAttack");
+
         string nextAttack = GetRandomAttack(); // Get a random attack from the weighted pool
+        
+        yield return new WaitForSeconds(globalCooldown);
 
         // Play the chosen attack and WAIT for it to finish
         if (nextAttack == "PincerSwipe")
@@ -291,7 +349,6 @@ public class BossController : MonoBehaviour
             attacksPerformed = 0;
         }
 
-        yield return new WaitForSeconds(globalCooldown);
     }
 
     private IEnumerator PhaseTransitionRoutine()
