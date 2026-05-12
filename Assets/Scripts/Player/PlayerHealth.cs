@@ -70,19 +70,32 @@ public class PlayerHealth : MonoBehaviour
                 AudioManager.Instance.PlaySfxClip(heal);
             }
         }
+        if (playerMovement.GetMoveInput().x > 0 && currentHeal != null)
+         {
+             CancelHealing();
+            Debug.Log("Healing canceled due to movement");
+        }
 
         if (context.canceled && health < 5)
         {
             if (currentHeal != null)
             {
-                StopCoroutine(currentHeal);
-                sunrays[health].GetComponent<Image>().fillAmount = 0f;
-                animator.SetBool("Healing", false);
-                healingVFX.GetComponent<VisualEffect>().Reinit();
+                CancelHealing();
+
             }
         }
        
     }
+
+    private void CancelHealing()
+    {
+        StopCoroutine(currentHeal);
+        sunrays[health].GetComponent<Image>().fillAmount = 0f;
+        animator.SetBool("Healing", false);
+        healingVFX.GetComponent<VisualEffect>().Stop();
+        healingVFX.GetComponent<VisualEffect>().Reinit();
+    }
+
     // Fills in the sunray image when healing
     IEnumerator FillRay(float duration, Image ray)
     {
@@ -93,9 +106,7 @@ public class PlayerHealth : MonoBehaviour
         {
             if (playerMovement.GetMoveInput().x != 0)
             {
-                ray.fillAmount = 0f;
-                animator.SetBool("Healing", false);
-                currentHeal = null;
+                CancelHealing();
                 yield break; 
             }
 
@@ -142,12 +153,7 @@ public class PlayerHealth : MonoBehaviour
 
             if (currentHeal != null)
             {
-                StopCoroutine(currentHeal);
-                currentHeal = null;
-
-                animator.ResetTrigger("Healing");
-                healingVFX.GetComponent<VisualEffect>().Stop();
-
+                CancelHealing();
 
                 foreach (var ray in sunrays)
                 {

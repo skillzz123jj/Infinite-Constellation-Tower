@@ -31,7 +31,7 @@ public class PlayerCombat : MonoBehaviour
         frontAttack.OnHit += OnEnemyHit;
         upAttack.OnHit += OnEnemyHit;
         downAttack.OnHit += OnEnemyHit;
-        //powerBarValue = Gamedata.Instance.playerPowerbar;
+        powerBarValue = Gamedata.Instance.playerPowerbar;
         UpdateBar();
     }
     public void Attack(InputAction.CallbackContext context)

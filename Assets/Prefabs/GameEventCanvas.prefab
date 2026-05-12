@@ -2625,11 +2625,14 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   firstSelectedButton: {fileID: 6438465177850263121}
   playerUI: {fileID: 0}
+  bossUI: {fileID: 0}
   hover: {fileID: 8300000, guid: af4414b406d591442a89dcf568b57eb4, type: 3}
   click: {fileID: 8300000, guid: 28d4175220399bc46936fb3e05bbd03c, type: 3}
   inputHandler: {fileID: 277494315889149466}
   controllerUI: {fileID: 464433758749360079}
   keyboardUI: {fileID: 1614873766110846528}
+  controls: {fileID: 2452475330779620114}
+  main: {fileID: 4587496992923357417}
 --- !u!114 &277494315889149466
 MonoBehaviour:
   m_ObjectHideFlags: 0
